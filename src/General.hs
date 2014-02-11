@@ -66,3 +66,69 @@ twoC_1 = In $ Step $ In $ F $ Succ $ In $ F $ Succ $ In $ F Zero
 -- S_S_0
 twoC_2 :: NatComp
 twoC_2 = In $ F $ Succ $ In $ Step $ In $ F $ Succ $ In $ Step $ In $ F $ Zero
+
+
+
+-- lists
+
+data ListF a b = Nil | Cons a b
+
+instance Functor (ListF a) where
+  fmap f Nil = Nil
+  fmap f (Cons a l) = Cons a (f l)
+
+newtype List a = L (Fix (ListF a))
+outL :: List a -> Fix (ListF a)
+outL (L x) = x
+
+-- expected: Fix (ListF b)
+-- l ::      Fix (ListF a)
+-- L l :: List a
+-- fmap f (L l) :: List b
+-- outList (fmap f (L l)) :: Fix (ListF b)
+
+instance Functor List where
+  fmap f (L (In Nil)) = L $ In Nil
+  fmap f (L (In (Cons a l))) = L $ In $ Cons (f a) (outL (fmap f (L l)))
+
+instance (Show a) => Show (List a) where
+  show = show . outL
+
+exampleList_1 :: List Int
+exampleList_1 = L $ In $ Cons 10 $ In $ Cons 20 $ In Nil
+
+newtype ListComp a = LC (Fix (G (ListF a)))
+outLC :: ListComp a -> Fix (G (ListF a))
+outLC (LC x) = x
+
+instance (Show a) => Show (Fix (ListF a)) where
+  show = show . out
+
+instance (Show b, Show a) => Show (ListF a b) where
+  show Nil = "Nil"
+  show (Cons a l) = "Cons " ++ show a ++ " $ " ++ show l
+
+instance Show a => Show (Fix (G (ListF a))) where
+  show = show . out
+
+instance Show a => Show (ListComp a) where
+  show = show . outLC
+
+exampleListComp_1 :: ListComp Int
+exampleListComp_1 = LC $ In $ F $ Nil
+
+exampleListComp_2 :: ListComp Int
+exampleListComp_2 = LC $ In $ F $ Cons 10 $ In $ Step $ In $ F $ Nil
+
+exampleListComp_3 :: ListComp Int
+exampleListComp_3 = LC $ In $ Step $ In $ F $ Cons 10 $ In $ Step $ In $ F $ Nil
+
+exampleListComp_inf_step :: ListComp Int
+exampleListComp_inf_step = LC $ In $ Step $ outLC exampleListComp_inf_step
+
+exampleListComp_inf_42 :: ListComp Int
+exampleListComp_inf_42 = LC $ In $ F $ Cons 42 $ outLC exampleListComp_inf_42
+
+-- has some numbers in it, then infinitely many computation steps
+exampleListComp_some_then_infstep :: ListComp Int
+exampleListComp_some_then_infstep = LC $ In $ F $ Cons 1 $ In $ F $ Cons 2 $ outLC exampleListComp_inf_step
