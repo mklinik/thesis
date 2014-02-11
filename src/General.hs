@@ -20,8 +20,10 @@ embed :: Functor f => Fix f -> Fix (G f)
 embed = In . F . fmap embed . out
 
 project :: Functor f => Fix (G f) -> Fix f
-project (In (Step a)) = project a
-project (In (F a)) = In (fmap project a)
+project b = case out b of
+  (Step b') -> project b'
+  (F b')    -> In (fmap project b')
+
 
 type Nat = Fix NatF
 type NatComp = Fix (G NatF)
