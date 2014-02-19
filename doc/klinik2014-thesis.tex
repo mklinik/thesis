@@ -23,11 +23,19 @@
 %\newcommand{\todo}[1]{}
 \newcommand{\semantics}[1]{\llbracket #1 \rrbracket}
 
-\newtheorem{def01}{Definition}[section]
-\newtheorem{def02}[def01]{Definition}
-\newtheorem{lem02}[def01]{Lemma}
-\newtheorem{lem01}[def01]{Lemma}
-\newtheorem{thmExample}[def01]{Proposition}
+% They all use the same counter, reset at section boundaries
+% This gives a running number:
+% Section 1
+%   Theorem 1.1
+%   Definition 1.2
+%   Lemma 1.3
+% Section 2
+%   Definition 2.1
+%   Lemma 2.2
+%   ...
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
 
 \begin{document}
 
@@ -54,17 +62,18 @@ Introduction
   %has a least element, i.e.~there is an element $s \in Z$ such that for
     %any other element $t \in Z, s \sqsubseteq t$.
 
-\begin{def01}
+\begin{definition}
 A foo is a bar that buzzes.
-\end{def01}
+\end{definition}
 
-\begin{lem01}
+\begin{lemma}
 Every strict foo frobnicates.
-\end{lem01}
+\end{lemma}
 
-\begin{thmExample}
+\begin{theorem}
+\label{thmExample}
 The function $p$ is monotone.
-\end{thmExample}
+\end{theorem}
 
 \begin{proof}
 \begin{IEEEeqnarray*}{rCl}
@@ -76,15 +85,17 @@ The function $p$ is monotone.
 \end{IEEEeqnarray*}
 \end{proof}
 
+As can be seen in \ref{thmExample}, blah blah.
+
 \section{Test}
 
-\begin{def02}
+\begin{definition}
 A blub is a snoring blah.
-\end{def02}
+\end{definition}
 
-\begin{lem02}
+\begin{lemma}
 The world is round.
-\end{lem02}
+\end{lemma}
 
 
 \begin{figure}[ht]
