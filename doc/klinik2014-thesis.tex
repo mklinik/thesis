@@ -90,7 +90,7 @@ A \emph{chain} in a poset is a linearly ordered subset.
 \begin{definition}
 
 Let $D$ be a poset. A set $S \subseteq D$ is \emph{directed} iff every finite
-$P \subseteq S$ has a least upper bound in $S$.
+$P \subseteq S$ has an upper bound in $S$.
 
 \end{definition}
 
@@ -136,35 +136,41 @@ The three definitions of cpos are equivalent.
 
 
 We give a round-robin proof, of which two implications are fairly simple. The
-third implication is a bit more involved, especially in the uncountable case. We
-give a proof for the countable case here, as it is illustrative, and refer to
-the literature for the uncountable case.
+third implication is a bit more involved, and requires the axiom of choice. We
+give a proof for the countable case here because it is illustrative, and refer
+to the literature for the uncountable case.
 
 \begin{proof}
 
 $\ref{defCpoDirectedComplete} \implies \ref{defCpoChainComplete}$: Every chain
-is a directed set.
+is directed.
 
 $\ref{defCpoChainComplete} \implies \ref{defCpoOmegaSequenceComplete}$:
 The image of a non-decreasing $\omega$-sequence is a chain.
 
 $\ref{defCpoOmegaSequenceComplete} \implies \ref{defCpoDirectedComplete}$: Let
-$D$ be a cpo as in definition \ref{defCpoOmegaSequenceComplete}, let $S = \{\,x_0,
-x_1, x_2, \ldots\,\} \subseteq D$ be countable and directed. Construct a sequence
-of sets $P_n \subseteq S$ as follows,
+$D$ be an $\omega$-sequence-complete cpo as in definition
+\ref{defCpoOmegaSequenceComplete}, let $S = \{\,x_0, x_1, x_2, \ldots\,\}
+\subseteq D$ be countable and directed. For each finite $F \subseteq S$, let
+$u(F)$ be some upper bound of $F$ in $S$.  Construct a sequence of sets $P_n
+\subseteq S$ as follows,
 \begin{IEEEeqnarray*}{rCl}
 P_0 & = & \{\, x_0 \,\} \\
-P_{n+1} & = & P_n \cup \{\, \lub (P_n \cup y_n), y_n \,\}
+P_{n+1} & = & P_n \cup \{\, u(P_n \cup y_n), y_n \,\}
 \end{IEEEeqnarray*}
 
 where $y_n$ is the $x_i \in S\backslash P_n$ with the smallest possible $i$.
-Every $P_n$ is finite, so taking lubs is justified. Consider the
-$\omega$-sequence $Q$ = $\{\,\lub P_n \,\}_{n \in \mathbb{N}}$. For all $n$, we
-have $P_n \subseteq P_{n+1}$ and thus $\lub P_n \below \lub P_{n+1}$, so $Q$ has
-a lub $z$. Each $x \in S$ eventually occurs in some $P_n$, and we have $x \below
-\lub P_n \below z$, so $z$ is an upper bound of $S$. Any upper bound $z'$ of $S$
-is also an upper bound of $Q$, and therefore $z \below z'$, i.e. $z$ is the lub
-of $S$.
+
+Every $P_n$ is directed: $P_0$ certainly is, and any finite subset of $P_{n+1}$
+has $u(P_n \cup y_n) \in P_{n+1}$ as upper bound.  As every $P_n$ is finite and
+directed, taking its lub is justified.
+
+Consider the $\omega$-sequence $Q$ = $\{\,\lub P_n \,\}_{n \in \mathbb{N}}$. For
+all $n$, we have $P_n \subseteq P_{n+1}$ and thus $\lub P_n \below \lub
+P_{n+1}$, so $Q$ is non-decreasing, and therefore has a lub $z$.  Each $x \in S$
+eventually occurs in some $P_n$, and we have $x \below \lub P_n \below z$, so
+$z$ is an upper bound of $S$. Any upper bound $z'$ of $S$ is also an upper bound
+of $Q$, and therefore $z \below z'$, i.e. $z$ is the lub of $S$.
 
 \end{proof}
 
