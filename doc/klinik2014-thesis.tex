@@ -18,10 +18,12 @@
 \usetikzlibrary{positioning}
 \usetikzlibrary{matrix}
 
+\newcommand{\below}{\sqsubseteq}
 \newcommand{\arr}{\rightarrow}
 \newcommand{\todo}[1]{\bigskip \noindent \emph{todo: #1}}
 %\newcommand{\todo}[1]{}
 \newcommand{\semantics}[1]{\llbracket #1 \rrbracket}
+\newcommand{\lub}{\bigsqcup}
 
 % They all use the same counter, reset at section boundaries
 % This gives a running number:
@@ -35,6 +37,7 @@
 %   ...
 \newtheorem{definition}{Definition}[section]
 \newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
 \newtheorem{lemma}[definition]{Lemma}
 
 \begin{document}
@@ -53,22 +56,120 @@ Abstract
 
 Introduction
 
-\section{Preliminaries}
-
-  %is a partial order
-
-  %is chain-complete
-
-  %has a least element, i.e.~there is an element $s \in Z$ such that for
-    %any other element $t \in Z, s \sqsubseteq t$.
+\section{Domain Theory}
 
 \begin{definition}
-A foo is a bar that buzzes.
+
+Let $D$ be a poset, $S \subseteq D$. The \emph{least upper bound} (``lub'') of $S$
+is an element $x \in D$ such that:
+
+\begin{equation} \label{eqnLub1}
+\forall y \in S . y \below x
+\end{equation}
+\begin{equation} \label{eqnLub2}
+\forall z \in D . (\forall y \in S . y \below z) \implies x \below z
+\end{equation}
+
+The lub of S, if it exists, is denoted by $\lub S$.
+
 \end{definition}
 
-\begin{lemma}
-Every strict foo frobnicates.
-\end{lemma}
+Line (\ref{eqnLub1}) states that the lub is above all elements: it is an upper
+bound, and (\ref{eqnLub2}) states that the lub is below any other upper bound:
+it is the least such. If a lub exists, it is unique. It is therefore justified
+to call it \emph{the} lub.
+
+
+\begin{definition}
+
+A \emph{chain} in a poset is a linearly ordered subset.
+
+\end{definition}
+
+
+\begin{definition}
+
+Let $D$ be a poset. A set $S \subseteq D$ is \emph{directed} iff every finite
+$P \subseteq S$ has a least upper bound in $S$.
+
+\end{definition}
+
+
+\begin{definition} \label{defCpoDirectedComplete}
+
+(directed-complete) A \emph{cpo} is a partial order where every directed set has
+a least upper bound.
+
+\end{definition}
+
+
+\begin{definition} \label{defCpoChainComplete}
+
+(chain-complete) A \emph{cpo} is a partial order where every chain has a least
+upper bound.
+
+\end{definition}
+
+
+\begin{definition} \label{defCpoOmegaSequenceComplete}
+
+($\omega$-sequence-complete) A \emph{cpo} is a partial order where every
+non-decreasing sequence of elements $x_0 \below x_1 \below x_2 \below \ldots $
+has a least upper bound.
+
+\end{definition}
+
+
+\begin{proposition}
+
+The three definitions of cpos are equivalent.
+
+\end{proposition}
+
+
+We give a round-robin proof, of which two implications are fairly simple. The
+third implication is a bit more involved, especially in the uncountable case. We
+give a proof for the countable case here, as it is illustrative, and refer to
+the literature for the uncountable case.
+
+\begin{proof}
+
+$\ref{defCpoDirectedComplete} \implies \ref{defCpoChainComplete}$: Every chain
+is a directed set.
+
+$\ref{defCpoChainComplete} \implies \ref{defCpoOmegaSequenceComplete}$:
+The image of a non-decreasing $\omega$-sequence is a chain.
+
+$\ref{defCpoOmegaSequenceComplete} \implies \ref{defCpoDirectedComplete}$: Let
+$D$ be a cpo as in definition \ref{defCpoOmegaSequenceComplete}, let $S = \{\,x_0,
+x_1, x_2, \ldots\,\} \subseteq D$ be countable and directed. Construct a sequence
+of sets $P_n \subseteq S$ as follows,
+\begin{IEEEeqnarray*}{rCl}
+P_0 & = & \{\, x_0 \,\} \\
+P_{n+1} & = & P_n \cup \{\, \lub (P_n \cup y_n), y_n \,\}
+\end{IEEEeqnarray*}
+
+where $y_n$ is the $x_i \in S\backslash P_n$ with the smallest possible $i$.
+Every $P_n$ is finite, so taking lubs is justified. Consider the
+$\omega$-sequence $Q$ = $\{\,\lub P_n \,\}_{n \in \mathbb{N}}$. For all $n$, we
+have $P_n \subseteq P_{n+1}$ and thus $\lub P_n \below \lub P_{n+1}$, so $Q$ has
+a lub $z$. Each $x \in S$ eventually occurs in some $P_n$, and we have $x \below
+\lub P_n \below z$, so $z$ is an upper bound of $S$. Any upper bound $z'$ of $S$
+is also an upper bound of $Q$, and therefore $z \below z'$, i.e. $z$ is the lub
+of $S$.
+
+\end{proof}
+
+The complication in the third implication comes from the fact that a directed
+set doesn't need to be linearly ordered. Every directed set does however contain
+a chain which threads through the whole set, eventually rising above all
+elements. The lub of the chain is then the lub of the directed set.
+
+\begin{definition}
+A pointed CPO $D$, CPPO, is a CPO that has a bottom element $\bot$ which
+satisfies $\forall d \in D . \bot \below d$.
+
+\end{definition}
 
 \begin{theorem}
 \label{thmExample}
