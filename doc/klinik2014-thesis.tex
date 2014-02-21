@@ -219,7 +219,10 @@ is monotone and preserves lubs, that is for all chains $P \subseteq C$,
 
 \end{definition}
 
-Note that if a function preserves lubs, it is automatically monotone,
+\todo{Scott-continuity is equivalent to topological continuity induced by the
+Scott-topology.}
+
+Note that if a function preserves lubs, it is monotone,
 \begin{IEEEeqnarray*}{rCl}
   x \below y \implies
   y = \lub \{\, x, y\, \} \implies
@@ -227,17 +230,17 @@ Note that if a function preserves lubs, it is automatically monotone,
   f(x) \below f(y)
 \end{IEEEeqnarray*}
 
-but we usually need to prove monotonicity as a first step for a proof of
-continuity of a function $f$, as one step is often that for a chain $P$, $\{\,
+but in a proof of continuity of a function $f$, we usually need to prove
+monotonicity as a first step, so that for a chain $P$, $\{\,
 f(x) \mid x \in P\,\}$ is again a chain. This motivates the inclusion of
 monotonicity in the definition of continuity.
 
 
-\begin{proposition}
+\begin{lemma}
 
 The identity function is continuous.
 
-\end{proposition}
+\end{lemma}
 
 \begin{proof}
 
@@ -249,11 +252,11 @@ id(\lub P) = \lub P = \lub_{x \in P} id(x)
 \end{proof}
 
 
-\begin{proposition}
+\begin{lemma}
 
 Composition of two continuous functions is continuous.
 
-\end{proposition}
+\end{lemma}
 
 \begin{proof}
 
@@ -271,10 +274,35 @@ chain. Then
 
 \begin{proposition}
 
-The complete, pointed posets together with continuous functions form a category.
-This category is called Cppo.
+The complete pointed posets, together with continuous functions between them form
+a category.  This category is called Cppo.
 
 \end{proposition}
+
+
+\begin{definition}
+
+A category has the \emph{fixpoint property} iff for all objects $A$ and arrows
+$f : A \arr A$ there exists a unique arrow $Y(f) : 1 \arr A$ such that $Y(f) = f
+\circ Y(f)$.
+
+\end{definition}
+
+
+\begin{theorem}
+
+Cppo has the fixpoint property.
+
+\end{theorem}
+
+\begin{proof}
+
+This is the famous fixpoint theorem, which is often attributed to Tarski, but
+actually due to Kleene.
+
+\todo{check this}
+
+\end{proof}
 
 
 
@@ -410,7 +438,7 @@ The world is round.
 
 \section{Further directions}
 
-Two times left, at the traffic lights right.
+Left, left, right.
 
 \section{Bibliographic notes}
 
