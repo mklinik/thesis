@@ -71,7 +71,10 @@ is an element $x \in D$ such that:
 \forall z \in D . (\forall y \in S . y \below z) \implies x \below z
 \end{equation}
 
-The lub of S, if it exists, is denoted by $\lub S$.
+The lub of S, if it exists, is denoted interchangeably by
+\begin{IEEEeqnarray*}{rCl}
+\lub S = \lub_{x \in S} x = \lub \{\, x \mid x \in S \,\}
+\end{IEEEeqnarray*}
 
 \end{definition}
 
@@ -193,6 +196,85 @@ satisfies $\forall d \in D . \bot \below d$.
 
 \end{definition}
 
+
+\subsection{The Category Cppo}
+
+\begin{definition}
+
+Let $C$, $D$ be partial orders. A function $f : C \arr D$ is \emph{monotone} iff
+it is order preserving, that is for all $x, y \in C$,
+\begin{IEEEeqnarray*}{rCl}
+  x \below y \implies f(x) \below f(y)
+\end{IEEEeqnarray*}
+
+\end{definition}
+
+\begin{definition}
+
+Let $C$, $D$ be cpos. A function $f : C \arr D$ is \emph{continuous} iff it
+is monotone and preserves lubs, that is for all chains $P \subseteq C$,
+\begin{IEEEeqnarray*}{rCl}
+  f(\lub_{x \in P} x) = \lub_{x \in P} f(x)
+\end{IEEEeqnarray*}
+
+\end{definition}
+
+Note that if a function preserves lubs, it is automatically monotone,
+\begin{IEEEeqnarray*}{rCl}
+  x \below y \implies
+  y = \lub \{\, x, y\, \} \implies
+  f(y) = f(\lub \{\, x, y\, \}) = \lub \{\, f(x), f(y)\, \} \implies
+  f(x) \below f(y)
+\end{IEEEeqnarray*}
+
+but we usually need to prove monotonicity as a first step for a proof of
+continuity of a function $f$, as one step is often that for a chain $P$, $\{\,
+f(x) \mid x \in P\,\}$ is again a chain. This motivates the inclusion of
+monotonicity in the definition of continuity.
+
+
+\begin{proposition}
+
+The identity function is continuous.
+
+\end{proposition}
+
+\begin{proof}
+
+Let $P \in C$ be a chain. Then
+\begin{equation*}
+id(\lub P) = \lub P = \lub_{x \in P} id(x)
+\end{equation*}
+
+\end{proof}
+
+
+\begin{proposition}
+
+Composition of two continuous functions is continuous.
+
+\end{proposition}
+
+\begin{proof}
+
+Let $f : C \arr D$, $g : D \arr E$ be continuous. Let $P \subseteq C$ be a
+chain. Then
+\begin{IEEEeqnarray*}{rCl}
+(g \circ f)(\lub P) & = & g(f(\lub_{x \in P} x)) \\
+  & = & g( \lub_{x \in P} f(x) ) \\
+  & = & \lub_{x \in P} g(f(x)) \\
+  & = & \lub_{x \in P} (g \circ f)(x)
+\end{IEEEeqnarray*}
+
+\end{proof}
+
+
+\begin{proposition}
+
+The complete, pointed posets together with continuous functions form a category.
+This category is called Cppo.
+
+\end{proposition}
 
 
 
