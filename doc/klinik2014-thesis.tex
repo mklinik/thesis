@@ -190,15 +190,15 @@ a chain which threads through the whole set, eventually rising above all
 elements. The lub of the chain is then the lub of the directed set.
 
 
+\subsection{The Category Cppo}
+
+
 \begin{definition}
 
 A cpo $D$ is \emph{pointed} iff it has a bottom element $\bot$ which
 satisfies $\forall d \in D . \bot \below d$.
 
 \end{definition}
-
-
-\subsection{The Category Cppo}
 
 \begin{definition}
 
@@ -219,9 +219,6 @@ is monotone and preserves lubs, that is for all chains $P \subseteq C$,
 \end{IEEEeqnarray*}
 
 \end{definition}
-
-\todo{Scott-continuity is equivalent to topological continuity induced by the
-Scott-topology.}
 
 Note that if a function preserves lubs, it is monotone,
 \begin{IEEEeqnarray*}{rCl}
@@ -284,7 +281,7 @@ a category.  This category is called Cppo.
 \begin{definition}
 
 A category has the \emph{fixpoint property} iff for all objects $A$ and arrows
-$f : A \arr A$ there exists a unique arrow $Y(f) : 1 \arr A$ such that $Y(f) = f
+$f : A \arr A$ there exists an arrow $Y(f) : 1 \arr A$ such that $Y(f) = f
 \circ Y(f)$.
 
 \end{definition}
@@ -298,27 +295,37 @@ Cppo has the fixpoint property.
 
 \begin{proof}
 
-This is the famous fixpoint theorem, which is often attributed to Tarski, but
-actually due to Kleene.
-
-\todo{check this}
+Let $D$ be a cppo, $f : D \arr D$ a continuous function. Whe have to show that
+there exists an element $x \in D$ such that $x = f(x)$. Consider the set
+\begin{equation*}
+F = \set{f^n(\bot) \mid n \in \mathbb{N}}.
+\end{equation*}
+This set is a chain, because for $n = 0$
+we have $f^0(\bot) = \bot \below f(\bot)$. Now assume that $f^n(\bot) \below
+f^{n+1}(\bot)$. Then $f(f^n(\bot)) \below f(f^{n+1}(\bot))$, so $f^{n+1}(\bot)
+\below f^{n+2}(\bot)$. Because $F$ is a chain and $D$ a cppo, $F$ has a lub $x =
+\lub F$.  We calculate:
+\begin{IEEEeqnarray*}{rCl}
+f(x) & = & f(\lub F) \\
+     & = & \lub f(F) \\
+     & = & \lub \set{ f(f^n(\bot)) \mid n \in \mathbb{N} } \\
+     & = & \lub \set{ f^{n+1}(\bot) \mid n \in \mathbb{N} } \\
+     & = & \lub \set{ f^n(\bot) \mid n \in \mathbb{N} } \\
+     & = & \lub F = x
+\end{IEEEeqnarray*}
 
 \end{proof}
+
+This is the well-known fixpoint theorem, which is sometimes attributed to
+Tarski, sometimes to Kleene, but while they both knew the result, it's actual
+origin seems to be lost in time \cite{Lassez1982}. The formulation given here
+is due to Huwig \cite{Huwig1990}.
 
 
 
 
 
 \section{Junkyard}
-
-\begin{definition}
-A blub is a snoring blah.
-\end{definition}
-
-\begin{lemma}
-The world is round.
-\end{lemma}
-
 
 \begin{figure}[ht]
 \begin{center}
