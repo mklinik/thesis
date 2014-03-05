@@ -24,6 +24,7 @@
 %\newcommand{\todo}[1]{}
 \newcommand{\semantics}[1]{\llbracket #1 \rrbracket}
 \newcommand{\lub}{\bigsqcup}
+\newcommand{\set}[1]{\{\,#1\,\}}
 
 % They all use the same counter, reset at section boundaries
 % This gives a running number:
@@ -73,7 +74,7 @@ is an element $x \in D$ such that:
 
 The lub of S, if it exists, is denoted interchangeably by
 \begin{IEEEeqnarray*}{rCl}
-\lub S = \lub_{x \in S} x = \lub \{\, x \mid x \in S \,\}
+\lub S = \lub_{x \in S} x = \lub \set{x \mid x \in S}
 \end{IEEEeqnarray*}
 
 \end{definition}
@@ -158,13 +159,13 @@ The image of a non-decreasing $\omega$-sequence is a chain.
 
 $\ref{defCpoOmegaSequenceComplete} \implies \ref{defCpoDirectedComplete}$: Let
 $D$ be an $\omega$-sequence-complete cpo as in definition
-\ref{defCpoOmegaSequenceComplete}, let $S = \{\,x_0, x_1, x_2, \ldots\,\}
+\ref{defCpoOmegaSequenceComplete}, let $S = \set{x_0, x_1, x_2, \ldots}
 \subseteq D$ be countable and directed. For each finite $F \subseteq S$, let
 $u(F)$ be some upper bound of $F$ in $S$.  Construct a sequence of sets $P_n
 \subseteq S$ as follows,
 \begin{IEEEeqnarray*}{rCl}
-P_0 & = & \{\, x_0 \,\} \\
-P_{n+1} & = & P_n \cup \{\, u(P_n \cup y_n), y_n \,\}
+P_0 & = & \set{x_0} \\
+P_{n+1} & = & P_n \cup \set{u(P_n \cup y_n), y_n}
 \end{IEEEeqnarray*}
 
 where $y_n$ is the $x_i \in S\backslash P_n$ with the smallest possible $i$.
@@ -173,7 +174,7 @@ Every $P_n$ is directed: $P_0$ certainly is, and any finite subset of $P_{n+1}$
 has $u(P_n \cup y_n) \in P_{n+1}$ as upper bound.  As every $P_n$ is finite and
 directed, taking its lub is justified.
 
-Consider the $\omega$-sequence $Q$ = $\{\,\lub P_n \,\}_{n \in \mathbb{N}}$. For
+Consider the $\omega$-sequence $Q$ = $\set{\lub P_n}_{n \in \mathbb{N}}$. For
 all $n$, we have $P_n \subseteq P_{n+1}$ and thus $\lub P_n \below \lub
 P_{n+1}$, so $Q$ is non-decreasing, and therefore has a lub $z$.  Each $x \in S$
 eventually occurs in some $P_n$, and we have $x \below \lub P_n \below z$, so
@@ -225,14 +226,14 @@ Scott-topology.}
 Note that if a function preserves lubs, it is monotone,
 \begin{IEEEeqnarray*}{rCl}
   x \below y \implies
-  y = \lub \{\, x, y\, \} \implies
-  f(y) = f(\lub \{\, x, y\, \}) = \lub \{\, f(x), f(y)\, \} \implies
+  y = \lub \set{x, y} \implies
+  f(y) = f(\lub \set{x, y}) = \lub \set{f(x), f(y)} \implies
   f(x) \below f(y)
 \end{IEEEeqnarray*}
 
 but in a proof of continuity of a function $f$, we usually need to prove
-monotonicity as a first step, so that for a chain $P$, $\{\,
-f(x) \mid x \in P\,\}$ is again a chain. This motivates the inclusion of
+monotonicity as a first step, so that for a chain $P$, $\set{f(x) \mid x \in P}$
+is again a chain. This motivates the inclusion of
 monotonicity in the definition of continuity.
 
 
