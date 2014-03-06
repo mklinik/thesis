@@ -40,6 +40,7 @@
 \newtheorem{theorem}[definition]{Theorem}
 \newtheorem{proposition}[definition]{Proposition}
 \newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
 
 \begin{document}
 
@@ -270,12 +271,12 @@ chain. Then
 \end{proof}
 
 
-\begin{proposition}
+\begin{corollary}
 
 The complete pointed posets, together with continuous functions between them form
 a category.  This category is called Cppo.
 
-\end{proposition}
+\end{corollary}
 
 
 \begin{definition}
@@ -336,6 +337,85 @@ origin seems to be lost in time \cite{Lassez1982}. The formulation given here
 is due to Huwig \cite{Huwig1990}.
 
 
+\begin{lemma} \label{lemCppoTerminalObject}
+Cppo has a terminal object.
+\end{lemma}
+
+\begin{lemma} \label{lemCppoBinaryProducts}
+Cppo has binary products.
+\end{lemma}
+
+\begin{lemma} \label{lemCppoExponentials}
+Cppo has exponentials.
+\end{lemma}
+
+\begin{corollary}
+Cppo is cartesian closed.
+\end{corollary}
+
+
+\begin{definition}
+A category is \emph{trivial} iff it has exactly one object $A$ and one arrow
+$f : A \arr A$, the identity.
+\end{definition}
+
+\begin{proposition} \label{propCCCNoFixpointInitialObject}
+Any CCC with the fixpoint property and initial object is trivial.
+\end{proposition}
+
+\begin{proposition} \label{propCCCNoFixpointCoproducts}
+Any CCC with the fixpoint property and binary coproducts is trivial.
+\end{proposition}
+
+Propositions \ref{propCCCNoFixpointInitialObject} and
+\ref{propCCCNoFixpointCoproducts} are due to Huwig \cite{Huwig1990}, and
+demonstrate that if we want to use Cppo as model for programming languages, we
+won't get interpretations for sum types that correspond to categorical
+coproducts. Nevertheless, we have a similar construction that serves our
+purpose.
+
+\begin{definition} \label{defCoalescedSum}
+For objects $A$, $B$ in Cppo, define the \emph{coalesced sum} $A \oplus B$ as
+the disjoint union of $A$ and $B$ where we identify the bottom elements.
+\end{definition}
+
+\begin{proposition}
+If $A, B$ are cppos, then $A \oplus B$ is a cppo.
+\end{proposition}
+
+The injections $\kappa_0 : A \arr A \oplus B$ and $\kappa_1 : B \arr A \oplus B$
+are defined in the obvious way.
+
+\begin{equation*}
+\kappa_0(a) = \left\{
+  \begin{array}{rcl}
+   (0,a)             & \text{if} & a \not= \bot_A \\
+   \bot_{A \oplus B} & \text{if} & a = \bot_A
+  \end{array}
+\right.
+\end{equation*}
+
+\begin{equation*}
+\kappa_1(b) = \left\{
+  \begin{array}{rcl}
+   (1,b)             & \text{if} & b \not= \bot_B \\
+   \bot_{A \oplus B} & \text{if} & b = \bot_B
+  \end{array}
+\right.
+\end{equation*}
+
+If $A, B, D$ are cppos and $f : A \arr D$, $g : B \arr D$ continuous functions,
+define $[f,g] : A \oplus B \arr D$ as
+
+\begin{equation*}
+[f,g](x) = \left\{
+  \begin{array}{rcl}
+   f(a)     & \text{if} & x = \kappa_0(a) \\
+   g(b)     & \text{if} & x = \kappa_1(b) \\
+   \bot_{D} & \text{if} & x = \bot_{A \oplus B}
+  \end{array}
+\right.
+\end{equation*}
 
 \section{Junkyard}
 
