@@ -66,10 +66,10 @@ Let $D$ be a poset, $S \subseteq D$. The \emph{least upper bound} (``lub'') of $
 is an element $x \in D$ such that:
 
 \begin{equation} \label{eqnLub1}
-\forall y \in S . y \below x
+\forall y \in S \ldotp y \below x
 \end{equation}
 \begin{equation} \label{eqnLub2}
-\forall z \in D . (\forall y \in S . y \below z) \implies x \below z
+\forall z \in D \ldotp (\forall y \in S \ldotp y \below z) \implies x \below z
 \end{equation}
 
 The lub of S, if it exists, is denoted interchangeably by
@@ -196,7 +196,7 @@ elements. The lub of the chain is then the lub of the directed set.
 \begin{definition}
 
 A cpo $D$ is \emph{pointed} iff it has a bottom element $\bot$ which
-satisfies $\forall d \in D . \bot \below d$.
+satisfies $\forall d \in D \ldotp \bot \below d$.
 
 \end{definition}
 
