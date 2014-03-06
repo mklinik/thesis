@@ -20,7 +20,7 @@
 
 \newcommand{\below}{\sqsubseteq}
 \newcommand{\arr}{\rightarrow}
-\newcommand{\todo}[1]{\bigskip \noindent \emph{todo: #1}}
+\newcommand{\todo}[1]{\smallskip \noindent \emph{todo: #1} \smallskip}
 %\newcommand{\todo}[1]{}
 \newcommand{\semantics}[1]{\llbracket #1 \rrbracket}
 \newcommand{\lub}{\bigsqcup}
@@ -341,13 +341,19 @@ is due to Huwig \cite{Huwig1990}.
 Cppo has a terminal object.
 \end{lemma}
 
+\todo{proof}
+
 \begin{lemma} \label{lemCppoBinaryProducts}
 Cppo has binary products.
 \end{lemma}
 
+\todo{proof}
+
 \begin{lemma} \label{lemCppoExponentials}
 Cppo has exponentials.
 \end{lemma}
+
+\todo{proof}
 
 \begin{corollary}
 Cppo is cartesian closed.
@@ -383,6 +389,8 @@ the disjoint union of $A$ and $B$ where we identify the bottom elements.
 If $A, B$ are cppos, then $A \oplus B$ is a cppo.
 \end{proposition}
 
+\todo{proof, show how the order is imposed on A+B}
+
 The injections $\kappa_0 : A \arr A \oplus B$ and $\kappa_1 : B \arr A \oplus B$
 are defined in the obvious way.
 
@@ -404,6 +412,10 @@ are defined in the obvious way.
 \right.
 \end{equation*}
 
+\todo{$\kappa_0$ and $\kappa_1$ are continuous}
+
+An element $x \in A \oplus B$ \todo{justify notation $x = \kappa_0(a)$}
+
 If $A, B, D$ are cppos and $f : A \arr D$, $g : B \arr D$ continuous functions,
 define $[f,g] : A \oplus B \arr D$ as
 
@@ -416,6 +428,52 @@ define $[f,g] : A \oplus B \arr D$ as
   \end{array}
 \right.
 \end{equation*}
+
+Note that $[f,g]$ is a strict function while $f$ and $g$ don't need to be
+strict.  Therefore, the usual coproduct diagram (Figure
+\ref{figCoproductDiagram}) need not commute. Still, $[f,g]$
+is continuous. \todo{proof}
+
+\begin{figure}[ht]
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+\matrix (m) [matrix of math nodes,row sep=4em,column sep=4em,minimum width=2em]
+  {
+     A & A + B & B \\
+     {} & D & {} \\
+  };
+  \path[-stealth]
+    (m-1-1) edge node [below left] {$f$} (m-2-2)
+            edge node [above] {$\kappa_0$} (m-1-2)
+    (m-1-2) edge node [above right] {$[f,g]$} (m-2-2)
+    (m-1-3) edge node [above] {$\kappa_1$} (m-1-2)
+            edge node [below right] {$g$} (m-2-2)
+    ;
+\end{tikzpicture}
+\end{center}
+\caption{The usual coproduct diagram} \label{figCoproductDiagram}
+\end{figure}
+
+
+\begin{proposition}
+
+For a fixed $D$, the object mapping $L_D : A \mapsto A \oplus D$ extends to a
+functor.  Symmetrically for $R_D : A \mapsto D \oplus A$, and we have for all $f
+: A \arr A'$ and $g : B \arr B'$, $L_B(f) \circ R_A(g) = R_A(g) \circ L_B(f) : A
+\oplus B \arr A' \oplus B'$.  Therefore $\oplus : \text{Cppo} \times \text{Cppo}
+\arr \text{Cppo}$ is a bifunctor.
+
+\end{proposition}
+
+\todo{proof}
+
+So while $\oplus$ is not the categorical coproduct, it is still a useful
+construction and we can work with it as long as we keep in mind that $[f,g]$
+doesn't have the universal mapping property.
+
+This sets up the stage for our following considerations.
+
+\section{}
 
 \section{Junkyard}
 
