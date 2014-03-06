@@ -289,7 +289,8 @@ $f : A \arr A$ there exists an arrow $Y(f) : 1 \arr A$ such that $Y(f) = f
 
 \begin{theorem}
 
-Cppo has the fixpoint property.
+Cppo has the fixpoint property. In fact, every continuous function on a cppo has
+a unique least fixpoint.
 
 \end{theorem}
 
@@ -307,11 +308,24 @@ f^{n+1}(\bot)$. Then $f(f^n(\bot)) \below f(f^{n+1}(\bot))$, so $f^{n+1}(\bot)
 \lub F$.  We calculate:
 \begin{IEEEeqnarray*}{rCl}
 f(x) & = & f(\lub F) \\
-     & = & \lub f(F) \\
+     & = & \lub f(F) \IEEEyesnumber \label{lineFContinuous} \\
      & = & \lub \set{ f(f^n(\bot)) \mid n \in \mathbb{N} } \\
      & = & \lub \set{ f^{n+1}(\bot) \mid n \in \mathbb{N} } \\
-     & = & \lub \set{ f^n(\bot) \mid n \in \mathbb{N} } \\
+     & = & \lub \set{ f^n(\bot) \mid n \in \mathbb{N} }
+           \IEEEyesnumber \label{lineLubLeastElement} \\
      & = & \lub F = x
+\end{IEEEeqnarray*}
+Line (\ref{lineFContinuous}) is because $f$ is continuous, and line
+(\ref{lineLubLeastElement}) is because omitting the least element in a chain
+doesn't affect the lub.
+
+To see that $x$ is the least fixpoint, let $y = f(y)$ be a fixpoint of $f$. We
+have:
+\begin{IEEEeqnarray*}{rCl}
+\bot \below y & \implies & f(\bot) \below f(y) = y \\
+ & \implies & \forall n \in \mathbb{N} \ldotp f^n(\bot) \below y \\
+ & \implies & y \text{ is an upper bound of F} \\
+ & \implies & \lub F = x \below y
 \end{IEEEeqnarray*}
 
 \end{proof}
@@ -320,8 +334,6 @@ This is the well-known fixpoint theorem, which is sometimes attributed to
 Tarski, sometimes to Kleene, but while they both knew the result, its actual
 origin seems to be lost in time \cite{Lassez1982}. The formulation given here
 is due to Huwig \cite{Huwig1990}.
-
-
 
 
 
