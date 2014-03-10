@@ -517,6 +517,15 @@ and it is justified to write $\lub F$
 \end{proof}
 
 
+The condition $f \below g$ is equivalent to the following formula, which is
+less easy to read, but lends itself better to proofs.
+\begin{equation*}
+\forall n \in \mathbb{N} \ldotp f(n)\isdefined \implies g(n)\isdefined\
+\wedge\ f(n) = g(n)
+\end{equation*}
+
+
+
 \begin{proposition} \label{propFactorialExists}
 
 There exists a function $f : \mathbb{N} \arr \mathbb{N}$ such that
@@ -568,23 +577,28 @@ f(n) & = & \varphi(f)(n) = n \cdot f(n - 1) \quad\text{if}\ \ n > 0
 \end{IEEEeqnarray*}
 
 We still need to show that $\varphi$ is continuous. For that matter, first
-observe that $\varphi$ is monotone: assume $f \below g$. This condition can be
-rephrased as
+observe that $\varphi$ is monotone: assume $f \below g$. To prove: $\varphi(f)
+\below \varphi(g)$, i.e.
 \begin{equation*}
-\forall n \in \mathbb{N} \ldotp f(n)\isdefined \implies g(n)\isdefined\
-\wedge\ f(n) = g(n)
+\forall n \in \mathbb{N} \ldotp \varphi(f)(n)\isdefined \implies
+\varphi(g)(n)\isdefined\ \wedge\ \varphi(f)(n) = \varphi(g)(n)
 \end{equation*}
-Let $n \in \mathbb{N}$. Assume that $\varphi(f)(n)\isdefined$.
+Let $n \in \mathbb{N}$.  Assume that
+$\varphi(f)(n)\isdefined$.
 
 If $n = 0$ then $\varphi(f)(n) = 1 = \varphi(g)(n)$.
 
 If $n > 0$ then $\varphi(f)(n) = n \cdot
-f(n - 1)$. Multiplication is total, so if $\varphi(f)(n)\isdefined$ then
-$f(n-1)\isdefined$, which implies $g(n-1)\isdefined$ and $f(n-1) = g(n-1)$, and
-thus $n \cdot f(n-1) = n \cdot g(n-1) = \varphi(g)(n)$.
+f(n - 1)$. As $\varphi(f)(n)\isdefined$, we must have
+$f(n-1)\isdefined$, which by assumption implies $g(n-1)\isdefined \wedge\
+f(n-1) = g(n-1)$, and thus $n \cdot f(n-1) = n \cdot g(n-1) = \varphi(g)(n)$.
 
-In any case, $\varphi(g)(n)\isdefined$ and $\varphi(f)(n) = \varphi(g)(n)$,
-which implies $\varphi(f) \below \varphi(g)$, so $\varphi$ is monotone.
+In both cases, $\varphi(g)(n)\isdefined \wedge\ \varphi(f)(n) = \varphi(g)(n)$,
+so $\varphi(f) \below \varphi(g)$, which proves that $\varphi$ is monotone.
+
+\todo{phi preserves lubs}
+
+
 
 \end{proof}
 
