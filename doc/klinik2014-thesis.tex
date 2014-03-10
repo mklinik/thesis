@@ -29,6 +29,7 @@
 % partial function arrow
 % https://tex.stackexchange.com/questions/47142/how-to-tex-an-arrow-with-vertical-stroke
 \newcommand{\pfun}{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\hfil\cr$\to$\cr}}}
+\newcommand{\isdefined}{\!\downarrow}
 
 
 % They all use the same counter, reset at section boundaries
@@ -483,8 +484,8 @@ This sets up the stage for our following considerations.
 
 Using the constructions seen so far, we can show that certain recursive
 functions are well-defined. This is the central idea of Scott's fixpoint
-semantics for recursive programs, but can also be employed for purely
-mathematical goals.
+semantics for recursive programs, but it can also be employed for mathematical
+questions that don't concern programming.
 
 First, we look at the factorial function, as it is a simple example that nicely
 demonstrates the technique at work.
@@ -526,8 +527,17 @@ f(n) & = & n \cdot f(n - 1) \quad\text{if}\ \ n > 0 \label{eqnFactorial2}
 
 \end{proposition}
 
-Proposition \ref{propFactorialExists} can be rephrased as: the recursively
-defined factorial function is well-defined.
+Proposition \ref{propFactorialExists} can be rephrased in different ways: the
+recursive definition of the factorial function is not vacuous; it is not a
+circular definition; it does not lead to infinite regress.
+
+\todo{
+That's interesting. In our case (see far below) we have at some point
+$\pi(\_^\omega) = \pi(\kappa_1(\_^\omega)) = \pi(\_^\omega)$, a genuine circle
+in the definition.  Yet we argue that the definition is not vacuous. What to
+make of that? We surely have $\pi(\_^\omega)\!\uparrow$, $\pi(\_^\omega) = \bot$
+so that's the ejection seat.
+}
 
 \begin{proof}
 From \ref{lemPartialFunctionSpaceCppo} we know that $[\mathbb{N} \pfun
@@ -558,7 +568,23 @@ f(n) & = & \varphi(f)(n) = n \cdot f(n - 1) \quad\text{if}\ \ n > 0
 \end{IEEEeqnarray*}
 
 We still need to show that $\varphi$ is continuous. For that matter, first
-observe that $\varphi$ is monotone \ldots
+observe that $\varphi$ is monotone: assume $f \below g$. This condition can be
+rephrased as
+\begin{equation*}
+\forall n \in \mathbb{N} \ldotp f(n)\isdefined \implies g(n)\isdefined\
+\wedge\ f(n) = g(n)
+\end{equation*}
+Let $n \in \mathbb{N}$. Assume that $\varphi(f)(n)\isdefined$.
+
+If $n = 0$ then $\varphi(f)(n) = 1 = \varphi(g)(n)$.
+
+If $n > 0$ then $\varphi(f)(n) = n \cdot
+f(n - 1)$. Multiplication is total, so if $\varphi(f)(n)\isdefined$ then
+$f(n-1)\isdefined$, which implies $g(n-1)\isdefined$ and $f(n-1) = g(n-1)$, and
+thus $n \cdot f(n-1) = n \cdot g(n-1) = \varphi(g)(n)$.
+
+In any case, $\varphi(g)(n)\isdefined$ and $\varphi(f)(n) = \varphi(g)(n)$,
+which implies $\varphi(f) \below \varphi(g)$, so $\varphi$ is monotone.
 
 \end{proof}
 
