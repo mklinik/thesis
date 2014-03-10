@@ -18,6 +18,7 @@
 \usetikzlibrary{positioning}
 \usetikzlibrary{matrix}
 
+
 \newcommand{\below}{\sqsubseteq}
 \newcommand{\arr}{\rightarrow}
 \newcommand{\todo}[1]{\smallskip \noindent \emph{todo: #1} \smallskip}
@@ -25,6 +26,10 @@
 \newcommand{\semantics}[1]{\llbracket #1 \rrbracket}
 \newcommand{\lub}{\bigsqcup}
 \newcommand{\set}[1]{\{\,#1\,\}}
+% partial function arrow
+% https://tex.stackexchange.com/questions/47142/how-to-tex-an-arrow-with-vertical-stroke
+\newcommand{\pfun}{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\hfil\cr$\to$\cr}}}
+
 
 % They all use the same counter, reset at section boundaries
 % This gives a running number:
@@ -196,8 +201,9 @@ elements. The lub of the chain is then the lub of the directed set.
 
 \begin{definition}
 
-A cpo $D$ is \emph{pointed} iff it has a bottom element $\bot$ which
-satisfies $\forall d \in D \ldotp \bot \below d$.
+A cpo $D$ is \emph{pointed} iff it has a bottom element $\bot$ which satisfies
+$\forall d \in D \ldotp \bot \below d$. Such a pointed cpo is called
+\emph{cppo}.
 
 \end{definition}
 
@@ -288,7 +294,7 @@ $f : A \arr A$ there exists an arrow $Y(f) : 1 \arr A$ such that $Y(f) = f
 \end{definition}
 
 
-\begin{theorem}
+\begin{theorem} \label{thmFixpoint}
 
 Cppo has the fixpoint property. In fact, every continuous function on a cppo has
 a unique least fixpoint.
@@ -297,7 +303,7 @@ a unique least fixpoint.
 
 \begin{proof}
 
-Let $D$ be a cppo, $f : D \arr D$ a continuous function. Whe have to show that
+Let $D$ be a cppo, $f : D \arr D$ a continuous function. We have to show that
 there exists an element $x \in D$ such that $x = f(x)$. Consider the set
 \begin{equation*}
 F = \set{f^n(\bot) \mid n \in \mathbb{N}}.
@@ -473,7 +479,88 @@ doesn't have the universal mapping property.
 
 This sets up the stage for our following considerations.
 
-\section{}
+\section{Fixpoint Semantics for Recursive Functions}
+
+Using the constructions seen so far, we can show that certain recursive
+functions are well-defined. This is the central idea of Scott's fixpoint
+semantics for recursive programs, but can also be employed for purely
+mathematical goals.
+
+First, we look at the factorial function, as it is a simple example that nicely
+demonstrates the technique at work.
+
+\begin{lemma} \label{lemPartialFunctionSpaceCppo}
+
+Let $A, B$ be sets. Then the set of partial functions from $A$ to $B$, denoted
+$[A \pfun B]$, is a cppo.
+
+\end{lemma}
+
+\begin{proof}
+
+Let $f, g : A \pfun B$. Define $f \below g$ iff $f \subseteq g$, where we
+consider $f$ and $g$ as their underlying graphs.  Intuitively, $g$ is at least
+as defined as $f$.
+
+The totally undefined function $\emptyset = \bot$ is an element of $[A \pfun B]$
+and satisfies $\bot \below g$ for all $g$.
+
+If $F$ is a chain of functions, consider $\bigcup F$, the union of the graphs of
+all functions in $F$. We have: if $f \in F$ then $f \subseteq \bigcup F$, so $f
+\below \bigcup F$.  In other words $\bigcup F$ is an upper bound of $F$.
+
+Furthermore if $g$ is an upper bound of $F$ then $\forall f \in F \ldotp f
+\below g$, so $\bigcup F \below g$. In other words $\bigcup F$ is the lub of $F$
+and it is justified to write $\lub F$
+
+\end{proof}
+
+
+\begin{proposition} \label{propFactorialExists}
+
+There exists a function $f : \mathbb{N} \arr \mathbb{N}$ such that
+\begin{IEEEeqnarray}{rCl}
+f(0) & = & 1 \label{eqnFactorial1} \\
+f(n) & = & n \cdot f(n - 1) \quad\text{if}\ \ n > 0 \label{eqnFactorial2}
+\end{IEEEeqnarray}
+
+\end{proposition}
+
+Proposition \ref{propFactorialExists} can be rephrased as: the recursively
+defined factorial function is well-defined.
+
+\begin{proof}
+From \ref{lemPartialFunctionSpaceCppo} we know that $[\mathbb{N} \pfun
+\mathbb{N}]$ is a cppo. Consider the function
+
+\begin{equation*}
+\varphi(g) = n \mapsto \left\{
+  \begin{array}{lcl}
+   1          & \text{if} & n = 0 \\
+   n \cdot g(n-1) & \text{if} & n > 0
+  \end{array}
+\right.
+\end{equation*}
+
+$\varphi$ is not defined recursively, so it certainly is a function $[\mathbb{N}
+\pfun \mathbb{N}] \arr [\mathbb{N} \pfun \mathbb{N}]$. If we can show that
+$\varphi$ is continuous, then it is an arrow in Cppo, so by theorem
+\ref{thmFixpoint} it has a fixpoint $f$ such that
+\begin{IEEEeqnarray}{rCl}
+f = \varphi(f) \label{eqnFactorialFixpoint}
+\end{IEEEeqnarray}
+
+Using equation (\ref{eqnFactorialFixpoint}) we proceed to show that the required
+equations (\ref{eqnFactorial1}) and (\ref{eqnFactorial2}) hold.
+\begin{IEEEeqnarray*}{rCl}
+f(0) & = & \varphi(f)(0) = 1 \\
+f(n) & = & \varphi(f)(n) = n \cdot f(n - 1) \quad\text{if}\ \ n > 0
+\end{IEEEeqnarray*}
+
+We still need to show that $\varphi$ is continuous. For that matter, first
+observe that $\varphi$ is monotone \ldots
+
+\end{proof}
 
 \section{Junkyard}
 
@@ -492,7 +579,7 @@ This sets up the stage for our following considerations.
     (m-1-2) edge node [right] {$e$} (m-2-2);
 \end{tikzpicture}
 \end{center}
-\caption{Example of a comutative diagram}
+\caption{Example of a commutative diagram}
 \end{figure}
 
 \begin{figure}
@@ -604,7 +691,7 @@ This work is based on chapter 7 of the PhD thesis of Venanzio Capretta
 \cite{Capretta2002}, where coinductive natural numbers are discussed.  Some
 treatment of lazy natural numbers can be found in \cite{Escardo1993}.
 
-A short introduction to dentotational semantics can be found in
+A short introduction to denotational semantics can be found in
 \cite{Allison1986}, while \cite{Gunter1992} is a more comprehensive treatment of
 that topic.  A view on domain theory and denotational semantics from the
 perspective of category theory can be found in \cite{Pierce1991},
@@ -615,4 +702,4 @@ perspective of category theory can be found in \cite{Pierce1991},
 \bibliography{computer_science}
 \end{document}
 
-% vim: textwidth=80
+% vim: textwidth=80:spell:spelllang=en_us
