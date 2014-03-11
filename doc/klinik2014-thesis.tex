@@ -596,11 +596,46 @@ f(n-1) = g(n-1)$, and thus $n \cdot f(n-1) = n \cdot g(n-1) = \varphi(g)(n)$.
 In both cases, $\varphi(g)(n)\isdefined \wedge\ \varphi(f)(n) = \varphi(g)(n)$,
 so $\varphi(f) \below \varphi(g)$, which proves that $\varphi$ is monotone.
 
-\todo{phi preserves lubs}
+It remains to show that $\varphi$ preserves lubs. Let $F$ be a chain in
+$[\mathbb{N} \pfun \mathbb{N}]$. Then, because $\varphi$ is monotone,
+$\varphi(F)$ is a chain as well, and both have lubs $\lub F$, $\lub \varphi(F)$.
+To prove: $\varphi(\lub F) = \lub \varphi(F)$. It suffices to show inequality
+$\below$ in both directions.
 
+$\lub \varphi(F) \below \varphi(\lub F)$: This direction is a general argument
+about lubs. We calculate as follows.
+\begin{IEEEeqnarray*}{rCl}
+  & &          \forall f \in F \ldotp f \below \lub F \\
+  & \implies & \forall f \in F \ldotp \varphi(f) \below \varphi(\lub F) \\
+  & \implies & \varphi(\lub F) \text{ is an upper bound of } \varphi(F) \\
+  & \implies & \lub \varphi(F) \below \varphi(\lub F)
+\end{IEEEeqnarray*}
 
+$\varphi(\lub F) \below \lub \varphi(F)$: For this direction, we have to delve
+into $\varphi$. It suffices to show
+\begin{equation*}
+  \forall n \in \mathbb{N} \ldotp \varphi(\lub F)(n)\isdefined \implies
+  (\lub \varphi(F))(n)\isdefined\ \wedge\ \varphi(\lub F)(n) = (\lub
+  \varphi(F))(n)
+\end{equation*}
+Let $n \in \mathbb{N}$. Assume $\varphi(\lub F)(n)\isdefined$.
+
+If $n = 0$ then $\varphi(\lub F)(0) = 1$. Further we have $\forall f \in F
+\ldotp \varphi(f)(0) = 1$, so $(\lub \varphi(F))(0) = 1$.
+
+If $n > 0$ then $\varphi(\lub F)(n) = n \cdot (\lub F)(n - 1)$, and thus from
+$\varphi(\lub F)(n)\isdefined$ we get $(\lub F)(n - 1)\isdefined$. But then
+there must be a $g$ in $F$ such that $g(n-1)\isdefined$ and $g(n-1) = (\lub F)(n
+- 1)$. But then $n \cdot g(n-1)\isdefined$, therefore $\varphi(g)(n)\isdefined$,
+which implies $(\lub \varphi(F))(n)\isdefined$ and we have:
+\begin{IEEEeqnarray*}{c}
+(\lub \varphi(F))(n) = \varphi(g)(n) = n \cdot g(n-1) = n \cdot (\lub F)(n-1)
+ = \varphi(\lub F)(n)
+\end{IEEEeqnarray*}
 
 \end{proof}
+
+
 
 \section{Junkyard}
 
