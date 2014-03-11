@@ -485,14 +485,14 @@ This sets up the stage for our following considerations.
 Using the constructions seen so far, we can show that certain recursive
 functions are well-defined. This is the central idea of Scott's fixpoint
 semantics for recursive programs, but it can also be employed for mathematical
-questions that don't concern programming.
+purposes that don't concern programming.
 
 First, we look at the factorial function, as it is a simple example that nicely
 demonstrates the technique at work.
 
 \begin{lemma} \label{lemPartialFunctionSpaceCppo}
 
-Let $A, B$ be sets. Then the set of partial functions from $A$ to $B$, denoted
+Let $A, B$ be sets. The set of partial functions from $A$ to $B$, denoted
 $[A \pfun B]$, is a cppo.
 
 \end{lemma}
@@ -500,8 +500,7 @@ $[A \pfun B]$, is a cppo.
 \begin{proof}
 
 Let $f, g : A \pfun B$. Define $f \below g$ iff $f \subseteq g$, where we
-consider $f$ and $g$ as their underlying graphs.  Intuitively, $g$ is at least
-as defined as $f$.
+consider $f$ and $g$ as their underlying graphs.
 
 The totally undefined function $\emptyset = \bot$ is an element of $[A \pfun B]$
 and satisfies $\bot \below g$ for all $g$.
@@ -517,12 +516,13 @@ and it is justified to write $\lub F$
 \end{proof}
 
 
-The condition $f \below g$ is equivalent to the following formula, which is
+The definition of $f \below g$ is equivalent to the following formula, which is
 less easy to read, but lends itself better to proofs.
 \begin{equation*}
 \forall n \in \mathbb{N} \ldotp f(n)\isdefined \implies g(n)\isdefined\
 \wedge\ f(n) = g(n)
 \end{equation*}
+Where $f(n)\isdefined$ is to be read as ``$f$ is defined at $n$''.
 
 
 
@@ -634,6 +634,12 @@ which implies $(\lub \varphi(F))(n)\isdefined$ and we have:
 \end{IEEEeqnarray*}
 
 \end{proof}
+
+
+The strategy just employed is prototypical for proving the existence of a
+recursively defined function $f$. First, find a non-recursive higher-order
+function corresponding to $f$ in spirit of our $\varphi$. Then prove $\varphi$
+to be continuous and show that its fixpoint fulfills the desired definition.
 
 
 
