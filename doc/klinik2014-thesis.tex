@@ -642,6 +642,105 @@ function corresponding to $f$ in spirit of our $\varphi$. Then prove $\varphi$
 to be continuous and show that its fixpoint fulfills the desired definition.
 
 
+\section{$1+X$ and $1+X+X$}
+
+\todo{explain what $1+X$, $1+X+X$ are (coalesced sum!) and why we want all that
+follows.}
+
+\todo{Lambek's lemma op: final coalgebras are isomorphisms}
+
+\subsection{Draft: Naming}
+
+The things involved need names.
+
+Base functors:
+\begin{IEEEeqnarray*}{rCl}
+F(X) & = & 1 + X \\
+G(X) & = & 1 + X + X
+\end{IEEEeqnarray*}
+
+Their final coalgebras:
+\begin{IEEEeqnarray*}{rCl}
+\nu F & = & \alpha : A \leftrightarrow FA \\
+\nu G & = & \beta : B \leftrightarrow GB
+\end{IEEEeqnarray*}
+
+
+\begin{proposition}
+There exists a continuous embedding-projection pair
+\begin{IEEEeqnarray*}{RCCl}
+\varepsilon : & A & \arr & B \\
+\pi         : & B & \arr & A
+\end{IEEEeqnarray*}
+such that $\pi \circ \varepsilon = \text{id}_A$.
+\end{proposition}
+
+
+\todo{notation of continuous function $f : A \arr B$? Maybe $f \in C(A, B)$.
+Note: We are in Cppo, and homsets consist always of continuous functions. Just
+write $[A \arr B]$.}
+
+
+\begin{lemma} \label{lemEpsilonExists}
+There is a function $\varepsilon : A \arr B$ such that
+
+\begin{equation*}
+\varepsilon(a) = \left\{
+  \begin{array}{rcl}
+   \bot_B & \text{if} & a = \bot_A \\
+   \beta^{-1}(\kappa_0(*)) & \text{if} & \alpha(a) = \kappa_0(*) \\
+   \beta^{-1}(\kappa_1(\varepsilon(a'))) & \text{if} & \alpha(a) = \kappa_1(a')
+  \end{array}
+\right.
+\end{equation*}
+
+\end{lemma}
+
+
+\begin{lemma} \label{lemPiExists}
+There is a function $\pi : B \arr A$ such that
+
+\begin{equation*}
+\pi(b) = \left\{
+  \begin{array}{rcl}
+   \bot_A & \text{if} & b = \bot_B \\
+   \alpha^{-1}(\kappa_0(*)) & \text{if} & \beta(b) = \kappa_0(*) \\
+   \alpha^{-1}(\kappa_1(\pi(b'))) & \text{if} & \beta(b) = \kappa_1(b') \\
+   \pi(b') & \text{if} & \beta(b) = \kappa_2(b')
+  \end{array}
+\right.
+\end{equation*}
+
+\end{lemma}
+
+\begin{proof}
+
+(Lemma \ref{lemEpsilonExists}) Define $\varphi : [A \arr B] \arr [A \arr B]$ as:
+
+\begin{equation*}
+\varphi(f)(a) = \left\{
+  \begin{array}{rcl}
+   \bot_B & \text{if} & a = \bot_A \\
+   \beta^{-1}(\kappa_0(*)) & \text{if} & \alpha(a) = \kappa_0(*) \\
+   \beta^{-1}(\kappa_1(f(a'))) & \text{if} & \alpha(a) = \kappa_1(a')
+  \end{array}
+\right.
+\end{equation*}
+
+\begin{itemize}
+\item Show that $\varphi$ maps continuous functions to continuous functions.
+\item Show that $\varphi$ is continuous.
+\item Take the fixpoint of $\varphi$ show that it satisfies lemma
+\ref{lemEpsilonExists}.
+\end{itemize}
+
+
+\end{proof}
+
+\begin{proof}
+(Lemma \ref{lemPiExists}) Define $\psi : [B \arr A] \arr [B \arr A]$ as:
+\end{proof}
+
 
 \section{Junkyard}
 
