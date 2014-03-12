@@ -120,55 +120,58 @@ occurs as an exercise in Davey and Priestly \cite{DaveyPriestly1990}.
 
 \begin{definition} \label{defCpoDirectedComplete}
 
-(directed-complete) A \emph{cpo} is a partial order where every directed set has
-a least upper bound.
+A directed-complete partial order, \emph{dcpo}, is a partial order where every
+directed set has a least upper bound.
 
 \end{definition}
 
 
 \begin{definition} \label{defCpoChainComplete}
 
-(chain-complete) A \emph{cpo} is a partial order where every chain has a least
-upper bound.
+A chain-complete partial order, \emph{ccpo}, is a partial order where every chain
+has a least upper bound.
 
 \end{definition}
 
 
 \begin{definition} \label{defCpoOmegaSequenceComplete}
 
-($\omega$-sequence-complete) A \emph{cpo} is a partial order where every
-non-decreasing sequence of elements $x_0 \below x_1 \below x_2 \below \ldots $
-has a least upper bound.
+An $\omega$-sequence-complete partial order, \emph{$\omega$-cpo}, is a partial
+order where every non-decreasing sequence of elements $x_0 \below x_1 \below x_2
+\below \ldots $ has a least upper bound.
 
 \end{definition}
 
 
 \begin{proposition}
 
-The three definitions of cpos are equivalent.
+These three definitions are equivalent.
 
 \end{proposition}
 
+This equivalence justifies simply talking about \emph{complete partial orders},
+or \emph{cpos}. We use the definitions interchangeably, whichever is most handy
+in a given situation.
 
 We give a round-robin proof, of which two implications are fairly simple. The
 third implication is a bit more involved, and requires the axiom of choice. We
 give a proof for the countable case here because it is illustrative, and refer
-to the literature for the uncountable case.
+to the literature for the uncountable case. \todo{refer to the literature}
 
 
 \begin{proof}
 
 $\ref{defCpoDirectedComplete} \implies \ref{defCpoChainComplete}$: Every chain
-is directed.
+is a directed set.
 
 $\ref{defCpoChainComplete} \implies \ref{defCpoOmegaSequenceComplete}$:
 The image of a non-decreasing $\omega$-sequence is a chain.
 
 $\ref{defCpoOmegaSequenceComplete} \implies \ref{defCpoDirectedComplete}$: Let
-$D$ be an $\omega$-sequence-complete cpo as in definition
+$D$ be an $\omega$-cpo as in definition
 \ref{defCpoOmegaSequenceComplete}, let $S = \set{x_0, x_1, x_2, \ldots}
 \subseteq D$ be countable and directed. For each finite $F \subseteq S$, let
-$u(F)$ be some upper bound of $F$ in $S$.  Construct a sequence of sets $P_n
+$u(F)$ be an upper bound of $F$ in $S$.  Construct a sequence of sets $P_n
 \subseteq S$ as follows,
 \begin{IEEEeqnarray*}{rCl}
 P_0 & = & \set{x_0} \\
@@ -195,7 +198,6 @@ The complication in the third implication comes from the fact that a directed
 set doesn't need to be linearly ordered. Every directed set does however contain
 a chain which threads through the whole set, eventually rising above all
 elements. The lub of the chain is then the lub of the directed set.
-
 
 \subsection{The Category Cppo}
 
@@ -386,6 +388,8 @@ demonstrate that if we want to use Cppo as model for programming languages, we
 won't get interpretations for sum types that correspond to categorical
 coproducts. Nevertheless, we have a similar construction that serves our
 purpose.
+
+\todo{what's wrong with separated sums?}
 
 \begin{definition} \label{defCoalescedSum}
 For objects $A$, $B$ in Cppo, define the \emph{coalesced sum} $A \oplus B$ as
