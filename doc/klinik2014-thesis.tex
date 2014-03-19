@@ -61,7 +61,7 @@ Introduction
 
 \section{Domain Theory}
 
-\todo{The section on domains in \ref{Gunter1992} is based on his paper with
+\todo{The section on domains in \cite{Gunter1992} is based on his paper with
 Scott from 1990}
 
 \begin{definition}
@@ -107,8 +107,8 @@ $P \subseteq S$ has an upper bound in $S$.
 
 In literature on domain theory and semantics of programming languages, one
 encounters three different definitions of complete partial orders.  There is
-chain-completeness: \cite{Moschovakis1994}, directed-completeness:
-\cite{DaveyPriestly1990}, \cite{Gunter1992}, and $\omega$-sequence-completeness:
+chain-completeness \cite{Moschovakis1994}, directed-completeness
+\cite{DaveyPriestly1990}, \cite{Gunter1992}, and $\omega$-sequence-completeness
 \cite{Allison1986}, \cite{Winskel1993}, \cite{BarrWells1990}. Abramsky and Jung
 \cite{Abramsky1994} have a short discussion on the equivalence of these
 definitions, but refer to further literature for proofs. The proof given here
@@ -140,7 +140,7 @@ order where every non-decreasing sequence of elements $x_0 \below x_1 \below x_2
 \end{definition}
 
 
-\begin{proposition}
+\begin{proposition} \label{propDefinitionsAreEquivalent}
 
 These three definitions are equivalent.
 
@@ -150,10 +150,11 @@ This equivalence justifies simply talking about \emph{complete partial orders},
 or \emph{cpos}. We use the definitions interchangeably, whichever is most handy
 in a given situation.
 
-We give a round-robin proof, of which two implications are fairly simple. The
-third implication is a bit more involved, and requires the axiom of choice. We
-give a proof for the countable case here because it is illustrative, and refer
-to the literature for the uncountable case. \todo{refer to the literature}
+For proposition \ref{propDefinitionsAreEquivalent} we give a round-robin proof,
+of which two implications are fairly simple. The third implication is a bit more
+involved, and requires the axiom of choice. We give a proof for the countable
+case here because it is illustrative, and refer to the literature for the
+uncountable case. \todo{refer to the literature}
 
 
 \begin{proof}
@@ -491,6 +492,8 @@ purposes that don't concern programming.
 First, we look at the factorial function, as it is a simple example that nicely
 demonstrates the technique at work.
 
+\todo{cite critique 1 in Arbib and Manes for the factorial example}
+
 \begin{lemma} \label{lemPartialFunctionSpaceCppo}
 
 Let $A, B$ be sets. The set of partial functions from $A$ to $B$, denoted
@@ -621,8 +624,8 @@ into $\varphi$. It suffices to show
 \end{equation*}
 Let $n \in \mathbb{N}$. Assume $\varphi(\lub F)(n)\isdefined$.
 
-If $n = 0$ then $\varphi(\lub F)(0) = 1$. Further we have $\forall f \in F
-\ldotp \varphi(f)(0) = 1$, so $(\lub \varphi(F))(0) = 1$.
+If $n = 0$ then $\varphi(\lub F)(0) = 1$, and we have $\forall f \in F
+\ldotp \varphi(f)(0) = 1$, so $(\lub \varphi(F))(0)~= 1$.
 
 If $n > 0$ then $\varphi(\lub F)(n) = n \cdot (\lub F)(n - 1)$, and thus from
 $\varphi(\lub F)(n)\isdefined$ we get $(\lub F)(n - 1)\isdefined$. But then
@@ -741,7 +744,6 @@ There is a function $\pi : B \arr A$ such that
 \begin{proof}
 (Lemma \ref{lemPiExists}) Define $\psi : [B \arr A] \arr [B \arr A]$ as:
 \end{proof}
-
 
 \section{Junkyard}
 
@@ -863,8 +865,6 @@ There is a function $\pi : B \arr A$ such that
 
 
 \section{Further directions}
-
-Left, left, right.
 
 \section{Bibliographic notes}
 
