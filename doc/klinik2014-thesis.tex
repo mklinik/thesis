@@ -26,6 +26,7 @@
 % https://tex.stackexchange.com/questions/47142/how-to-tex-an-arrow-with-vertical-stroke
 \newcommand{\pfun}{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\hfil\cr$\to$\cr}}}
 \newcommand{\isdefined}{\!\downarrow}
+\newcommand{\natN}{\mathbb{N}}
 
 
 % They all use the same counter, reset at section boundaries
@@ -758,7 +759,7 @@ continuous functions.
 \item \label{proofEpsilonExists2} $\varphi$ is continuous.
 \end{enumerate}
 
-\ref{proofEpsilonExists1}: Let $f : A \arr B$ be continuous. We have to show
+\ref{proofEpsilonExists1}. Let $f : A \arr B$ be continuous. We have to show
 that $\varphi(f)$ is monotone and preserves lubs.
 
 Monotonicity: let $x, y \in A$ such that $x \below y$.
@@ -773,10 +774,14 @@ S(y')$ and $x' \below y'$. But $S$ and $f$ are both monotone, so
 \varphi(f)(x) = S(f(x')) \below S(f(y')) = \varphi(f)(y).
 \end{equation*}
 
-Continuity: Let $C = \set{f_n \mid n \in \mathbb{N}}$ be a chain in $[A \arr
-B]$.  To prove: $\varphi(\lub C) = (\lub \varphi(C))$. Let $a \in A$. Because
-lubs of function chains are defined pointwise, it suffices to show $\lub
-\varphi(C)(a) = \varphi(\lub C)(a)$.
+Lub preservation: Let $C = \set{a_n \mid n \in \natN}$ be a chain in $A$. To prove:
+$\varphi(f)(\lub C) = \lub \varphi(f)(C)$. todo continue here
+
+
+\ref{proofEpsilonExists2}. Let $C = \set{f_n \mid n \in \mathbb{N}}$ be a chain
+in $[A \arr B]$.  To prove: $\varphi(\lub C) = (\lub \varphi(C))$. Let $a \in
+A$. Because lubs of function chains are defined pointwise, it suffices to show
+$\lub \varphi(C)(a) = \varphi(\lub C)(a)$.
 
 If $a = \bot$ then $\varphi(f)(a) = \bot$ for all $f \in C$, so
 \begin{IEEEeqnarray*}{c}
