@@ -651,7 +651,9 @@ to be continuous and show that its fixpoint fulfills the desired definition.
 \todo{explain what $1+X$, $1+X+X$ are (coalesced sum!) and why we want all that
 follows.}
 
-\todo{Lambek's lemma op: final coalgebras are isomorphisms}
+\begin{lemma} \label{lemLambek}
+todo Lambek's lemma op: final coalgebras are isomorphisms.
+\end{lemma}
 
 \subsection{Draft: Naming}
 
@@ -684,6 +686,8 @@ such that $\pi \circ \varepsilon = \text{id}_A$.
 Note: We are in Cppo, and homsets consist always of continuous functions. Just
 write $[A \arr B]$.}
 
+\todo{define $f \below g$ for $f, g : [A \arr B]$ and lub of chains pointwise}
+
 
 \begin{lemma} \label{lemEpsilonExists}
 There is a function $\varepsilon : A \arr B$ such that
@@ -692,13 +696,113 @@ There is a function $\varepsilon : A \arr B$ such that
 \varepsilon(a) = \left\{
   \begin{array}{rcl}
    \bot_B & \text{if} & a = \bot_A \\
-   \beta^{-1}(\kappa_0(*)) & \text{if} & \alpha(a) = \kappa_0(*) \\
-   \beta^{-1}(\kappa_1(\varepsilon(a'))) & \text{if} & \alpha(a) = \kappa_1(a')
+   \beta^{-1}(\kappa_0(a')) & \text{if} & \beta(a) = \kappa_0(a') \\
+   \beta^{-1}(\kappa_1(\varepsilon(a'))) & \text{if} & \beta(a) = \kappa_1(a')
   \end{array}
 \right.
 \end{equation*}
 
 \end{lemma}
+
+This specification is highly technical, and it's hard to see that there really
+is not much going on.  From now on we employ some notational simplifications to
+make matters more clear.
+
+First, lemma \ref{lemLambek} allows us to be liberal with $\alpha$ and $\beta$,
+so we leave them out and view an element of $A$ as also being of $1 + A$ and
+vice versa. Same for $B$ and $1+B+B$.
+
+Second, $1$ as the terminal object in Cppo is a one-element set, so
+$\kappa_0(a')$ can be of only one form, for which we write $0$.
+
+Third, we write $S$ instead of $\kappa_1$ and $\_$ for $\kappa_2$.
+
+The requirements for \ref{lemEpsilonExists} then become:
+
+\begin{equation*}
+\varepsilon(a) = \left\{
+  \begin{array}{rcl}
+   \bot & \text{if} & a = \bot \\
+   0 & \text{if} & a = 0 \\
+   S(\varepsilon(a')) & \text{if} & a = S(a')
+  \end{array}
+\right.
+\end{equation*}
+
+From this it is easier to see that $\varepsilon$ doesn't do anything except
+replacing the constructors of $1+A$ by their equivalent of $1+B+B$. It is
+also easy to see that $\varepsilon$ actually is well-defined, monotone and
+continuous. The proof proceeds similarly to the one of
+\ref{propFactorialExists}, but now we have slightly more work to do.
+
+\begin{proof}
+
+(Lemma \ref{lemEpsilonExists}) Define $\varphi : [A \arr B] \arr [A \arr B]$ as:
+
+\begin{equation*}
+\varphi(f) = a \mapsto \left\{
+  \begin{array}{rcl}
+   \bot & \text{if} & a = \bot \\
+   0 & \text{if} & a = 0 \\
+   S(f(a')) & \text{if} & a = S(a')
+  \end{array}
+\right.
+\end{equation*}
+
+As we now work in Cppo, $[A \arr B]$ denotes the set of continuous functions
+from $A$ to $B$. To prove:
+\begin{enumerate}
+\item \label{proofEpsilonExists1} $\varphi$ maps continuous functions to
+continuous functions.
+\item \label{proofEpsilonExists2} $\varphi$ is continuous.
+\end{enumerate}
+
+\ref{proofEpsilonExists1}: Let $f : A \arr B$ be continuous. We have to show
+that $\varphi(f)$ is monotone and preserves lubs.
+
+Monotonicity: let $x, y \in A$ such that $x \below y$.
+
+If $x = \bot$ then $\varphi(f)(x) = \bot \below \varphi(f)(y)$ always.
+
+If $x = 0$ then $y = 0$ as well, so $\varphi(f)(x) = \varphi(f)(y)$.
+
+If $x = S(x')$ then, because $x \below y$, there must be a $y'$ such that $y =
+S(y')$ and $x' \below y'$. But $S$ and $f$ are both monotone, so
+\begin{equation*}
+\varphi(f)(x) = S(f(x')) \below S(f(y')) = \varphi(f)(y).
+\end{equation*}
+
+Continuity: Let $C = \set{f_n \mid n \in \mathbb{N}}$ be a chain in $[A \arr
+B]$.  To prove: $\varphi(\lub C) = (\lub \varphi(C))$. Let $a \in A$. Because
+lubs of function chains are defined pointwise, it suffices to show $\lub
+\varphi(C)(a) = \varphi(\lub C)(a)$.
+
+If $a = \bot$ then $\varphi(f)(a) = \bot$ for all $f \in C$, so
+\begin{IEEEeqnarray*}{c}
+    \lub \varphi(C)(a)
+  = \lub \set{\bot}
+  = \bot
+  = \varphi(\lub C)(a).
+\end{IEEEeqnarray*}
+
+If $a = 0$ then $\varphi(f)(a) = 0$ for all $f \in C$, so
+\begin{IEEEeqnarray*}{c}
+    \lub(\varphi(C)(a))
+  = \lub \set{0}
+  = 0
+  = \varphi(\lub C)(0).
+\end{IEEEeqnarray*}
+
+If $a = S(a')$ then
+\begin{IEEEeqnarray*}{rClu}
+     && \lub(\varphi(C)(a)) \\
+  & = & \lub \set{S(f_n(a')) \mid n \in \mathbb{N}} & (definition of $\varphi$) \\
+  & = & S(\lub \set{f_n(a') \mid n \in \mathbb{N}}) & (S is continuous) \\
+  & = & S((\lub C)(a')) & (lubs are defined pointwise) \\
+  & = & \varphi(\lub C)(a) & (definition of $\varphi$)
+\end{IEEEeqnarray*}
+
+\end{proof}
 
 
 \begin{lemma} \label{lemPiExists}
@@ -716,30 +820,6 @@ There is a function $\pi : B \arr A$ such that
 \end{equation*}
 
 \end{lemma}
-
-\begin{proof}
-
-(Lemma \ref{lemEpsilonExists}) Define $\varphi : [A \arr B] \arr [A \arr B]$ as:
-
-\begin{equation*}
-\varphi(f)(a) = \left\{
-  \begin{array}{rcl}
-   \bot_B & \text{if} & a = \bot_A \\
-   \beta^{-1}(\kappa_0(*)) & \text{if} & \alpha(a) = \kappa_0(*) \\
-   \beta^{-1}(\kappa_1(f(a'))) & \text{if} & \alpha(a) = \kappa_1(a')
-  \end{array}
-\right.
-\end{equation*}
-
-\begin{itemize}
-\item Show that $\varphi$ maps continuous functions to continuous functions.
-\item Show that $\varphi$ is continuous.
-\item Take the fixpoint of $\varphi$ show that it satisfies lemma
-\ref{lemEpsilonExists}.
-\end{itemize}
-
-
-\end{proof}
 
 \begin{proof}
 (Lemma \ref{lemPiExists}) Define $\psi : [B \arr A] \arr [B \arr A]$ as:
