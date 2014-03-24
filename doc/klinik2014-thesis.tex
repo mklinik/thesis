@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage[retainorgcmds]{IEEEtrantools}
+\usepackage{enumitem} % no space between enum lists
 
 \usepackage{tikz}
 \usetikzlibrary{positioning}
@@ -751,7 +752,7 @@ continuous. The proof proceeds similarly to the one of
 
 As we now work in Cppo, $[A \arr B]$ denotes the set of continuous functions
 from $A$ to $B$. To prove:
-\begin{enumerate}
+\begin{enumerate}[noitemsep]
 \item \label{proofEpsilonExists1} $\varphi$ maps continuous functions to
 continuous functions.
 \item \label{proofEpsilonExists2} $\varphi$ is continuous.
