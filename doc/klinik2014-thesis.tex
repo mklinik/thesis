@@ -26,7 +26,7 @@
 % https://tex.stackexchange.com/questions/47142/how-to-tex-an-arrow-with-vertical-stroke
 \newcommand{\pfun}{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\hfil\cr$\to$\cr}}}
 \newcommand{\isdefined}{\!\downarrow}
-\newcommand{\natN}{\mathbb{N}}
+\newcommand{\bbN}{\mathbb{N}}
 
 
 % They all use the same counter, reset at section boundaries
@@ -184,7 +184,7 @@ Every $P_n$ is directed: $P_0$ certainly is, and any finite subset of $P_{n+1}$
 has $u(P_n \cup y_n) \in P_{n+1}$ as upper bound.  As every $P_n$ is finite and
 directed, taking its lub is justified.
 
-Consider the $\omega$-sequence $Q$ = $\set{\lub P_n}_{n \in \mathbb{N}}$. For
+Consider the $\omega$-sequence $Q$ = $\set{\lub P_n}_{n \in \bbN}$. For
 all $n$, we have $P_n \subseteq P_{n+1}$ and thus $\lub P_n \below \lub
 P_{n+1}$, so $Q$ is non-decreasing, and therefore has a lub $z$.  Each $x \in S$
 eventually occurs in some $P_n$, and we have $x \below \lub P_n \below z$, so
@@ -309,7 +309,7 @@ a unique least fixpoint.
 Let $D$ be a cppo, $f : D \arr D$ a continuous function. We have to show that
 there exists an element $x \in D$ such that $x = f(x)$. Consider the set
 \begin{equation*}
-F = \set{f^n(\bot) \mid n \in \mathbb{N}}.
+F = \set{f^n(\bot) \mid n \in \bbN}.
 \end{equation*}
 This set is a chain, because for $n = 0$
 we have $f^0(\bot) = \bot \below f(\bot)$. Now assume that $f^n(\bot) \below
@@ -319,9 +319,9 @@ f^{n+1}(\bot)$. Then $f(f^n(\bot)) \below f(f^{n+1}(\bot))$, so $f^{n+1}(\bot)
 \begin{IEEEeqnarray*}{rCl}
 f(x) & = & f(\lub F) \\
      & = & \lub f(F) \IEEEyesnumber \label{lineFContinuous} \\
-     & = & \lub \set{ f(f^n(\bot)) \mid n \in \mathbb{N} } \\
-     & = & \lub \set{ f^{n+1}(\bot) \mid n \in \mathbb{N} } \\
-     & = & \lub \set{ f^n(\bot) \mid n \in \mathbb{N} }
+     & = & \lub \set{ f(f^n(\bot)) \mid n \in \bbN } \\
+     & = & \lub \set{ f^{n+1}(\bot) \mid n \in \bbN } \\
+     & = & \lub \set{ f^n(\bot) \mid n \in \bbN }
            \IEEEyesnumber \label{lineLubLeastElement} \\
      & = & \lub F = x
 \end{IEEEeqnarray*}
@@ -333,7 +333,7 @@ To see that $x$ is the least fixpoint, let $y = f(y)$ be a fixpoint of $f$. We
 have:
 \begin{IEEEeqnarray*}{rCl}
 \bot \below y & \implies & f(\bot) \below f(y) = y \\
- & \implies & \forall n \in \mathbb{N} \ldotp f^n(\bot) \below y \\
+ & \implies & \forall n \in \bbN \ldotp f^n(\bot) \below y \\
  & \implies & y \text{ is an upper bound of F} \\
  & \implies & \lub F = x \below y
 \end{IEEEeqnarray*}
@@ -525,7 +525,7 @@ and it is justified to write $\lub F$
 The definition of $f \below g$ is equivalent to the following formula, which is
 less easy to read, but lends itself better to proofs.
 \begin{equation*}
-\forall n \in \mathbb{N} \ldotp f(n)\isdefined \implies g(n)\isdefined\
+\forall n \in \bbN \ldotp f(n)\isdefined \implies g(n)\isdefined\
 \wedge\ f(n) = g(n)
 \end{equation*}
 Where $f(n)\isdefined$ is to be read as ``$f$ is defined at $n$''.
@@ -534,7 +534,7 @@ Where $f(n)\isdefined$ is to be read as ``$f$ is defined at $n$''.
 
 \begin{proposition} \label{propFactorialExists}
 
-There exists a function $f : \mathbb{N} \arr \mathbb{N}$ such that
+There exists a function $f : \bbN \arr \bbN$ such that
 \begin{IEEEeqnarray}{rCl}
 f(0) & = & 1 \label{eqnFactorial1} \\
 f(n) & = & n \cdot f(n - 1) \quad\text{if}\ \ n > 0 \label{eqnFactorial2}
@@ -555,8 +555,8 @@ so that's the ejection seat.
 }
 
 \begin{proof}
-From \ref{lemPartialFunctionSpaceCppo} we know that $[\mathbb{N} \pfun
-\mathbb{N}]$ is a cppo. Consider the function
+From \ref{lemPartialFunctionSpaceCppo} we know that $[\bbN \pfun
+\bbN]$ is a cppo. Consider the function
 
 \begin{equation*}
 \varphi(g) = n \mapsto \left\{
@@ -567,8 +567,8 @@ From \ref{lemPartialFunctionSpaceCppo} we know that $[\mathbb{N} \pfun
 \right.
 \end{equation*}
 
-$\varphi$ is not defined recursively, so it certainly is a function $[\mathbb{N}
-\pfun \mathbb{N}] \arr [\mathbb{N} \pfun \mathbb{N}]$. If we can show that
+$\varphi$ is not defined recursively, so it certainly is a function $[\bbN
+\pfun \bbN] \arr [\bbN \pfun \bbN]$. If we can show that
 $\varphi$ is continuous, then it is an arrow in Cppo, so by theorem
 \ref{thmFixpoint} it has a fixpoint $f$ such that
 \begin{IEEEeqnarray}{rCl}
@@ -586,10 +586,10 @@ We still need to show that $\varphi$ is continuous. For that matter, first
 observe that $\varphi$ is monotone: assume $f \below g$. To prove: $\varphi(f)
 \below \varphi(g)$, i.e.
 \begin{equation*}
-\forall n \in \mathbb{N} \ldotp \varphi(f)(n)\isdefined \implies
+\forall n \in \bbN \ldotp \varphi(f)(n)\isdefined \implies
 \varphi(g)(n)\isdefined\ \wedge\ \varphi(f)(n) = \varphi(g)(n)
 \end{equation*}
-Let $n \in \mathbb{N}$.  Assume that
+Let $n \in \bbN$.  Assume that
 $\varphi(f)(n)\isdefined$.
 
 If $n = 0$ then $\varphi(f)(n) = 1 = \varphi(g)(n)$.
@@ -603,7 +603,7 @@ In both cases, $\varphi(g)(n)\isdefined \wedge\ \varphi(f)(n) = \varphi(g)(n)$,
 so $\varphi(f) \below \varphi(g)$, which proves that $\varphi$ is monotone.
 
 It remains to show that $\varphi$ preserves lubs. Let $F$ be a chain in
-$[\mathbb{N} \pfun \mathbb{N}]$. Then, because $\varphi$ is monotone,
+$[\bbN \pfun \bbN]$. Then, because $\varphi$ is monotone,
 $\varphi(F)$ is a chain as well, and both have lubs $\lub F$, $\lub \varphi(F)$.
 To prove: $\varphi(\lub F) = \lub \varphi(F)$. It suffices to show inequality
 $\below$ in both directions.
@@ -620,11 +620,11 @@ about lubs. We calculate as follows.
 $\varphi(\lub F) \below \lub \varphi(F)$: For this direction, we have to delve
 into $\varphi$. It suffices to show
 \begin{equation*}
-  \forall n \in \mathbb{N} \ldotp \varphi(\lub F)(n)\isdefined \implies
+  \forall n \in \bbN \ldotp \varphi(\lub F)(n)\isdefined \implies
   (\lub \varphi(F))(n)\isdefined\ \wedge\ \varphi(\lub F)(n) = (\lub
   \varphi(F))(n)
 \end{equation*}
-Let $n \in \mathbb{N}$. Assume $\varphi(\lub F)(n)\isdefined$.
+Let $n \in \bbN$. Assume $\varphi(\lub F)(n)\isdefined$.
 
 If $n = 0$ then $\varphi(\lub F)(0) = 1$, and we have $\forall f \in F
 \ldotp \varphi(f)(0) = 1$, so $(\lub \varphi(F))(0)~= 1$.
@@ -774,11 +774,11 @@ S(y')$ and $x' \below y'$. But $S$ and $f$ are both monotone, so
 \varphi(f)(x) = S(f(x')) \below S(f(y')) = \varphi(f)(y).
 \end{equation*}
 
-Lub preservation: Let $C = \set{a_n \mid n \in \natN}$ be a chain in $A$. To prove:
+Lub preservation: Let $C = \set{a_n \mid n \in \bbN}$ be a chain in $A$. To prove:
 $\varphi(f)(\lub C) = \lub \varphi(f)(C)$. todo continue here
 
 
-\ref{proofEpsilonExists2}. Let $C = \set{f_n \mid n \in \mathbb{N}}$ be a chain
+\ref{proofEpsilonExists2}. Let $C = \set{f_n \mid n \in \bbN}$ be a chain
 in $[A \arr B]$.  To prove: $\varphi(\lub C) = (\lub \varphi(C))$. Let $a \in
 A$. Because lubs of function chains are defined pointwise, it suffices to show
 $\lub \varphi(C)(a) = \varphi(\lub C)(a)$.
@@ -802,8 +802,8 @@ If $a = 0$ then $\varphi(f)(a) = 0$ for all $f \in C$, so
 If $a = S(a')$ then
 \begin{IEEEeqnarray*}{rClu}
      && \lub(\varphi(C)(a)) \\
-  & = & \lub \set{S(f_n(a')) \mid n \in \mathbb{N}} & (definition of $\varphi$) \\
-  & = & S(\lub \set{f_n(a') \mid n \in \mathbb{N}}) & (S is continuous) \\
+  & = & \lub \set{S(f_n(a')) \mid n \in \bbN} & (definition of $\varphi$) \\
+  & = & S(\lub \set{f_n(a') \mid n \in \bbN}) & (S is continuous) \\
   & = & S((\lub C)(a')) & (lubs are defined pointwise) \\
   & = & \varphi(\lub C)(a) & (definition of $\varphi$)
 \end{IEEEeqnarray*}
