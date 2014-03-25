@@ -61,6 +61,8 @@ Abstract
 
 Introduction
 
+\todo{fix location of qed signs}
+
 \section{Domain Theory}
 
 \todo{The section on domains in \cite{Gunter1992} is based on his paper with
@@ -530,6 +532,36 @@ less easy to read, but lends itself better to proofs.
 \end{equation*}
 Where $f(n)\isdefined$ is to be read as ``$f$ is defined at $n$''.
 
+The following two lemmas are always useful for proving continuity.
+
+\begin{lemma} \label{lemMonotoneAlwaysBelowLub}
+Let $A, B$ be cpos, $f : A \arr B$ be a monotone function, and $C \subseteq A$
+be a chain in A. Then $\lub f(C) \below f(\lub C)$.
+\end{lemma}
+
+\begin{proof}
+We have:
+\begin{IEEEeqnarray*}{rCl}
+           && \forall a \in C \ldotp a \below \lub C \\
+ & \implies & \forall a \in C \ldotp f(a) \below f(\lub C) \\
+ & \implies & f(\lub C) \text{ is an upper bound of } f(C) \\
+ & \implies & \lub f(C) \below f(\lub C)
+\end{IEEEeqnarray*}
+\end{proof}
+
+
+\begin{lemma} \label{lemMonotoneIsContinuousFinite}
+Let $A, B$ be cpos, $f : A \arr B$ be a monotone function, and $C \subseteq A$
+be a finite chain in $A$. Then $f(\lub C) = \lub f(C)$.
+\end{lemma}
+
+\begin{proof}
+We have $\lub C \in C$, because $C$ is finite. Therefore $f(\lub C) \in f(C)$,
+and thus $f(\lub C) \below \lub f(C)$. Lemma \ref{lemMonotoneAlwaysBelowLub}
+gives the converse direction.
+\end{proof}
+
+
 
 
 \begin{proposition} \label{propFactorialExists}
@@ -650,8 +682,8 @@ to be continuous and show that its fixpoint fulfills the desired definition.
 
 \section{$1+X$ and $1+X+X$}
 
-\todo{explain what $1+X$, $1+X+X$ are (coalesced sum!) and why we want all that
-follows.}
+\todo{explain what $1+X$, $1+X+X$ are (simultaneous separated sum!) and why we
+want all that follows.}
 
 \begin{lemma} \label{lemLambek}
 todo Lambek's lemma op: final coalgebras are isomorphisms.
@@ -774,8 +806,8 @@ S(y')$ and $x' \below y'$. But $S$ and $f$ are both monotone, so
 \varphi(f)(x) = S(f(x')) \below S(f(y')) = \varphi(f)(y).
 \end{equation*}
 
-Lub preservation: Let $C = \set{a_n \mid n \in \bbN}$ be a chain in $A$. To prove:
-$\varphi(f)(\lub C) = \lub \varphi(f)(C)$. todo continue here
+Lub preservation: Let $C = \set{a_n \mid n \in \bbN}$ be a chain in $A$. To
+prove: $\varphi(f)(\lub C) = \lub \varphi(f)(C)$. \todo{how?}
 
 
 \ref{proofEpsilonExists2}. Let $C = \set{f_n \mid n \in \bbN}$ be a chain
