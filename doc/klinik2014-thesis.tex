@@ -634,41 +634,35 @@ f(n-1) = g(n-1)$, and thus $n \cdot f(n-1) = n \cdot g(n-1) = \varphi(g)(n)$.
 In both cases, $\varphi(g)(n)\isdefined \wedge\ \varphi(f)(n) = \varphi(g)(n)$,
 so $\varphi(f) \below \varphi(g)$, which proves that $\varphi$ is monotone.
 
-It remains to show that $\varphi$ preserves lubs. Let $F$ be a chain in
+It remains to show that $\varphi$ preserves lubs. Let $C$ be a chain in
 $[\bbN \pfun \bbN]$. Then, because $\varphi$ is monotone,
-$\varphi(F)$ is a chain as well, and both have lubs $\lub F$, $\lub \varphi(F)$.
-To prove: $\varphi(\lub F) = \lub \varphi(F)$. It suffices to show inequality
+$\varphi(C)$ is a chain as well, and both have lubs $\lub C$, $\lub \varphi(C)$.
+To prove: $\varphi(\lub C) = \lub \varphi(C)$. It suffices to show inequality
 $\below$ in both directions.
 
-$\lub \varphi(F) \below \varphi(\lub F)$: This direction is a general argument
-about lubs. We calculate as follows.
-\begin{IEEEeqnarray*}{rCl}
-  & &          \forall f \in F \ldotp f \below \lub F \\
-  & \implies & \forall f \in F \ldotp \varphi(f) \below \varphi(\lub F) \\
-  & \implies & \varphi(\lub F) \text{ is an upper bound of } \varphi(F) \\
-  & \implies & \lub \varphi(F) \below \varphi(\lub F)
-\end{IEEEeqnarray*}
+$\lub \varphi(C) \below \varphi(\lub C)$: By lemma
+\ref{lemMonotoneAlwaysBelowLub}.
 
-$\varphi(\lub F) \below \lub \varphi(F)$: For this direction, we have to delve
+$\varphi(\lub C) \below \lub \varphi(C)$: For this direction, we have to delve
 into $\varphi$. It suffices to show
 \begin{equation*}
-  \forall n \in \bbN \ldotp \varphi(\lub F)(n)\isdefined \implies
-  (\lub \varphi(F))(n)\isdefined\ \wedge\ \varphi(\lub F)(n) = (\lub
-  \varphi(F))(n)
+  \forall n \in \bbN \ldotp \varphi(\lub C)(n)\isdefined \implies
+  (\lub \varphi(C))(n)\isdefined\ \wedge\ \varphi(\lub C)(n) = (\lub
+  \varphi(C))(n)
 \end{equation*}
-Let $n \in \bbN$. Assume $\varphi(\lub F)(n)\isdefined$.
+Let $n \in \bbN$. Assume $\varphi(\lub C)(n)\isdefined$.
 
-If $n = 0$ then $\varphi(\lub F)(0) = 1$, and we have $\forall f \in F
-\ldotp \varphi(f)(0) = 1$, so $(\lub \varphi(F))(0)~= 1$.
+If $n = 0$ then $\varphi(\lub C)(0) = 1$, and we have $\forall f \in C
+\ldotp \varphi(f)(0) = 1$, so $(\lub \varphi(C))(0)~= 1$.
 
-If $n > 0$ then $\varphi(\lub F)(n) = n \cdot (\lub F)(n - 1)$, and thus from
-$\varphi(\lub F)(n)\isdefined$ we get $(\lub F)(n - 1)\isdefined$. But then
-there must be a $g$ in $F$ such that $g(n-1)\isdefined$ and $g(n-1) = (\lub F)(n
+If $n > 0$ then $\varphi(\lub C)(n) = n \cdot (\lub C)(n - 1)$, and thus from
+$\varphi(\lub C)(n)\isdefined$ we get $(\lub C)(n - 1)\isdefined$. But then
+there must be a $g$ in $C$ such that $g(n-1)\isdefined$ and $g(n-1) = (\lub C)(n
 - 1)$. But then $n \cdot g(n-1)\isdefined$, therefore $\varphi(g)(n)\isdefined$,
-which implies $(\lub \varphi(F))(n)\isdefined$ and we have:
+which implies $(\lub \varphi(C))(n)\isdefined$ and we have:
 \begin{IEEEeqnarray*}{c}
-(\lub \varphi(F))(n) = \varphi(g)(n) = n \cdot g(n-1) = n \cdot (\lub F)(n-1)
- = \varphi(\lub F)(n)
+(\lub \varphi(C))(n) = \varphi(g)(n) = n \cdot g(n-1) = n \cdot (\lub C)(n-1)
+ = \varphi(\lub C)(n)
 \end{IEEEeqnarray*}
 
 \end{proof}
@@ -807,8 +801,17 @@ S(y')$ and $x' \below y'$. But $S$ and $f$ are both monotone, so
 \end{equation*}
 
 Lub preservation: Let $C = \set{a_n \mid n \in \bbN}$ be a chain in $A$. To
-prove: $\varphi(f)(\lub C) = \lub \varphi(f)(C)$. \todo{how?}
+prove: $\varphi(f)(\lub C) = \lub \varphi(f)(C)$. Lemma
+\ref{lemMonotoneAlwaysBelowLub} gives us $\varphi(f)(\lub C) \below \lub
+\varphi(f)(C)$, it remains to prove the converse direction.
 
+If $\lub C = \bot$ then $C$ is finite, and the conclusion follows by lemma
+\ref{lemMonotoneIsContinuousFinite}.
+
+If $\lub C = 0$ then again $C$ must be finite.
+
+If $\lub C = S(a)$ for some $a \in A$ then \todo{en nu? Need to use dirty
+details about $\below$ in B!}
 
 \ref{proofEpsilonExists2}. Let $C = \set{f_n \mid n \in \bbN}$ be a chain
 in $[A \arr B]$.  To prove: $\varphi(\lub C) = (\lub \varphi(C))$. Let $a \in
