@@ -752,8 +752,8 @@ then
   $C'$ of $C$ having the same lub, where all elements of $C'$ are of the form
   $S(x')$.
 
-  \item The set $C'' = \set{x' \mid S(x') \in C'}$ is a chain, and $\lub C =
-  S(\lub C'')$.
+  \item \label{lemChainInversion2} The set $C'' = \set{x' \mid S(x') \in C'}$ is
+  a chain, and $\lub C = S(\lub C'')$.
 \end{enumerate}
 
 \end{lemma}
@@ -782,9 +782,10 @@ the form $S(x'')$. Then, by definition of $\below$, $x'$ must be $\bot$. But
 then $\bot$ is an upper bound of $C$, which contradicts the assumption that
 $S(a)$ is the least upper bound.
 
-2. We show that the order on $C''$ is total. Let $x', y' \in C''$. Then by
-definition of $C''$, there are $x, y \in C'$ such that $x \below y \aand x =
-S(x') \aand y = S(y')$. By definition of $\below$ this gives $x' \below y'$.
+\ref{lemChainInversion2}. We show that the order on $C''$ is total. Let $x', y'
+\in C''$. Then by definition of $C''$, there are $x, y \in C'$ such that $x
+\below y \aand x = S(x') \aand y = S(y')$. By definition of $\below$ this gives
+$x' \below y'$.
 
 It remains to show that $\lub C = S(\lub C'')$. It suffices to show that $a =
 \lub C''$, because then $\lub C = S(a) = S(\lub C'')$. We calculate:
