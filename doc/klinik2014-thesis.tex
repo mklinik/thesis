@@ -151,15 +151,11 @@ These three definitions are equivalent.
 
 \end{proposition}
 
-This equivalence justifies simply talking about \emph{complete partial orders},
-or \emph{cpos}. We use the definitions interchangeably, whichever is most handy
-in a given situation.
-
 For proposition \ref{propDefinitionsAreEquivalent} we give a round-robin proof,
 of which two implications are fairly simple. The third implication is a bit more
 involved, and requires the axiom of choice. We give a proof for the countable
-case here because it is illustrative, and refer to the literature for the
-uncountable case. \todo{refer to the literature}
+case here because it is illustrative and it is the case we're interested in, and
+refer to the literature for the uncountable case. \todo{refer to the literature}
 
 
 \begin{proof}
@@ -201,6 +197,16 @@ The complication in the third implication comes from the fact that a directed
 set doesn't need to be linearly ordered. Every directed set does however contain
 a chain which threads through the whole set, eventually rising above all
 elements. The lub of the chain is then the lub of the directed set.
+
+This equivalence justifies simply talking about \emph{complete partial orders},
+or \emph{cpos}. We use the definitions interchangeably, whichever is most handy
+in a given situation. As we are exclusively interested in the countable case,
+whenever we consider chains, we mean countable ones. A countable chain $\set{x_n
+\mid x \in \bbN}$ is always also a non-decreasing sequence
+\begin{IEEEeqnarray*}{c}
+x_0 \below x_1 \below x_2 \below \ldots
+\end{IEEEeqnarray*}
+and vice versa.
 
 \subsection{The Category Cppo}
 
