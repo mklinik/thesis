@@ -797,17 +797,17 @@ It remains to show that $\lub C = S(\lub C'')$. It suffices to show that $a =
 \lub C''$, because then $\lub C = S(a) = S(\lub C'')$. We calculate:
 \begin{IEEEeqnarray*}{rCls}
 && \forall x' \in C'' \ldotp S(x') \below S(a) \\
-& \implies & \forall x' \in C'' x' \below a \\
+& \implies & \forall x' \in C'' \ldotp x' \below a & (definition $\below$)\\
 & \implies & a \text{ is an upper bound of } C''.
 \end{IEEEeqnarray*}
 
 Let $b$ be an upper bound of $C''$. Then
 \begin{IEEEeqnarray*}{rCls}
 && \forall x' \in C'' \ldotp x' \below b \\
-& \implies & \forall x' \in C'' \ldotp S(x') \below S(b) \\
-& \implies & S(b) \text{ is an upper bound of } C' & (definition of $C''$) \\
+& \implies & \forall x' \in C'' \ldotp S(x') \below S(b) & ($S$ monotone)\\
+& \implies & S(b) \text{ is an upper bound of } C' & (definition $C''$) \\
 & \implies & \lub C' = S(a) \below S(b) \\
-& \implies & a \below b \\
+& \implies & a \below b & (definition $\below$) \\
 & \implies & a \text{ is the least upper bound of } C''.
 \end{IEEEeqnarray*}
 
@@ -900,10 +900,8 @@ S(y')$ and $x' \below y'$. But $S$ and $f$ are both monotone, so
 \varphi(f)(x) = S(f(x')) \below S(f(y')) = \varphi(f)(y).
 \end{equation*}
 
-Lub preservation: Let $C = \set{a_n \mid n \in \bbN}$ be a chain in $A$. To
-prove: $\varphi(f)(\lub C) = \lub \varphi(f)(C)$. Lemma
-\ref{lemMonotoneAlwaysBelowLub} gives us $\varphi(f)(\lub C) \below \lub
-\varphi(f)(C)$, it remains to prove the converse direction.
+Lub preservation: Let $C$ be a chain in $A$. To prove: $\varphi(f)(\lub C) =
+\lub \varphi(f)(C)$.
 
 If $\lub C = \bot$ then $C$ is finite, and the conclusion follows by lemma
 \ref{lemMonotoneIsContinuousFinite}.
