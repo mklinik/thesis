@@ -309,7 +309,7 @@ $f : A \arr A$ there exists an arrow $Y(f) : 1 \arr A$ such that $Y(f) = f
 \begin{theorem} \label{thmFixpoint}
 
 Cppo has the fixpoint property. In fact, every continuous function on a cppo has
-a unique least fixpoint.
+a \emph{unique} least fixpoint.
 
 \end{theorem}
 
@@ -774,7 +774,7 @@ x_0 \below x_1 \below x_2 \below \ldots
 \end{IEEEeqnarray*}
 and the lub of the first is the same as the successor of the lub of the second.
 This lemma is the opposite of lemma \ref{lemMonotoneAlwaysBelowLub}, the latter
-holding for any cppo and monotone function, while here the interaction between
+holding for any cpo and monotone function, while here the interaction between
 $S$ and $\below$ is required.
 
 
@@ -882,7 +882,7 @@ from $A$ to $B$. To prove:
 \begin{enumerate}[noitemsep]
 \item \label{proofEpsilonExists1} $\varphi$ maps continuous functions to
 continuous functions.
-\item \label{proofEpsilonExists2} $\varphi$ is continuous.
+\item \label{proofEpsilonExists2} $\varphi$ is itself continuous.
 \end{enumerate}
 
 \ref{proofEpsilonExists1}. Let $f : A \arr B$ be continuous. We have to show
