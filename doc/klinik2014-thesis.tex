@@ -767,9 +767,9 @@ is a chain, then so is
 x_0 \below x_1 \below x_2 \below \ldots
 \end{IEEEeqnarray*}
 and the lub of the first is the same as the successor of the lub of the second.
-Compare this with lemma \ref{lemMonotoneAlwaysBelowLub}, which holds for any
-cppo and monotone function, while here the interaction between $S$ and $\below$
-is required.
+This lemma is the opposite of lemma \ref{lemMonotoneAlwaysBelowLub}, the latter
+holding for any cppo and monotone function, while here the interaction between
+$S$ and $\below$ is required.
 
 
 \begin{proof}
@@ -904,8 +904,19 @@ If $\lub C = \bot$ then $C$ is finite, and the conclusion follows by lemma
 
 If $\lub C = 0$ then again $C$ must be finite.
 
-If $\lub C = S(a)$ for some $a \in A$ then \todo{en nu? Need to use dirty
-details about $\below$ in B! AND THE FACT THAT $f$ IS CONTINUOUS}
+If $\lub C = S(a)$ for some $a \in A$ then if $C$ is finite, we're done. Let $C$
+be infinite. Then, using lemma \ref{lemChainInversion} and it's constructions of
+$C'$ and $C''$, we calculate:
+\begin{IEEEeqnarray*}{rCl's}
+&& \varphi(f)(\lub C) \\
+& = & \varphi(f)(S(a)) \\
+& = & S(f(a)) & (definition $\varphi$) \\
+& = & S(f(\lub C'')) & (lemma \ref{lemChainInversion}) \\
+& = & \lub S(f(C'')) & ($S, f$ continuous) \\
+& = & \lub \varphi(f)(S(C'')) & (definition $\varphi$) \\
+& = & \lub \varphi(f)(C') & (definition $C'$) \\
+& = & \lub \varphi(f)(C) & (lemma \ref{lemCoFiniteSubsetLub})
+\end{IEEEeqnarray*}
 
 \ref{proofEpsilonExists2}. Let $C = \set{f_n \mid n \in \bbN}$ be a chain
 in $[A \arr B]$.  To prove: $\varphi(\lub C) = (\lub \varphi(C))$. Let $a \in
