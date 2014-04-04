@@ -707,6 +707,67 @@ Their final coalgebras:
 \end{IEEEeqnarray*}
 
 
+
+\begin{proposition}
+There exists a continuous embedding-projection pair
+\begin{IEEEeqnarray*}{RCCl}
+\varepsilon : & A & \arr & B \\
+\pi         : & B & \arr & A
+\end{IEEEeqnarray*}
+such that $\pi \circ \varepsilon = \text{id}_A$.
+\end{proposition}
+
+
+\todo{define $f \below g$ for $f, g : [A \arr B]$ and lub of chains pointwise}
+
+
+\begin{lemma} \label{lemEpsilonExists}
+There is a function $\varepsilon : A \arr B$ such that
+
+\begin{equation*}
+\varepsilon(a) = \left\{
+  \begin{array}{rcl}
+   \bot_B & \text{if} & a = \bot_A \\
+   \beta^{-1}(\kappa_0(a')) & \text{if} & \beta(a) = \kappa_0(a') \\
+   \beta^{-1}(\kappa_1(\varepsilon(a'))) & \text{if} & \beta(a) = \kappa_1(a')
+  \end{array}
+\right.
+\end{equation*}
+
+\end{lemma}
+
+This specification is highly technical, and it's hard to see that there really
+is not much going on.  From now on we employ some notational simplifications to
+make matters more clear.
+
+First, lemma \ref{lemLambek} allows us to be liberal with $\alpha$ and $\beta$,
+so we leave them out and view an element of $A$ as also being of $1 + A$ and
+vice versa. Same for $B$ and $1+B+B$. When appropriate, we write ``$x$ is of the
+form $S(-)$'' instead of $\exists x' \ldotp \alpha(x) = S(x')$ .
+
+Second, $1$ as the terminal object in Cppo is a one-element set, so
+$\kappa_0(a')$ can be of only one form, for which we write $0$.
+
+Third, we write $S$ for $\kappa_1$ and $\_$ for $\kappa_2$.
+
+The requirements for \ref{lemEpsilonExists} then become:
+
+\begin{equation*}
+\varepsilon(a) = \left\{
+  \begin{array}{rcl}
+   \bot & \text{if} & a = \bot \\
+   0 & \text{if} & a = 0 \\
+   S(\varepsilon(a')) & \text{if} & a = S(a')
+  \end{array}
+\right.
+\end{equation*}
+
+From this it is easier to see that $\varepsilon$ doesn't do anything except
+replacing the constructors of $1+A$ by their equivalent of $1+B+B$. The proof
+proceeds similarly to the one of \ref{propFactorialExists}, but now we have
+slightly more work to do. We need the following lemmas.
+
+
 \begin{definition}
 For $x,y \in A$, define $x \below y$ iff
 \begin{IEEEeqnarray*}{rtl}
@@ -827,16 +888,6 @@ the Hasse diagrams of figures \ref{figDomainOfLazyNaturals} and
 \end{figure}
 
 
-\begin{proposition}
-There exists a continuous embedding-projection pair
-\begin{IEEEeqnarray*}{RCCl}
-\varepsilon : & A & \arr & B \\
-\pi         : & B & \arr & A
-\end{IEEEeqnarray*}
-such that $\pi \circ \varepsilon = \text{id}_A$.
-\end{proposition}
-
-
 \begin{lemma} \label{lemCoFiniteSubsetLub}
 
 If $C$ is an infinite chain and $C' \subseteq C$ a co-finite subset, then $\lub
@@ -851,10 +902,9 @@ If $C$ is an infinite chain in $A$ such that $\lub C = S(a)$ for some $a \in A$,
 then
 \begin{enumerate}
 
-  \item \label{lemChainInversion1} for all but finitely many $x \in C$ there is
-  an $x'$ such that $x = S(x')$.  In other words, there is a co-finite subset
-  $C'$ of $C$ having the same lub, where all elements of $C'$ are of the form
-  $S(x')$.
+  \item \label{lemChainInversion1} all but finitely many $x \in C$ are of the
+  form $S(-)$.  In other words, there is a co-finite subset $C'$ of $C$ having
+  the same lub, where all elements of $C'$ are of the form $S(-)$.
 
   \item \label{lemChainInversion2} The set $C'' = \set{x' \mid S(x') \in C'}$ is
   a chain, and $\lub C = S(\lub C'')$.
@@ -880,11 +930,11 @@ $S$ and $\below$ is required.
 
 (Lemma \ref{lemChainInversion}) \ref{lemChainInversion1}. Let $C$ be an infinite
 chain such that $\lub C = S(a)$, and assume towards a contradiction that
-infinitely many elements are not of the form $S(x)$. Then, for each $x \in C$,
-there is an $x' \in C$ such that $x \below x' \below S(a)$ and $x'$ is not of
-the form $S(x'')$. Then, by definition of $\below$, $x'$ must be $\bot$. But
+infinitely many elements are not of the form $S(-)$. Then, for each $x \in C$,
+there is a $y \in C$ such that $x \below y \below S(a)$ and $y$ is not of
+the form $S(-)$. Then, by definition of $\below$, $y$ must be $\bot$. But
 then $\bot$ is an upper bound of $C$, which contradicts the assumption that
-$S(a)$ is the least upper bound.
+$S(a)$ is the least upper bound of $C$.
 
 \ref{lemChainInversion2}. We show that the order on $C''$ is total. Let $x', y'
 \in C''$. Then by definition of $C''$, there are $x, y \in C'$ such that $x
@@ -894,7 +944,7 @@ $x' \below y'$.
 It remains to show that $\lub C = S(\lub C'')$. It suffices to show that $a =
 \lub C''$, because then $\lub C = S(a) = S(\lub C'')$. We calculate:
 \begin{IEEEeqnarray*}{rCls}
-&& \forall x' \in C'' \ldotp S(x') \below S(a) \\
+&& \forall x' \in C'' \ldotp S(x') \below S(a) & ($S(a)$ upper bound of $C'$) \\
 & \implies & \forall x' \in C'' \ldotp x' \below a & (definition $\below$)\\
 & \implies & a \text{ is an upper bound of } C''.
 \end{IEEEeqnarray*}
@@ -911,55 +961,6 @@ Let $b$ be an upper bound of $C''$. Then
 
 \end{proof}
 
-
-\todo{define $f \below g$ for $f, g : [A \arr B]$ and lub of chains pointwise}
-
-
-\begin{lemma} \label{lemEpsilonExists}
-There is a function $\varepsilon : A \arr B$ such that
-
-\begin{equation*}
-\varepsilon(a) = \left\{
-  \begin{array}{rcl}
-   \bot_B & \text{if} & a = \bot_A \\
-   \beta^{-1}(\kappa_0(a')) & \text{if} & \beta(a) = \kappa_0(a') \\
-   \beta^{-1}(\kappa_1(\varepsilon(a'))) & \text{if} & \beta(a) = \kappa_1(a')
-  \end{array}
-\right.
-\end{equation*}
-
-\end{lemma}
-
-This specification is highly technical, and it's hard to see that there really
-is not much going on.  From now on we employ some notational simplifications to
-make matters more clear.
-
-First, lemma \ref{lemLambek} allows us to be liberal with $\alpha$ and $\beta$,
-so we leave them out and view an element of $A$ as also being of $1 + A$ and
-vice versa. Same for $B$ and $1+B+B$.
-
-Second, $1$ as the terminal object in Cppo is a one-element set, so
-$\kappa_0(a')$ can be of only one form, for which we write $0$.
-
-Third, we write $S$ for $\kappa_1$ and $\_$ for $\kappa_2$.
-
-The requirements for \ref{lemEpsilonExists} then become:
-
-\begin{equation*}
-\varepsilon(a) = \left\{
-  \begin{array}{rcl}
-   \bot & \text{if} & a = \bot \\
-   0 & \text{if} & a = 0 \\
-   S(\varepsilon(a')) & \text{if} & a = S(a')
-  \end{array}
-\right.
-\end{equation*}
-
-From this it is easier to see that $\varepsilon$ doesn't do anything except
-replacing the constructors of $1+A$ by their equivalent of $1+B+B$. It is
-also easy to see that $\varepsilon$ actually is well-defined, monotone and
-continuous. The proof proceeds similarly to the one of
-\ref{propFactorialExists}, but now we have slightly more work to do.
 
 \begin{proof}
 
@@ -1073,25 +1074,25 @@ There is a function $\pi : B \arr A$ such that
 (Lemma \ref{lemPiExists}) Define $\psi : [B \arr A] \arr [B \arr A]$ as:
 \end{proof}
 
-\section{Junkyard}
+%\section{Junkyard}
 
-\begin{figure}[ht]
-\begin{center}
-\begin{tikzpicture}
-\matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
-  {
-     A & B \\
-     C & D \\
-  };
-  \path[-stealth]
-    (m-1-1) edge node [left] {$f$} (m-2-1)
-            edge node [above] {$g$} (m-1-2)
-    (m-2-1.east|-m-2-2) edge node [below] {$h$} (m-2-2)
-    (m-1-2) edge node [right] {$e$} (m-2-2);
-\end{tikzpicture}
-\end{center}
-\caption{Example of a commutative diagram}
-\end{figure}
+%\begin{figure}[ht]
+%\begin{center}
+%\begin{tikzpicture}
+%\matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  %{
+     %A & B \\
+     %C & D \\
+  %};
+  %\path[-stealth]
+    %(m-1-1) edge node [left] {$f$} (m-2-1)
+            %edge node [above] {$g$} (m-1-2)
+    %(m-2-1.east|-m-2-2) edge node [below] {$h$} (m-2-2)
+    %(m-1-2) edge node [right] {$e$} (m-2-2);
+%\end{tikzpicture}
+%\end{center}
+%\caption{Example of a commutative diagram}
+%\end{figure}
 
 
 \section{Further directions}
