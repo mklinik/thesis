@@ -712,19 +712,15 @@ For $x,y \in A$, define $x \below y$ iff
 \begin{IEEEeqnarray*}{rtl}
 & & x = \bot \\
 & or\quad & x = y \\
-& or\quad & \forall x', y' \in A\,\ldotp\, x = S(x') \aand y = S(y') \implies x' \below y'
+& or\quad & x = S(x') \aand y = S(y') \aand x' \below y'
 \end{IEEEeqnarray*}
 
 For $x,y \in B$, define $x \below y$ iff
-\begin{IEEEeqnarray*}{tlClClClCl}
+\begin{IEEEeqnarray*}{tlClClCl}
 & x = \bot \\
 or\quad & x = y \\
-or\quad & \forall x', y' \in A\,\ldotp\, x & = & S(x')
-  & \aand & y & = & S(y')
-  & \implies & x' \below y' \\
-or\quad & \forall x', y' \in A\,\ldotp\, x & = & \_(x')
-  & \aand & y & = & \_(y')
-  & \implies & x' \below y'
+or\quad & x = S(x') & \aand & y & = & S(y') & \aand & x' \below y' \\
+or\quad & x = \_(x') & \aand & y & = & \_(y') & \aand & x' \below y'
 \end{IEEEeqnarray*}
 \end{definition}
 
