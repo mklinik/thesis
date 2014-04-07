@@ -767,23 +767,68 @@ replacing the constructors of $1+A$ by their equivalent of $1+B+B$. The proof
 proceeds similarly to the one of \ref{propFactorialExists}, but now we have
 slightly more work to do. We need the following lemmas.
 
+Greatest fixpoints of functors arise as limits of left chains.
+\begin{IEEEeqnarray*}{c}
+\cdots\ \arr\ F^3(1)\ \arr\ F^2(1)\ \arr\ F(1)\ \arr\ 1
+\end{IEEEeqnarray*}
+See for example theorem 11.3.14 in \cite{Manes1986}.  Intuitively, the cppos we
+use as data structure semantics arise by $\omega$-many iterations of the base
+functor on the terminal object $1$. The first few iterations for the functor $FX
+= 1 + X$, together with the partial order induced by the separated sum, look as
+in figure \ref{figFirstIterationsOfF}. In each iteration, the cppo of the
+previous step is lifted through $\kappa_1$ to the upper right, and fresh
+$\kappa_0(\bot)$ and $\bot$ are introduced.
 
-\begin{definition}
-For $x,y \in A$, define $x \below y$ iff
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+  \node {$\bot$} [grow'=up, sibling distance=4.0em, level distance=1.9em]
+  ;
+
+  \path (0,-1) node {$1$};
+
+  \path (2,0) node {$\bot$} [grow'=up, sibling distance=4.0em, level distance=1.9em]
+    child { node {$\kappa_0(\bot)$} }
+    child { node {$\kappa_1(\bot)$} }
+  ;
+
+  \path (2,-1) node {$F(1)$};
+
+  \path (5,0) node {$\bot$} [grow'=up, sibling distance=4.0em, level distance=1.9em]
+    child { node {$\kappa_0(\bot)$} }
+    child {
+      node { $\kappa_1(\bot)$ }
+      child { node { $\kappa_1(\kappa_0(\bot))$ } }
+      child { node { $\kappa_1(\kappa_1(\bot))$ } }
+    }
+  ;
+
+  \path (5,-1) node {$F(F(1))$};
+\end{tikzpicture}
+\end{center}
+\caption{The first iterations of $1+X$ on $1$}
+\label{figFirstIterationsOfF}
+\end{figure}
+
+
+\begin{lemma}
+For $x,y \in A$, we have $x \below y$ iff
 \begin{IEEEeqnarray*}{rtl}
 & & x = \bot \\
 & or\quad & x = y \\
 & or\quad & x = S(x') \aand y = S(y') \aand x' \below y'
 \end{IEEEeqnarray*}
 
-For $x,y \in B$, define $x \below y$ iff
+For $x,y \in B$, we have $x \below y$ iff
 \begin{IEEEeqnarray*}{tlClClCl}
 & x = \bot \\
 or\quad & x = y \\
 or\quad & x = S(x') & \aand & y & = & S(y') & \aand & x' \below y' \\
 or\quad & x = \_(x') & \aand & y & = & \_(y') & \aand & x' \below y'
 \end{IEEEeqnarray*}
-\end{definition}
+\qed
+\end{lemma}
 
 The final coalgebras $A$ and $B$, together with their ordering are depicted in
 the Hasse diagrams of figures \ref{figDomainOfLazyNaturals} and
