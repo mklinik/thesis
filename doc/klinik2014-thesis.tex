@@ -721,63 +721,16 @@ such that $\pi \circ \varepsilon = \text{id}_A$.
 \todo{define $f \below g$ for $f, g : [A \arr B]$ and lub of chains pointwise}
 
 
-\begin{lemma} \label{lemEpsilonExists}
-There is a function $\varepsilon : A \arr B$ such that
-
-\begin{equation*}
-\varepsilon(a) = \left\{
-  \begin{array}{rcl}
-   \bot_B & \text{if} & a = \bot_A \\
-   \beta^{-1}(\kappa_0(a')) & \text{if} & \beta(a) = \kappa_0(a') \\
-   \beta^{-1}(\kappa_1(\varepsilon(a'))) & \text{if} & \beta(a) = \kappa_1(a')
-  \end{array}
-\right.
-\end{equation*}
-
-\end{lemma}
-
-This specification is highly technical, and it's hard to see that there really
-is not much going on.  From now on we employ some notational simplifications to
-make matters more clear.
-
-First, lemma \ref{lemLambek} allows us to be liberal with $\alpha$ and $\beta$,
-so we leave them out and view an element of $A$ as also being of $1 + A$ and
-vice versa. Same for $B$ and $1+B+B$. When appropriate, we write ``$x$ is of the
-form $S(-)$'' instead of $\exists x' \ldotp \alpha(x) = S(x')$ .
-
-Second, $1$ as the terminal object in Cppo is a one-element set, so
-$\kappa_0(a')$ can be of only one form, for which we write $0$.
-
-Third, we write $S$ for $\kappa_1$ and $\_$ for $\kappa_2$.
-
-The requirements for \ref{lemEpsilonExists} then become:
-
-\begin{equation*}
-\varepsilon(a) = \left\{
-  \begin{array}{rcl}
-   \bot & \text{if} & a = \bot \\
-   0 & \text{if} & a = 0 \\
-   S(\varepsilon(a')) & \text{if} & a = S(a')
-  \end{array}
-\right.
-\end{equation*}
-
-From this it is easier to see that $\varepsilon$ doesn't do anything except
-replacing the constructors of $1+A$ by their equivalent of $1+B+B$. The proof
-proceeds similarly to the one of \ref{propFactorialExists}, but now we have
-slightly more work to do. We need the following lemmas.
-
-Greatest fixpoints of functors arise as limits of left chains.
-\begin{IEEEeqnarray*}{c}
+Greatest fixpoints of functors arise as limits of left chains. See for example
+theorem 11.3.14 in \cite{Manes1986}.  \begin{IEEEeqnarray*}{c}
 \cdots\ \arr\ F^3(1)\ \arr\ F^2(1)\ \arr\ F(1)\ \arr\ 1
 \end{IEEEeqnarray*}
-See for example theorem 11.3.14 in \cite{Manes1986}.  Intuitively, the cppos we
-use as data structure semantics arise by $\omega$-many iterations of the base
-functor on the terminal object $1$. The first few iterations for the functor $FX
-= 1 + X$, together with the partial order induced by the separated sum, look as
-in figure \ref{figFirstIterationsOfF}. In each iteration, the cppo of the
-previous step is lifted through $\kappa_1$ to the upper right, and fresh
-$\kappa_0(\bot)$ and $\bot$ are introduced.
+Intuitively, the cppos we use as data structure semantics arise by $\omega$-many
+iterations of the base functor on the terminal object $1$. The first few
+iterations for the functor $FX = 1 + X$, together with the partial order induced
+by the separated sum, look as in figure \ref{figFirstIterationsOfF}. In each
+iteration, the cppo of the previous step is lifted through $\kappa_1$ to the
+upper right, and fresh $\kappa_0(\bot)$ and $\bot$ are introduced.
 
 
 \begin{figure}
@@ -786,55 +739,46 @@ $\kappa_0(\bot)$ and $\bot$ are introduced.
   \node {$\bot$} [grow'=up, sibling distance=4.0em, level distance=1.9em]
   ;
 
-  \node at (0,-1) {$1$};
+  \node at (0,-0.7) {$1$};
 
   \node at (2,0) {$\bot$} [grow'=up, sibling distance=4.0em, level distance=1.9em]
     child { node {$\kappa_0(\bot)$} }
-    child { node {$\kappa_1(\bot)$} }
+    child { node [draw,dotted,rounded corners] {$\kappa_1(\bot)$} }
   ;
 
-  \node at (2,-1) {$F(1)$};
+  \node at (2,-0.7) {$F(1)$};
 
   \node at (5,0) {$\bot$} [grow'=up, sibling distance=4.0em, level distance=1.9em]
     child { node {$\kappa_0(\bot)$} }
     child {
-      node { $\kappa_1(\bot)$ }
-      child { node { $\kappa_1(\kappa_0(\bot))$ } }
-      child { node { $\kappa_1(\kappa_1(\bot))$ } }
+      node [name=foo] { $\kappa_1(\bot)$ }
+      child { node [name=bar] { $\kappa_1(\kappa_0(\bot))$ } }
+      child { node [name=baz] { $\kappa_1(\kappa_1(\bot))$ } }
     }
   ;
 
-  \node at (5,-1) {$F(F(1))$};
+  \node at (5,-0.7) {$F(F(1))$};
+
+  \path [draw,dotted,rounded corners] (foo.south west) -- (foo.south east)
+    -- (baz.south east)
+    -- (baz.north east)
+    -- (bar.north west)
+    -- (bar.south west)
+    -- cycle
+  ;
+
 \end{tikzpicture}
 \end{center}
-\caption{The first iterations of $1+X$ on $1$}
+\caption{The first iterations of $1+X$ on $1$. Marked parts indicate the
+inclusion of the previous iteration.}
 \label{figFirstIterationsOfF}
 \end{figure}
 
-
-\begin{lemma}
-For $x,y \in A$, we have $x \below y$ iff
-\begin{IEEEeqnarray*}{rtl}
-& & x = \bot \\
-& or\quad & x = y \\
-& or\quad & x = S(x') \aand y = S(y') \aand x' \below y'
-\end{IEEEeqnarray*}
-
-For $x,y \in B$, we have $x \below y$ iff
-\begin{IEEEeqnarray*}{tlClClCl}
-& x = \bot \\
-or\quad & x = y \\
-or\quad & x = S(x') & \aand & y & = & S(y') & \aand & x' \below y' \\
-or\quad & x = \_(x') & \aand & y & = & \_(y') & \aand & x' \below y'
-\end{IEEEeqnarray*}
-\qed
-\end{lemma}
-
 The final coalgebras $A$ and $B$, together with their ordering are depicted in
 the Hasse diagrams of figures \ref{figDomainOfLazyNaturals} and
-\ref{figDomainOfNuF}.
+\ref{figDomainOfNuF}. These figures employ some notational simplification.
 
-\begin{figure}
+\begin{figure}[th]
 \begin{center}
 \begin{tikzpicture}[scale=1.2]
   \node {$\bot$} [grow'=up, sibling distance=4.0em, level distance=1.8em]
@@ -862,7 +806,7 @@ the Hasse diagrams of figures \ref{figDomainOfLazyNaturals} and
 \label{figDomainOfLazyNaturals}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[th]
 \begin{center}
 \begin{tikzpicture}
  [ grow'=up
@@ -931,6 +875,71 @@ the Hasse diagrams of figures \ref{figDomainOfLazyNaturals} and
 \caption{The cppo $(B, \below)$.}
 \label{figDomainOfNuF}
 \end{figure}
+
+\begin{lemma} \label{lemEpsilonExists}
+There is a function $\varepsilon : A \arr B$ such that
+
+\begin{equation*}
+\varepsilon(a) = \left\{
+  \begin{array}{rcl}
+   \bot_B & \text{if} & a = \bot_A \\
+   \beta^{-1}(\kappa_0(a')) & \text{if} & \beta(a) = \kappa_0(a') \\
+   \beta^{-1}(\kappa_1(\varepsilon(a'))) & \text{if} & \beta(a) = \kappa_1(a')
+  \end{array}
+\right.
+\end{equation*}
+
+\end{lemma}
+
+This specification is highly technical, and it's hard to see that there really
+is not much going on.  From now on we employ some notational simplifications to
+make matters more clear.
+
+First, lemma \ref{lemLambek} allows us to be liberal with $\alpha$ and $\beta$,
+so we leave them out and view an element of $A$ as also being of $1 + A$ and
+vice versa. Same for $B$ and $1+B+B$. When appropriate, we write ``$x$ is of the
+form $S(-)$'' instead of $\exists x' \ldotp \alpha(x) = S(x')$ .
+
+Second, $1$ as the terminal object in Cppo is a one-element set, so
+$\kappa_0(a')$ can be of only one form, for which we write $0$.
+
+Third, we write $S$ for $\kappa_1$ and $\_$ for $\kappa_2$.
+
+The requirements for \ref{lemEpsilonExists} then become:
+
+\begin{equation*}
+\varepsilon(a) = \left\{
+  \begin{array}{rcl}
+   \bot & \text{if} & a = \bot \\
+   0 & \text{if} & a = 0 \\
+   S(\varepsilon(a')) & \text{if} & a = S(a')
+  \end{array}
+\right.
+\end{equation*}
+
+From this it is easier to see that $\varepsilon$ doesn't do anything except
+replacing the constructors of $1+A$ by their equivalent of $1+B+B$. The proof
+proceeds similarly to the one of \ref{propFactorialExists}, but now we have
+slightly more work to do. We need the following lemmas.
+
+
+\begin{lemma}
+For $x,y \in A$, we have $x \below y$ iff
+\begin{IEEEeqnarray*}{rtl}
+& & x = \bot \\
+& or\quad & x = y \\
+& or\quad & x = S(x') \aand y = S(y') \aand x' \below y'
+\end{IEEEeqnarray*}
+
+For $x,y \in B$, we have $x \below y$ iff
+\begin{IEEEeqnarray*}{tlClClCl}
+& x = \bot \\
+or\quad & x = y \\
+or\quad & x = S(x') & \aand & y & = & S(y') & \aand & x' \below y' \\
+or\quad & x = \_(x') & \aand & y & = & \_(y') & \aand & x' \below y'
+\end{IEEEeqnarray*}
+\qed
+\end{lemma}
 
 
 \begin{lemma} \label{lemCoFiniteSubsetLub}
