@@ -1080,7 +1080,13 @@ $C'$ and $C''$, we calculate:
 & = & \lub \varphi(f)(C) & (lemma \ref{lemCoFiniteSubsetLub})
 \end{IEEEeqnarray*}
 
-\ref{proofEpsilonExists2}. Monotonicity: \todo{}
+\ref{proofEpsilonExists2}. Monotonicity: Let $f,g \in [A \arr B]$ such that $f
+\below g$.  To prove: $\varphi(f) \below \varphi(g)$, i.e. $\forall a \in A
+\ldotp \varphi(f)(a) \below \varphi(g)(a)$.  The cases $a = \bot$ and $a = 0$
+are trivial, so let $a = S(a')$. Then
+\begin{IEEEeqnarray*}{c}
+\varphi(f)(a) = S(f(a')) \below S(g(a')) = \varphi(g)(a).
+\end{IEEEeqnarray*}
 
 Lub preservation: Let $C = \set{f_n \mid n \in \bbN}$ be a chain
 in $[A \arr B]$.  To prove: $\varphi(\lub C) = \lub \varphi(C)$. Let $a \in
