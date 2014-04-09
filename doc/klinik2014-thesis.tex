@@ -725,16 +725,17 @@ such that $\pi \circ \varepsilon = \text{id}_A$.
 \todo{define $f \below g$ for $f, g : [A \arr B]$ and lub of chains pointwise}
 
 
-Greatest fixpoints of functors arise as limits of left chains. See for example
-theorem 11.3.14 in \cite{Manes1986}.  \begin{IEEEeqnarray*}{c}
+Greatest fixpoints of functors arise as limits of left chains. See theorem
+11.3.14 in \cite{Manes1986}.  \begin{IEEEeqnarray*}{c}
 \cdots\ \arr\ F^3(1)\ \arr\ F^2(1)\ \arr\ F(1)\ \arr\ 1
 \end{IEEEeqnarray*}
-Intuitively, the cppos we use as data structure semantics arise by $\omega$-many
-iterations of the base functor on the terminal object $1$. The first few
-iterations for the functor $FX = 1 + X$, together with the partial order induced
-by the separated sum, look as in figure \ref{figFirstIterationsOfF}. In each
-iteration, the cppo of the previous step is lifted through $\kappa_1$ to the
-upper right, and fresh $\kappa_0(\bot)$ and $\bot$ are introduced.
+Intuitively, the cppos we use for data structure semantics arise by
+$\omega$-fold iteration of the base functor on the terminal object $1$. The
+first few iterations for the functor $F(X) = 1 + X$, together with the partial
+order induced by the separated sum, are illustrated in figure
+\ref{figFirstIterationsOfF}. In each iteration, the cppo of the previous step is
+lifted through $\kappa_1$ to the upper right, and fresh $\kappa_0(\bot)$ and
+$\bot$ are introduced.
 
 
 \begin{figure}
@@ -1012,7 +1013,7 @@ Let $b$ be an upper bound of $C''$. Then
 && \forall x' \in C'' \ldotp x' \below b \\
 & \implies & \forall x' \in C'' \ldotp S(x') \below S(b) & ($S$ monotone)\\
 & \implies & S(b) \text{ is an upper bound of } C' & (definition $C''$) \\
-& \implies & \lub C' = S(a) \below S(b) \\
+& \implies & \lub C' = S(a) \below S(b) & (S(a) least upper bound) \\
 & \implies & a \below b & (definition $\below$) \\
 & \implies & a \text{ is the least upper bound of } C''.
 \end{IEEEeqnarray*}
@@ -1066,7 +1067,7 @@ If $\lub C = \bot$ then $C$ is finite, and the conclusion follows by lemma
 If $\lub C = 0$ then again $C$ must be finite.
 
 If $\lub C = S(a)$ for some $a \in A$ then if $C$ is finite, we're done. Let $C$
-be infinite. Then, using lemma \ref{lemChainInversion} and it's constructions of
+be infinite. Then, using lemma \ref{lemChainInversion} and its constructions
 $C'$ and $C''$, we calculate:
 \begin{IEEEeqnarray*}{rCl's}
 && \varphi(f)(\lub C) \\
@@ -1079,8 +1080,10 @@ $C'$ and $C''$, we calculate:
 & = & \lub \varphi(f)(C) & (lemma \ref{lemCoFiniteSubsetLub})
 \end{IEEEeqnarray*}
 
-\ref{proofEpsilonExists2}. Let $C = \set{f_n \mid n \in \bbN}$ be a chain
-in $[A \arr B]$.  To prove: $\varphi(\lub C) = (\lub \varphi(C))$. Let $a \in
+\ref{proofEpsilonExists2}. Monotonicity: \todo{}
+
+Lub preservation: Let $C = \set{f_n \mid n \in \bbN}$ be a chain
+in $[A \arr B]$.  To prove: $\varphi(\lub C) = \lub \varphi(C)$. Let $a \in
 A$. Because lubs of function chains are defined pointwise, it suffices to show
 $\lub \varphi(C)(a) = \varphi(\lub C)(a)$.
 
