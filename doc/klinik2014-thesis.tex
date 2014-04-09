@@ -712,7 +712,7 @@ Their final coalgebras:
 
 
 
-\begin{proposition}
+\begin{proposition} \label{propEpsilonPiExist}
 There exists a continuous embedding-projection pair
 \begin{IEEEeqnarray*}{RCCl}
 \varepsilon : & A & \arr & B \\
@@ -928,7 +928,7 @@ proceeds similarly to the one of \ref{propFactorialExists}, but now we have
 slightly more work to do. We need the following lemmas.
 
 
-\begin{lemma}
+\begin{lemma} \label{lemDefinitionBelowAandB}
 For $x,y \in A$, we have $x \below y$ iff
 \begin{IEEEeqnarray*}{rtl}
 & & x = \bot \\
@@ -1136,25 +1136,167 @@ S(\varepsilon(a'))$.
 
 \end{proof}
 
+The proof that $\pi$ exists and has the desired properties follows the same
+sche\-ma as above, except we have one more case to consider. We leave out all the
+boilerplate and concentrate on the interesting cases.
 
 \begin{lemma} \label{lemPiExists}
 There is a function $\pi : B \arr A$ such that
 
-\begin{equation*}
+\begin{IEEEeqnarray*}{c}
 \pi(b) = \left\{
   \begin{array}{rcl}
    \bot_A & \text{if} & b = \bot_B \\
-   \alpha^{-1}(\kappa_0(*)) & \text{if} & \beta(b) = \kappa_0(*) \\
-   \alpha^{-1}(\kappa_1(\pi(b'))) & \text{if} & \beta(b) = \kappa_1(b') \\
-   \pi(b') & \text{if} & \beta(b) = \kappa_2(b')
+   0_A & \text{if} & b = 0_B \\
+   S_A(\pi(b')) & \text{if} & b = S_B(b') \\
+   \pi(b') & \text{if} & b = \_(b')
   \end{array}
 \right.
-\end{equation*}
+\end{IEEEeqnarray*}
 
 \end{lemma}
 
 \begin{proof}
 (Lemma \ref{lemPiExists}) Define $\psi : [B \arr A] \arr [B \arr A]$ as:
+
+\begin{IEEEeqnarray*}{c}
+\psi(f) = b \mapsto \left\{
+  \begin{array}{rcl}
+   \bot & \text{if} & b = \bot \\
+   0 & \text{if} & b = 0 \\
+   S(\pi(b')) & \text{if} & b = S(b') \\
+   \pi(b') & \text{if} & b = \_(b')
+  \end{array}
+\right.
+\end{IEEEeqnarray*}
+
+To prove:
+\begin{enumerate}[noitemsep]
+\item \label{proofPiExists1} $\psi$ maps continuous functions to
+continuous functions.
+\item \label{proofPiExists2} $\psi$ is itself continuous.
+\item \label{proofPiExists3} $\pi$ as the fixpoint of $\psi$
+satisfies the desired equation.
+\end{enumerate}
+
+\ref{proofPiExists1}. Let $f \in [B \arr A]$. To prove: $\psi(f)$ is continuous.
+
+Monotonicity: Let $x,y \in B$ such that $x \below y$.
+
+If $x = S(x')$ then by lemma \ref{lemDefinitionBelowAandB} there must be a $y'$
+such that $y = S(y')$ and $x' \below y'$. We have:
+\begin{IEEEeqnarray*}{c}
+\psi(f)(x) = S(f(x')) \below S(f(y')) = \psi(f)(y).
+\end{IEEEeqnarray*}
+
+If $x = \_(x')$ then there must be a $y'$ such that $y = \_(y')$ and $x' \below
+y'$. We have:
+\begin{IEEEeqnarray*}{c}
+\psi(f)(x) = f(x') \below f(y') = \psi(f)(y).
+\end{IEEEeqnarray*}
+
+
+Lub preservation: Let $C$ be a chain in $B$. To prove: $\psi(f)(\lub
+C) = \lub \psi(f)(C)$.
+
+\todo{we need a chain inversion lemma similar to \ref{lemChainInversion}}
+
+If $C$ is infinite and $\lub C = S(b)$ for some $b \in B$, then:
+\begin{IEEEeqnarray*}{rCl's}
+&&    \psi(f)(\lub C) \\
+& = & \psi(f)(S(b)) \\
+& = & S(f(b)) \\
+& = & S(f(\lub C'')) & (todo chain inversion lemma) \\
+& = & \lub S(f(C'')) \\
+& = & \lub \psi(f)(S(C'')) \\
+& = & \lub \psi(f)(C') \\
+& = & \lub \psi(f)(C)
+\end{IEEEeqnarray*}
+
+If $C$ is infinite and $\lub C = \_(b)$ for some $b \in B$, then:
+\begin{IEEEeqnarray*}{rCl's}
+&&    \psi(f)(\lub C) \\
+& = & \psi(f)(\_(b)) \\
+& = & f(b) \\
+& = & f(\lub C'') & (todo chain inversion lemma) \\
+& = & \lub f(C'') \\
+& = & \lub \psi(f)(\_(C'')) \\
+& = & \lub \psi(f)(C') \\
+& = & \lub \psi(f)(C)
+\end{IEEEeqnarray*}
+
+\ref{proofPiExists2}. Monotonicity: Let $f, g \in [B \arr A]$ such that $f
+\below g$. To prove: $\psi(f) \below \psi(g)$, which is equivalent to $\forall b
+\in B \ldotp \psi(f)(b) \below \psi(g)(b)$. Let $b \in B$.
+
+If $b = S(b')$ then
+\begin{IEEEeqnarray*}{c}
+\psi(f)(b) = S(f(b')) \below S(g(b')) = \psi(g)(b).
+\end{IEEEeqnarray*}
+
+If $b = \_(b')$ then
+\begin{IEEEeqnarray*}{c}
+\psi(f)(b) = f(b') \below g(b') = \psi(g)(b).
+\end{IEEEeqnarray*}
+
+Lub preservation: Let $C$ be a chain in $[B \arr A]$. To prove: $\psi(\lub C) =
+\lub \psi(C)$. Lubs of function chains are defined pointwise, so it suffices to
+show that $\forall b \in B \ldotp \psi(\lub C)(b) = \lub(\psi(C)(b))$. Let $b
+\in B$.
+
+If $b = S(b')$ then
+\begin{IEEEeqnarray*}{rClu}
+     && \lub(\psi(C)(b)) \\
+  & = & \lub \set{S(f_n(b')) \mid n \in \bbN} & (definition of $\psi$) \\
+  & = & S(\lub \set{f_n(b') \mid n \in \bbN}) & (S is continuous) \\
+  & = & S((\lub C)(b')) & (lubs are defined pointwise) \\
+  & = & \psi(\lub C)(b) & (definition of $\psi$)
+\end{IEEEeqnarray*}
+
+If $b = \_(b')$ then
+\begin{IEEEeqnarray*}{rClu}
+     && \lub(\psi(C)(b)) \\
+  & = & \lub \set{f_n(b') \mid n \in \bbN} & (definition of $\psi$) \\
+  & = & (\lub C)(b') & (lubs are defined pointwise) \\
+  & = & \psi(\lub C)(b) & (definition of $\psi$)
+\end{IEEEeqnarray*}
+
+By the fixpoint theorem, $\psi$ has a least fixpoint $\pi$. We have $\pi =
+\psi(\pi)$, and we still need to prove the equation of the lemma.
+
+\ref{proofPiExists3}. Let $b \in B$.
+
+If $b = \bot$ then $\pi(b) = \psi(\pi)(b) = \bot$.
+
+If $b = 0$ then $\pi(b) = \psi(\pi)(b) = 0$.
+
+If $b = S(b')$ then $\pi(b) = \psi(\pi)(b) = S(\pi(b'))$.
+
+If $b = \_(b')$ then $\pi(b) = \psi(\pi)(b) = \pi(b')$.
+
+\end{proof}
+
+We are now ready to conclude the result of this section.
+
+\begin{proof}
+(Proposition \ref{propEpsilonPiExist}) The existence of $\varepsilon$ and $\pi$
+was proven in lemmas \ref{lemEpsilonExists} and \ref{lemPiExists}. To show that
+this is an embedding-projection-pair, i.e. $\pi \circ \varepsilon =
+\text{id}_A$, let $a \in A$.
+
+If $a = \bot$ then $\pi(\varepsilon(\bot)) = \pi(\bot) = \bot$.
+
+If $a = 0$ then $\pi(\varepsilon(0)) = \pi(0) = 0$.
+
+If $a = S(a')$ then by transfinite induction on the length of a,
+
+\todo{so far everything should generalize to the functors and the final
+coalgebras.  What about this last step?}
+\begin{IEEEeqnarray*}{c}
+\pi(\varepsilon(S(a'))) = \pi(S(\varepsilon(a'))) = S(\pi(\varepsilon(a'))) =
+S(a')
+\end{IEEEeqnarray*}
+
 \end{proof}
 
 %\section{Junkyard}
