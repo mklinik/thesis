@@ -1041,6 +1041,8 @@ from $A$ to $B$. To prove:
 \item \label{proofEpsilonExists1} $\varphi$ maps continuous functions to
 continuous functions.
 \item \label{proofEpsilonExists2} $\varphi$ is itself continuous.
+\item \label{proofEpsilonExists3} $\varepsilon$ as the fixpoint of $\varphi$
+satisfies the desired equation.
 \end{enumerate}
 
 \ref{proofEpsilonExists1}. Let $f : A \arr B$ be continuous. We have to show
@@ -1117,6 +1119,20 @@ If $a = S(a')$ then
   & = & S((\lub C)(a')) & (lubs are defined pointwise) \\
   & = & \varphi(\lub C)(a) & (definition of $\varphi$)
 \end{IEEEeqnarray*}
+
+Now we know that $\varphi$ is continuous, so we use the fixpoint theorem to
+conclude that $\varphi$ has a least fixpoint, call it $\varepsilon$. It remains
+to show that $\varepsilon$ has the desired properties.
+
+\ref{proofEpsilonExists3}. We have $\varepsilon = \varphi(\varepsilon)$. Let $a
+\in A$.
+
+If $a = \bot$ then $\varepsilon(a) = \varphi(\varepsilon)(a) = \bot$.
+
+If $a = 0$ then $\varepsilon(a) = \varphi(\varepsilon)(a) = 0$.
+
+If $a = S(a')$ then $\varepsilon(a) = \varphi(\varepsilon)(a) =
+S(\varepsilon(a'))$.
 
 \end{proof}
 
