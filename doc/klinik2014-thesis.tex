@@ -28,6 +28,7 @@
 \newcommand{\isdefined}{\!\downarrow}
 \newcommand{\bbN}{\mathbb{N}}
 \newcommand{\aand}{\ \wedge \ }
+\newcommand{\oor}{\ \vee \ }
 
 
 % They all use the same counter, reset at section boundaries
@@ -97,7 +98,8 @@ to call it \emph{the} lub.
 
 \begin{definition}
 
-A \emph{chain} in a poset is a linearly ordered subset.
+A \emph{chain} $C$ in a poset is a linearly ordered subset, that is $\forall x,y
+\in C \ldotp x \below y \oor y \below x$
 
 \end{definition}
 
