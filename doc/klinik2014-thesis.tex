@@ -1191,8 +1191,8 @@ There is a function $\pi : B \arr A$ such that
   \begin{array}{rcl}
    \bot & \text{if} & b = \bot \\
    0 & \text{if} & b = 0 \\
-   S(\pi(b')) & \text{if} & b = S(b') \\
-   \pi(b') & \text{if} & b = \_(b')
+   S(f(b')) & \text{if} & b = S(b') \\
+   f(b') & \text{if} & b = \_(b')
   \end{array}
 \right.
 \end{IEEEeqnarray*}
@@ -1315,14 +1315,29 @@ If $a = \bot$ then $\pi(\varepsilon(\bot)) = \pi(\bot) = \bot$.
 
 If $a = 0$ then $\pi(\varepsilon(0)) = \pi(0) = 0$.
 
-If $a = S(a')$ then by transfinite induction on the length of a,
+If $a = S(a')$ then $\pi(\varepsilon(S(a'))) = \pi(S(\varepsilon(a'))) =
+S(\pi(\varepsilon(a')))$.
 
-\todo{so far everything should generalize to the functors and the final
-coalgebras.  What about this last step?}
-\begin{IEEEeqnarray*}{c}
-\pi(\varepsilon(S(a'))) = \pi(S(\varepsilon(a'))) = S(\pi(\varepsilon(a'))) =
-S(a')
-\end{IEEEeqnarray*}
+In all cases, $\alpha \circ (\pi \circ \varepsilon) = F(\pi \circ \varepsilon)
+\circ \alpha$, which means that the following diagram commutes, and because
+$\alpha$ is the final coalgebra of $F$, this implies $\pi \circ \varepsilon =
+\text{id}_A$.
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}
+\matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     A & A \\
+     F(A) & F(A) \\
+  };
+  \path[-stealth]
+    (m-1-1) edge node [left] {$\alpha$} (m-2-1)
+            edge node [above] {$\pi \circ \varepsilon$} (m-1-2)
+    (m-2-1.east|-m-2-2) edge node [below] {$F(\pi \circ \varepsilon)$} (m-2-2)
+    (m-1-2) edge node [right] {$\alpha$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+\end{figure}
 
 \end{proof}
 
