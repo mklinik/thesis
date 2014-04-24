@@ -316,16 +316,29 @@ a category.  This category is called Cppo.
 \begin{definition}
 
 A category has the \emph{fixpoint property} iff for all objects $A$ and arrows
-$f : A \arr A$ there exists an arrow $Y(f) : 1 \arr A$ such that $Y(f) = f
-\circ Y(f)$.
+$f : A \arr A$ there exists an arrow $Y(f) : 1 \arr A$, the fixpoint of f, such
+that $Y(f) = f \circ Y(f)$.
+
+\begin{center}
+\begin{tikzpicture}
+\matrix (m) [matrix of math nodes,row sep=2em,column sep=3em,minimum width=2em]
+  {
+     1 & A \\
+     {} & A \\
+  };
+  \path[-stealth] (m-1-1) edge node [above] {$Y(f)$} (m-1-2);
+  \path[-stealth] (m-1-1) edge node [below left] {$Y(f)$} (m-2-2);
+  \path[-stealth] (m-1-2) edge node [right] {$f$} (m-2-2);
+\end{tikzpicture}
+\end{center}
 
 \end{definition}
 
 
 \begin{theorem} \label{thmFixpoint}
 
-Cppo has the fixpoint property. In fact, every continuous function on a cppo has
-a \emph{unique} least fixpoint.
+(Fixpoint Theorem) Cppo has the fixpoint property. In fact, every continuous
+function on a cppo has a \emph{unique} least fixpoint.
 
 \end{theorem}
 
@@ -399,8 +412,8 @@ results, which were known before, but made precise by Huwig \cite{Huwig1990},
 the best we can hope for are approximations.
 
 \begin{definition}
-An initial object in a category is an object $0$ such that for any object A
-there exists a unique arrow $0_A : 0 \arr A$.
+An \emph{initial object} in a category is an object $0$ such that for any object
+A there exists a unique arrow $0_A : 0 \arr A$.
 \end{definition}
 
 \begin{lemma} \label{lem0xAisInitial}
@@ -415,15 +428,14 @@ left adjoints preserve colimits (\cite{MacLane71}, IV.6, V.5). The initial objec
 empty diagram. Therefore, $0 \product A$ is initial as well.
 \end{proof}
 
-As concise as categorical proofs become, they aren't very illustrative.  The
-following alternative proof of \ref{lem0xAisInitial} is a bit longer, but more
-insightful. The idea is that the curried versions of all arrows $0 \product A
-\arr B$ are the same, and the currried and uncurried versions of arrows are in
-bijective correspendence.
+As concise as abstract proofs like this become, they aren't very
+illustrative.  The following alternative proof of \ref{lem0xAisInitial} is a bit
+longer, but more insightful. The idea is that the curried versions of all arrows
+$0 \product A \arr B$ are the same, and so are the arrows themselves.
 
 \begin{proof}
 Again, we show that $0 \product A$ is initial. Let $B$ be an object. Then the
-arrow $f = 0_B \circ \pi_1 : 0 \product A \arr B$ exists. To see that it is
+arrow $f = 0_B \circ \pi_1\ :\ 0 \product A \arr B$ exists. To see that it is
 unique, let $g : 0 \product A \arr B$ be an arrow. The exponent diagram of the
 CCC gives us:
 
@@ -459,9 +471,9 @@ In a category with fixpoints, initial and terminal objects are isomorphic.
 \end{lemma}
 
 \begin{proof}
-As all arrows have fixpoints, the identity on $0$ has a fixpoint $Y(0) : 1
-\arr 0$.  The universal mapping properties of $0$ and $1$ give the isomorphism
-$0 \cong 1$.
+As all endomorphisms have fixpoints, the identity on $0$ has a fixpoint
+$Y(\text{id}_0) : 1 \arr 0$.  The universal mapping properties of $0$ and $1$
+give the isomorphism $0 \cong 1$.
 \end{proof}
 
 \begin{definition}
