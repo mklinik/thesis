@@ -441,7 +441,7 @@ CCC gives us:
 
 \begin{figure}[ht]
 \begin{center}
-\begin{tikzpicture}[scale=100]
+\begin{tikzpicture}
 \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
   {
      A \Rightarrow B & (A \Rightarrow B) \product A & B \\
@@ -487,7 +487,9 @@ Any CCC with the fixpoint property and initial object is trivial.
 
 \begin{proof}
 Let $A$ be an object. Then $A \cong 1 \product A \cong 0 \product A \cong 0
-\cong 1$.
+\cong 1$. The first equivalence holds always, the second because $- \product A$
+is a functor, and the last two are lemmas \ref{lem0xAisInitial} and
+\ref{lem0isomorphic1}.
 \end{proof}
 
 \begin{proposition} \label{propCCCNoFixpointCoproducts}
