@@ -496,7 +496,91 @@ is a functor, and the last two are lemmas \ref{lem0xAisInitial} and
 Any CCC with the fixpoint property and binary coproducts is trivial.
 \end{proposition}
 
-\todo{proof}
+\newcommand{\true}{\text{tt}}
+\newcommand{\false}{\text{ff}}
+
+\begin{definition}
+A \emph{Boolean algebra} is an algebraic structure $(A, \wedge, \vee, \neg,
+\true, \false)$ where $\wedge, \vee$ are binary operations, $\neg$ is a unary
+operation, and $\true, \false$ are distinguished elements of $A$, such that the
+Boolean algebra axioms hold.
+\end{definition}
+
+The definition of Boolean algebra can be lifted to category theory in the
+obvious way. Operations and elements become arrows, and the Boolean algebra
+axioms, which are all equations, become commutative diagrams.
+
+\begin{definition}
+A \emph{Boolean algebra object} in a CCC with coproducts is an object A,
+together with arrows $\wedge, \vee : A \product A \arr A$, $\neg : A \arr A$,
+$\true, \false : 1 \arr A$ such that the diagrams corresponding to the boolean
+algebra axioms commute.
+\end{definition}
+
+\begin{lemma}
+In a Boolean algebra $A$ where $\neg$ has a fixpoint $Y(\neg) = \neg Y(\neg)$,
+all elements are identified.
+\end{lemma}
+
+\begin{proof}
+\begin{IEEEeqnarray*}{rCl}
+\true & = & Y(\neg) \oor \neg Y(\neg) \\
+      & = & Y(\neg) \oor Y(\neg) \\
+      & = & Y(\neg) \\
+      & = & Y(\neg) \aand Y(\neg) \\
+      & = & Y(\neg) \aand \neg Y(\neg) \\
+      & = & \false
+\end{IEEEeqnarray*}
+Further, for any $a \in A$, $\false = a \wedge \false = a \wedge \true = a$.
+\end{proof}
+
+\begin{lemma}
+In a CCC with coproducts, $2 = 1+1$ is a boolean algebra object.
+\end{lemma}
+
+\begin{corollary}
+In a CCC with fixpoints where the coproduct $1+1$ exists, the coproduct
+injections $\true, \false : 1 \arr 1+1$ are identified.
+\end{corollary}
+
+\begin{proposition}
+Every CCC with fixpoints where the coproduct $1+1$ exists is trivial.
+\end{proposition}
+
+\begin{proof}
+We have that the functor $- \product A$ preserves coproducts, so $(1+1)\product
+A = 2 \product A = A + A$ exists. From the embeddings $\true \product A, \false
+\product A : 1 \product A \arr 2 \product A$, and the fact that $1 \product A
+\cong A$ we get $\kappa_0 = \kappa_1 : A \arr A + A$. Consider the following
+diagram.
+
+\begin{center}
+\begin{tikzpicture}
+\matrix (m) [matrix of math nodes,row sep=1.7em,column sep=3.5em,minimum width=2em]
+  {
+     A & {} & A + A & {} & A \\
+     {} & 1 \\
+     {} & {} & A \\
+  };
+  \path[-stealth]
+    (m-1-1) edge node [below left] {$!_A$} (m-2-2)
+            edge node [above] {$\kappa_0$} (m-1-3)
+    (m-1-3) edge node [above right] {$[\bot_A \circ !_A,\text{id}_A]$} (m-3-3)
+    (m-1-5) edge node [above] {$\kappa_1$} (m-1-3)
+            edge node [below right] {$\text{id}_A$} (m-3-3)
+    (m-2-2) edge node [below left] {$\bot_A$} (m-3-3)
+    ;
+\end{tikzpicture}
+\end{center}
+The diagram commutes, and together with $\kappa_0 = \kappa_1$ we get $\bot_A
+\circ !_A = \text{id}_A$. Furthermore, because $1$ is terminal, we have $!_A
+\circ \bot_A = \text{id}_1$. We conclude that $A \cong 1$ for every $A$.
+\end{proof}
+
+\begin{proof}
+(Proposition \ref{propCCCNoFixpointCoproducts}) In a CCC with binary coproducts,
+$1+1$ exists.
+\end{proof}
 
 Propositions \ref{propCCCNoFixpointInitialObject} and
 \ref{propCCCNoFixpointCoproducts} are due to Huwig \cite{Huwig1990}, and
@@ -506,7 +590,7 @@ correspond to categorical coproducts. Nevertheless, we have a similar
 construction that serves our purpose.
 
 \todo{Use separated sums, and explain what's wrong with coalesced sums. Hint:
-fixpoints of functors are trivial.}
+least fixpoints of functors are trivial.}
 
 \begin{definition} \label{defCoalescedSum}
 For objects $A$, $B$ in Cppo, define the \emph{coalesced sum} $A \oplus B$ as
