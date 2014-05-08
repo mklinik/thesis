@@ -597,6 +597,12 @@ The diagram commutes, and together with $\kappa_0 = \kappa_1$ we get $\bot_A
 $1+1$ exists.
 \end{proof}
 
+The singleton set $\set{\bot}$ is not initial in Cppo, because morphisms don't
+preserve all cppo structure. Continuous functions must preserve lubs, but are
+allowed to map $\bot$ to elements other that $\bot$. Otherwise the fixpoint
+theorem would hold trivially, not giving rise to the fixpoint semantics in
+section \ref{secFixpointSemantics}.
+
 Propositions \ref{propCCCNoFixpointInitialObject} and
 \ref{propCCCNoFixpointCoproducts} are due to Huwig \cite{Huwig1990}, and
 demonstrate that if we want to use Cppo, or in fact any CCC with fixpoints,  as
@@ -604,8 +610,9 @@ model for programming languages, we won't get interpretations for sum types that
 correspond to categorical coproducts. Nevertheless, we have a similar
 construction that serves our purpose.
 
-\todo{Use separated sums, and explain what's wrong with coalesced sums. Hint:
-least fixpoints of functors are trivial.}
+\todo{The rest of this section was a dead end. We now use separated sums, and
+have to explain what's wrong with coalesced sums. Hint: least fixpoints of
+functors are trivial.}
 
 \begin{definition} \label{defCoalescedSum}
 For objects $A$, $B$ in Cppo, define the \emph{coalesced sum} $A \oplus B$ as
@@ -714,6 +721,7 @@ doesn't have the universal mapping property.
 This sets up the stage for our following considerations.
 
 \section{Fixpoint Semantics for Recursive Functions}
+\label{secFixpointSemantics}
 
 Using the constructions seen so far, we can show that certain recursive
 functions are well-defined. This is the central idea of Scott's fixpoint
