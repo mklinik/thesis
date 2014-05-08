@@ -211,18 +211,17 @@ This equivalence justifies simply talking about \emph{complete partial orders},
 or \emph{cpos}. We use the definitions interchangeably, whichever is most handy
 in a given situation.
 
-The fixpoint theorem constructs the least fixpoint using a countable chain.  So
-even if the domain is uncountable, the chains for which we want lubs are at most
-countable, so whenever we consider chains, we mean countable ones. A countable
-chain $\set{x_n \mid x \in \bbN}$ is always also a non-decreasing sequence
-\begin{IEEEeqnarray*}{c}
-x_0 \below x_1 \below x_2 \below \ldots
-\end{IEEEeqnarray*}
-and vice versa.
+The fixpoint theorem constructs least fixpoints using countable chains.
+Even if a domain is uncountable, the chains for which we want lubs are therefore
+at most countable. Whenever we consider chains, we mean countable ones.
 
-A sequence is eventually constant iff there exists an $n \in \bbN$ such that for
-all $m > n$, $x_n = x_m$.  An eventually constant non-decreasing sequence is
-equivalent to a finite chain, and vice versa.
+A countable chain $\set{x_n \mid x \in \bbN}$ is always also a non-decreasing
+sequence \begin{IEEEeqnarray*}{c} x_0 \below x_1 \below x_2 \below \ldots
+\end{IEEEeqnarray*} and vice versa.
+
+A sequence is \emph{eventually constant} iff there exists an $n \in \bbN$ such
+that for all $m > n$, $x_n = x_m$.  An eventually constant non-decreasing
+sequence is equivalent to a finite chain, and vice versa.
 
 \subsection{The Category Cppo}
 
@@ -262,10 +261,9 @@ Note that if a function preserves lubs, it is monotone,
   f(y) = f(\lub \set{x, y}) = \lub \set{f(x), f(y)} \implies
   f(x) \below f(y)
 \end{IEEEeqnarray*}
-
-but in a proof of continuity of a function $f$, we usually need to prove
-monotonicity as a first step, so that for a chain $P$, $\set{f(x) \mid x \in P}$
-is again a chain. This motivates the inclusion of
+but in a proof of continuity of a function $f$ we usually need to prove
+monotonicity as a first step so that for a chain $P$, $\set{f(x) \mid x \in P}$
+is again a chain. This motivates the explicit mention of
 monotonicity in the definition of continuity.
 
 
@@ -385,22 +383,21 @@ is due to Huwig \cite{Huwig1990}.
 
 
 \begin{lemma} \label{lemCppoTerminalObject}
-Cppo has a terminal object.
+Cppo has a terminal object, the singleton $\set{\bot}$. \qed
 \end{lemma}
-
-\todo{proof}
 
 \begin{lemma} \label{lemCppoBinaryProducts}
-Cppo has binary products.
+Cppo has binary products, defined pointwise as usual in algebra. \qed
 \end{lemma}
-
-\todo{proof}
 
 \begin{lemma} \label{lemCppoExponentials}
-Cppo has exponentials.
+Cppo has exponentials, that is
+\begin{enumerate}[noitemsep]
+  \item If $C$ and $D$ are cppos, then the space of continuous functions from
+  $C$ to $D$, denoted $[C \arr D]$, forms a cppo.
+  \item Currying and uncurrying are defined and are each others inverses. \qed
+\end{enumerate}
 \end{lemma}
-
-\todo{proof}
 
 \begin{corollary}
 Cppo is cartesian closed.
@@ -408,8 +405,8 @@ Cppo is cartesian closed.
 
 So far, the situation in Cppo is quite satisfying. For a programming language
 semantics however, we also want coproducts. Unfortunately, due to the following
-results, which were known before, but made precise by Huwig \cite{Huwig1990},
-the best we can hope for are approximations.
+results, the best we can hope for are approximations.  These results were known
+before, but made precise by Huwig \cite{Huwig1990},
 
 \begin{definition}
 An \emph{initial object} in a category is an object $0$ such that for any object
