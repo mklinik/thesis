@@ -422,14 +422,11 @@ A there exists a unique arrow $0_A : 0 \arr A$.
 \end{definition}
 
 The prototypical example for an initial object is the empty set in Set. But
-there are categories where initial objects behave differently, perhaps
-unintuitively so. Important examples are categories where objects are algebraic
-structures whose signatures require the existence of elements, or such existence
-follows from the axioms. There, the initial objects are not empty sets. Think of
-monoids, groups, topological spaces or, in fact, cppos. For an object $A$ in
-such a category the equivalence $0 \cong 0 \product A$ usually doesn't hold.
-
-\todo{check if these categories really have non-empty initial objects}
+there are categories where initial objects behave differently than the empty set
+in Set, perhaps unintuitively so. Important examples are categories where
+objects are algebraic structures whose signatures require the existence of
+elements, like monoids and groups. There, the initial objects are not empty
+sets. In such categories the equivalence $0 \cong 0 \product A$ may not hold.
 
 \begin{lemma} \label{lem0xAisInitial}
 In a CCC with initial object $0$ we have, for any object $A$, $0 \cong 0
@@ -443,13 +440,14 @@ left adjoints preserve colimits (\cite{MacLane71}, IV.6, V.5). The initial objec
 empty diagram. Therefore, $0 \product A$ is initial as well.
 \end{proof}
 
-As concise as abstract proofs like this become, they aren't very
-illustrative.  The following alternative proof of \ref{lem0xAisInitial} is a bit
-longer, but more insightful. The idea is that the curried versions of all arrows
-$0 \product A \arr B$ are the same, and so are the arrows themselves.
+As concise as abstract proofs like this become, they aren't very illustrative.
+The following alternative proof of \ref{lem0xAisInitial} is a bit longer, but
+more insightful. The idea is that $0\product A$ is initial because all arrows $0
+\product A \arr B$ are identical, and that's because their curried counterparts
+are identical.
 
 \begin{proof}
-Again, we show that $0 \product A$ is initial. Let $B$ be an object. Then the
+We show that $0 \product A$ is initial. Let $B$ be an object. Then the
 arrow $f = 0_B \circ \pi_1\ :\ 0 \product A \arr B$ exists. To see that it is
 unique, let $g : 0 \product A \arr B$ be an arrow. The exponent diagram of the
 CCC gives us:
@@ -493,7 +491,7 @@ give the isomorphism $0 \cong 1$.
 
 \begin{definition}
 A category is \emph{trivial} iff it has, up to isomorphism, exactly one object
-and one arrow, the identity.
+with only the identity arrow.
 \end{definition}
 
 \begin{proposition} \label{propCCCNoFixpointInitialObject}
