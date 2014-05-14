@@ -406,8 +406,8 @@ Cppo is cartesian closed.
 A historical note on \ref{lemCppoExponentials}. Readers unfamiliar with domain
 theory might be surprised that there exist domains $D$ which contain their own
 function space $[D \arr D]$.  This result is due to Scott [TODO], who set out to
-prove that this is impossible, while looking for a dentotational semantics of
-the untyped lambda calculus. Intuitively, this is possible because the
+prove this being impossible, while looking for a dentotational semantics of
+the untyped lambda calculus. Intuitively, it is possible because the
 requirement for functions in $[D \arr D]$ to be continuous restricts the
 function space sufficiently as to not increase in cardinality.
 
@@ -443,7 +443,7 @@ empty diagram. Therefore, $0 \product A$ is initial as well.
 As concise as abstract proofs like this become, they aren't very illustrative.
 The following alternative proof of \ref{lem0xAisInitial} is a bit longer, but
 more insightful. The idea is that $0\product A$ is initial because all arrows $0
-\product A \arr B$ are identical, and that's because their curried counterparts
+\product A \arr B$ are identical, and that is because their curried counterparts
 are identical.
 
 \begin{proof}
@@ -487,8 +487,9 @@ In a category with fixpoints, initial and terminal objects are isomorphic.
 
 \begin{proof}
 As all endomorphisms have fixpoints, the identity on $0$ has a fixpoint
-$Y(\text{id}_0) : 1 \arr 0$.  The universal mapping properties of $0$ and $1$
-give the isomorphism $0 \cong 1$.
+$Y(\text{id}_0) : 1 \arr 0$.  Composing it with the terminal map $!_0 : 0 \arr
+1$ in both ways, the universal mapping properties of $0$ and $1$ give the
+isomorphism $0 \cong 1$.
 \end{proof}
 
 \begin{definition}
@@ -501,10 +502,10 @@ Any CCC with the fixpoint property and initial object is trivial.
 \end{proposition}
 
 \begin{proof}
-Let $A$ be an object. Then $A \cong 1 \product A \cong 0 \product A \cong 0
-\cong 1$. The first equivalence holds always, the second because $- \product A$
-is a functor, and the last two are lemmas \ref{lem0xAisInitial} and
-\ref{lem0isomorphic1}.
+Let $A$ be an object.  Then $1 \cong 0 \cong 0 \product A \cong 1 \product A
+\cong A$. The first two equivalences are lemmas \ref{lem0xAisInitial} and
+\ref{lem0isomorphic1}, the second holds because $- \product A$ is a functor, and
+the last one always holds.
 \end{proof}
 
 \begin{proposition} \label{propCCCNoFixpointCoproducts}
@@ -550,7 +551,7 @@ Further, for any $a \in A$, $\false = a \wedge \false = a \wedge \true = a$.
 \end{proof}
 
 \begin{lemma}
-In a CCC with coproducts, $2 = 1+1$ is a boolean algebra object.
+In a CCC with coproducts, $2 = 1+1$ is a boolean algebra object. \qed
 \end{lemma}
 
 \begin{corollary}
@@ -600,8 +601,8 @@ $1+1$ exists.
 The singleton set $\set{\bot}$ is not initial in Cppo, because morphisms don't
 preserve all cppo structure. Continuous functions must preserve lubs, but are
 allowed to map $\bot$ to elements other that $\bot$. Otherwise the fixpoint
-theorem would hold trivially, not giving rise to the fixpoint semantics in
-section \ref{secFixpointSemantics}.
+theorem would hold trivially, not giving rise to the application of fixpoint
+semantics of recursive equations.
 
 Propositions \ref{propCCCNoFixpointInitialObject} and
 \ref{propCCCNoFixpointCoproducts} are due to Huwig \cite{Huwig1990}, and
