@@ -611,62 +611,68 @@ model for programming languages, we won't get interpretations for sum types that
 correspond to categorical coproducts. Nevertheless, we have a similar
 construction that serves our purpose.
 
-\todo{The rest of this section was a dead end. We now use separated sums, and
-have to explain what's wrong with coalesced sums. Hint: least fixpoints of
-functors are trivial.}
+The disjoint union of cppos fails to have a bottom element, thus it is not a
+cppo. There are two common ways to remedy this situation. We can either use a
+construction that artificially adds a new bottom element below the disjoint
+union, or one that identifies all bottom elements \cite{Gunter1992}. The former
+is called \emph{separated sum}, the latter \emph{coalesced sum}.  Figure
+\ref{figSeparatedAndCoalescedSum} sketches both these constructions of two given cppos.
+
+\begin{figure}[ht]
+\begin{center}
+
+\begin{tikzpicture}[scale=1]
+\draw (0,0) -- (0.5,0) node [above] {$A$} -- (1,0) -- (0.5,-1.5) -- cycle;
+\begin{scope}[xshift=1.5cm]
+\draw (0,0) -- (0.5,0) node [above] {$B$} -- (1,0) -- (0.5,-1.5) -- cycle;
+\end{scope}
+\draw[shape=rectangle] (0.6,-1.7) -- (1.25,-2.5)
+  node [fill=white,inner sep=5pt] {$\bot_{AB}$} -- (1.9,-1.7)
+;
+
+\begin{scope}[xshift=5cm]
+\draw (0,0) -- (0.5,0) node [above] {$A$} -- (1,0) -- (1.25,-1.5) -- cycle;
+\begin{scope}[xshift=1.5cm]
+\draw (0,0) -- (0.5,0) node [above] {$B$} -- (1,0) -- (-0.25,-1.5)
+  node [below] {$\bot_A = \bot_B$}
+  -- cycle;
+\end{scope}
+\end{scope}
+
+\end{tikzpicture}
+
+\end{center}
+\caption{Separated and coalesced sum of two cppos.} \label{figSeparatedAndCoalescedSum}
+\end{figure}
 
 \begin{definition} \label{defCoalescedSum}
 For objects $A$, $B$ in Cppo, define the \emph{coalesced sum} $A \oplus B$ as
 the disjoint union of $A$ and $B$ where we identify the bottom elements.
 \end{definition}
 
-\begin{proposition}
-If $A, B$ are cppos, then $A \oplus B$ is a cppo.
-\end{proposition}
+\begin{definition} \label{defSeparatedSum}
+For objects $A$, $B$ in Cppo, define the \emph{separated sum} $A + B$ as $A
+\dot\cup B \cup \bot_{AB}$ where $\bot_{AB} \not\in A \dot\cup B$ and $\bot_{AB}
+\below \bot_A$ and $\bot_{AB} \below \bot_B$.
+\end{definition}
 
-\todo{proof, show how the order is imposed on A+B}
+It is not hard to see that both constructions yield cppos, and that the obvious
+inclusions are continuous.
 
-The injections $\kappa_0 : A \arr A \oplus B$ and $\kappa_1 : B \arr A \oplus B$
-are defined in the obvious way. They are continuous.
+The coalesced sum is not useful for categorical fixpoint semantics of
+programming languages. We intend to use a generalized fixpoint construction to
+ensure existence of final coalgebras. The construction works by iterating a
+functor on the terminal object. If we consider the functor $F(X) = 1 \oplus X$,
+then the first iteration yields $F(1) = 1 \oplus 1 = 1$, so $F$ has a trivial
+fixpoint. Using the separated sum however, this approach yields what we expect
+to be the semantics for the lazy natural numbers.
 
-\begin{equation*}
-\kappa_0(a) = \left\{
-  \begin{array}{rcl}
-   (0,a)             & \text{if} & a \not= \bot_A \\
-   \bot_{A \oplus B} & \text{if} & a = \bot_A
-  \end{array}
-\right.
-\end{equation*}
-
-\begin{equation*}
-\kappa_1(b) = \left\{
-  \begin{array}{rcl}
-   (1,b)             & \text{if} & b \not= \bot_B \\
-   \bot_{A \oplus B} & \text{if} & b = \bot_B
-  \end{array}
-\right.
-\end{equation*}
-
-
-An element $x \in A \oplus B$ \todo{justify notation $x = \kappa_0(a)$}
-
-If $A, B, D$ are cppos and $f : A \arr D$, $g : B \arr D$ continuous functions,
-define $[f,g] : A \oplus B \arr D$ as
-
-\begin{equation*}
-[f,g](x) = \left\{
-  \begin{array}{rcl}
-   f(a)     & \text{if} & x = \kappa_0(a) \\
-   g(b)     & \text{if} & x = \kappa_1(b) \\
-   \bot_{D} & \text{if} & x = \bot_{A \oplus B}
-  \end{array}
-\right.
-\end{equation*}
-
-Note that $[f,g]$ is a strict function while $f$ and $g$ don't need to be
-strict.  Therefore, the usual coproduct diagram (Figure
-\ref{figCoproductDiagram}) need not commute. Still, $[f,g]$
-is continuous.
+As seen in \ref{propCCCNoFixpointCoproducts}, the separated sum cannot be the
+categorical coproduct. If we look at the usual coproduct diagram in figure
+\ref{figCoproductDiagram}, for continuous non-strict functions $f$ and $g$,
+there might be different functions $A+B \arr D$ making the diagram commute. The
+strict function $[f\!,g]$ exists and makes the diagram commute, so we use it as
+the BLAH BLAH BLAH
 
 \begin{figure}[ht]
 \begin{center}
@@ -679,7 +685,7 @@ is continuous.
   \path[-stealth]
     (m-1-1) edge node [below left] {$f$} (m-2-2)
             edge node [above] {$\kappa_0$} (m-1-2)
-    (m-1-2) edge node [above right] {$[f,g]$} (m-2-2)
+    (m-1-2) edge node [above right] {$[f\!,g]$} (m-2-2)
     (m-1-3) edge node [above] {$\kappa_1$} (m-1-2)
             edge node [below right] {$g$} (m-2-2)
     ;
@@ -690,7 +696,7 @@ is continuous.
 
 
 \begin{definition}
-A \emph{bifunctor} is a binary functor. Formally, $F : \bbC \times \bbD \arr
+A \emph{bifunctor} is a functor with two arguments. Formally, $F : \bbC \times \bbD \arr
 \bbE$ is a bifunctor iff it is functorial in $\bbC$ and $\bbD$ separately, that
 is for all fixed $C \in \bbC$ and $D \in \bbD$, both $F_C(D) = F(C \times D) : \bbD
 \arr \bbE$ and $F_D(C) = F(C \times D) : \bbC \arr \bbE$ must be functors.
@@ -707,17 +713,15 @@ F_C(g : D \arr D') & = & F(1_C \times g) : F(C \times D) \arr F(C \times D')
 
 For a fixed $D$, the object mapping $L_D : A \mapsto A \oplus D$ extends to a
 functor.  Symmetrically for $R_D : A \mapsto D \oplus A$, and we have for all $f
-: A \arr A'$ and $g : B \arr B'$, $L_{B'}(f) \circ R_A(g) = R_{A'}(g) \circ L_B(f) : A
-\oplus B \arr A' \oplus B'$.  Therefore $\oplus : \text{Cppo} \times \text{Cppo}
-\arr \text{Cppo}$ is a bifunctor.
+: A \arr A'$ and $g : B \arr B'$, $L_{B'}(f) \circ R_A(g) = R_{A'}(g) \circ
+L_B(f) : A \oplus B \arr A' \oplus B'$.  Therefore $\oplus : \text{Cppo} \times
+\text{Cppo} \arr \text{Cppo}$ is a bifunctor. \qed
 
 \end{proposition}
 
-\todo{proof}
-
-So while $\oplus$ is not the categorical coproduct, it is still a useful
-construction and we can work with it as long as we keep in mind that $[f,g]$
-doesn't have the universal mapping property.
+So while the separated sum is not the categorical coproduct, it is still a
+useful construction and we can work with it as long as we keep in mind that
+$[f\!,g]$ doesn't have the universal mapping property.
 
 This sets up the stage for our following considerations.
 
