@@ -769,10 +769,10 @@ and it is justified to write $\lub F$
 The definition of $f \below g$ is equivalent to the following formula, which is
 less easy to read, but lends itself better to proofs.
 \begin{equation*}
-\forall n \in \bbN \ldotp f(n)\isdefined \implies g(n)\isdefined\
-\wedge\ f(n) = g(n)
+\forall a \in A \ldotp f(a)\isdefined \implies g(a)\isdefined\
+\wedge\ f(a) = g(a)
 \end{equation*}
-Where $f(n)\isdefined$ is to be read as ``$f$ is defined at $n$''.
+Where $f(a)\isdefined$ is to be read as ``$f$ is defined at $a$''.
 
 The following two lemmas are always useful for proving continuity.
 
@@ -819,14 +819,6 @@ f(n) & = & n \cdot f(n - 1) \quad\text{if}\ \ n > 0 \label{eqnFactorial2}
 Proposition \ref{propFactorialExists} can be rephrased in different ways: the
 recursive definition of the factorial function is not vacuous; it is not a
 circular definition; it does not lead to infinite regress.
-
-\todo{
-That's interesting. In our case (see far below) we have at some point
-$\pi(\_^\omega) = \pi(\kappa_1(\_^\omega)) = \pi(\_^\omega)$, a genuine circle
-in the definition.  Yet we argue that the definition is not vacuous. What to
-make of that? We surely have $\pi(\_^\omega)\!\uparrow$, $\pi(\_^\omega) = \bot$
-so that's the ejection seat.
-}
 
 \begin{proof}
 From \ref{lemPartialFunctionSpaceCppo} we know that $[\bbN \pfun
@@ -1612,10 +1604,9 @@ to show that $\varphi$ and $\psi$ are themselves arrows in Cppo.
 
 The fixpoint property of Cppo provides fixpoints $\varepsilon : 1 \arr A \Arr B$
 and $\pi : 1 \arr B \Arr A$ of $\varphi$ and $\psi$ which correspond to arrows
-$\varepsilon : A \arr B$ and $\pi : B \arr A$ using some categorical
-craftsmanship: $[1 \arr A \Arr B] \cong [1\product A \arr B] \cong [A \arr B]$.
-We have $\varepsilon = \varphi(\varepsilon)$ and $\pi = \psi(\pi)$, so we
-calculate:
+$\varepsilon : A \arr B$ and $\pi : B \arr A$ using the equivalences $[1
+\arr A \Arr B] \cong [1\product A \arr B] \cong [A \arr B]$.  We have
+$\varepsilon = \varphi(\varepsilon)$ and $\pi = \psi(\pi)$, so we calculate:
 \begin{IEEEeqnarray*}{rCl}
 \pi \circ \varepsilon & = & [\alpha^{-1} \circ F\pi, \pi] \circ \beta \circ
   \beta^{-1} \circ \kappa_0 \circ F\varepsilon \circ \alpha \\
