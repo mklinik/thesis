@@ -437,7 +437,7 @@ In a CCC with initial object $0$ we have, for any object $A$, $0 \cong 0
 
 \begin{proof}
 It suffices to show that $0 \product A$ is initial. We know that the functor
-$- \product A$ is left adjoint to the exponent functor $A \Rightarrow -$, and
+$- \product A$ is left adjoint to the exponent functor $A \Arr -$, and
 left adjoints preserve colimits (\cite{MacLane71}, IV.6, V.5). The initial object is the colimit of the
 empty diagram. Therefore, $0 \product A$ is initial as well.
 \end{proof}
@@ -458,7 +458,7 @@ CCC gives us:
 \begin{tikzpicture}
 \matrix (m) [matrix of math nodes,row sep=4em,column sep=4em,minimum width=2em]
   {
-     A \Rightarrow B & (A \Rightarrow B) \product A & B \\
+     A \Arr B & (A \Arr B) \product A & B \\
      0 & 0 \product A \\
   };
   \path[-stealth, dashed] (m-2-1) [out=110,in=250] edge node [left] {$\overline{f}$} (m-1-1);
