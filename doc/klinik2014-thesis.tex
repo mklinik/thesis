@@ -1547,6 +1547,57 @@ where $\_S0$ and $S0$ are not related by $\below$ in $B$.
 
 \section{Generalization of the Construction}
 
+\begin{lemma} \label{lemFunctionCompositionContinuous}
+Function composition
+\begin{IEEEeqnarray*}{c}
+\circ : [A \arr B] \times [B \arr C] \arr [A \arr C]
+\end{IEEEeqnarray*}
+is continuous. See \cite{Gunter1992} p.123. \qed
+\end{lemma}
+
+\begin{lemma} \label{lemPolynomialFunctorsContinuous}
+Polynomial functors are continuous on arrows. That is, if $F : \Cppo \arr \Cppo$
+is a polynomial functor and $C = \set{f_i}$ a chain in some function space $[A
+\arr B]$, then $F(\lub C) = \lub FC$, where $FC = \set{Ff_i}$.
+\end{lemma}
+
+\begin{proof}
+By induction on $F$. If $F$ is a constant functor $F(X) = D$, $Ff = \text{id}_D$
+then
+\begin{IEEEeqnarray*}{c}
+\lub \set{Ff_i} = \lub \set{\text{id}_D} = \text{id}_D = F(\lub C).
+\end{IEEEeqnarray*}
+
+If $F$ is the identity functor $F(X) = X$, $Ff = f$ then
+\begin{IEEEeqnarray*}{c}
+\lub \set{Ff_i} = \lub \set{f_i} = F(\lub C).
+\end{IEEEeqnarray*}
+
+If $F$ is a product the form $FX = GX \product HX$ for continuous $G$ and $H$,
+we have:
+\begin{IEEEeqnarray*}{rCl"s} %" auto-completion fuckup: closing quote
+F(\lub C) & = & G(\lub C) \product H(\lub C) \\
+  & = & \langle G(\lub C) \circ \pi_1, H(\lub C) \circ \pi_2 \rangle
+             & (def. $\times$) \\
+  & = & \langle \lub GC \circ \pi_1, \lub HC \circ \pi_2 \rangle
+             & (induction hypothesis)\\
+  & = & \langle \lub \set{Gf_i} \circ \pi_1, \lub \set{Hf_j} \circ \pi_2 \rangle \\
+  & = & \langle \lub \set{Gf_i \circ \pi_1}, \lub \set{Hf_j \circ \pi_2} \rangle
+             & (lemma \ref{lemFunctionCompositionContinuous}) \\
+  & = & \lub \set{ \langle Gf_i \circ \pi_1, Hf_i \circ \pi_2 \rangle }
+             & (def. lubs in products) \\
+  & = & \lub \set{ Gf_i \product Hf_i } \\
+  & = & \lub \set{ Ff_i } = \lub FC
+\end{IEEEeqnarray*}
+
+If $F$ is a separated sum of the form $FX = GX + HX$ for continuous $G$ and $H$,
+we have:
+\begin{IEEEeqnarray*}{rCls}
+\text{todo}
+\end{IEEEeqnarray*}
+
+\end{proof}
+
 \begin{definition}
 Let $F : \Cppo \arr \Cppo$ be a polynomial functor. Then $G(X) = F(X) + X$ is a
 polynomial functor as well. Let $\alpha : A \arr FA$ and $\beta : B \arr GB$
