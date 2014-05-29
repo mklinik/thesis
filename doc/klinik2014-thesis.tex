@@ -1547,6 +1547,7 @@ where $\_S0$ and $S0$ are not related by $\below$ in $B$.
 
 \section{Generalization of the Construction}
 
+
 \begin{lemma} \label{lemFunctionCompositionContinuous}
 Function composition
 \begin{IEEEeqnarray*}{c}
@@ -1554,6 +1555,33 @@ Function composition
 \end{IEEEeqnarray*}
 is continuous. See \cite{Gunter1992} p.123. \qed
 \end{lemma}
+
+
+\begin{lemma} \label{lemLubSumPointwise}
+For $\set{f_i}$, $\set{g_j}$ chains of functions in $[A \arr C]$ and $[B \arr
+C]$ respectively, we have:
+\begin{IEEEeqnarray*}{c}
+[\lub \set{f_i}, \lub \set{g_j}] = \lub \set{[f_i, g_i]} : A+B \arr C
+\end{IEEEeqnarray*}
+\end{lemma}
+
+\begin{proof}
+For $x \in A+B$ we have:
+
+If $x = \bot$ then $[\lub \set{f_i}, \lub \set{g_j}](\bot) = \bot = \lub
+\set{[f_i,g_i](\bot)} = \lub \set{[f_i,g_i]}(\bot)$.
+
+If $x = \kappa_0(a)$ then:
+\begin{IEEEeqnarray*}{rCl"s} %"
+[\lub \set{f_i}, \lub \set{g_j}](\kappa_0(a))
+  & = & (\lub \set{f_i})(a)  & (def. $[-,-])$\\
+  & = & \lub \set{f_i(a)}  & (def. lubs of function chains)\\
+  & = & \lub \set{[f_i, g_i](\kappa_0(a))} & (def $[-,-]$\\
+  & = & \lub \set{[f_i, g_i]} (\kappa_0(a)) & (def. lubs of function chains)
+\end{IEEEeqnarray*}
+If $x = \kappa_1(b)$, analogous to the previous case.
+\end{proof}
+
 
 \begin{lemma} \label{lemPolynomialFunctorsContinuous}
 Polynomial functors are continuous on arrows. That is, if $F : \Cppo \arr \Cppo$
@@ -1592,8 +1620,16 @@ F(\lub C) & = & G(\lub C) \product H(\lub C) \\
 
 If $F$ is a separated sum of the form $FX = GX + HX$ for continuous $G$ and $H$,
 we have:
-\begin{IEEEeqnarray*}{rCls}
-\text{todo}
+\begin{IEEEeqnarray*}{rCl"s} %"
+F(\lub C) & = & G(\lub C) + H(\lub C) \\
+  & = & [\kappa_0 \circ G(\lub C), \kappa_1 \circ H(\lub C)] \\
+  & = & [\kappa_0 \circ \lub \set{Gf_i}, \kappa_1 \circ \lub \set{Hf_j}]
+              & (induction hypothesis) \\
+  & = & [\lub \set{\kappa_0 \circ Gf_i}, \lub \set{\kappa_1 \circ Hf_j}]
+              & (lemma \ref{lemFunctionCompositionContinuous}) \\
+  & = & \lub \set{[\kappa_0 \circ Gf_i, \kappa_1 \circ Hf_i]}
+              & (lemma \ref{lemLubSumPointwise}) \\
+  & = & \lub \set{Ff_i} = \lub FC
 \end{IEEEeqnarray*}
 
 \end{proof}
