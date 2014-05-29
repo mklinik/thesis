@@ -515,6 +515,8 @@ the last one always holds.
 Any CCC with the fixpoint property and binary coproducts is trivial.
 \end{proposition}
 
+The proof uses some intermediary constructions which we introduce first.
+
 \newcommand{\true}{\text{tt}}
 \newcommand{\false}{\text{ff}}
 
@@ -1581,6 +1583,27 @@ If $x = \kappa_0(a)$ then:
 If $x = \kappa_1(b)$, analogous to the previous case.
 \end{proof}
 
+\begin{definition}
+A functor F is called \emph{polynomial} iff it is of one of the following forms.
+\begin{itemize}[noitemsep]
+\item F is a constant functor $FX = D$, $Ff = id_D$ for some $D$.
+\item F is the identity functor $FX = X$, $Ff = f$.
+\item F is a product $FX = GX \product HX$ where $G$, $H$ are polynomial.
+\item F is a separated sum $FX = GX + HX$ where $G$, $H$ are polynomial.
+\end{itemize}
+\end{definition}
+
+Note that the separated sum is not associative, that is $(A + B) + C$ is not
+isomorphic to $A + (B + C)$. This is unpleasant when using polynomial functors
+as model for algebraic datatypes, where we want to represent constructors of
+datatypes as terms of a sum. We can work around this by allowing our separated
+sums to have many terms simultaneously, that is $FX = G_0X + G_1X + \ldots +
+G_nX$ where all $G_i$ are polynomial. The disjoint union is then taken of all
+the terms simultaneously, and one new bottom element is introduced below the
+result. The following proofs work just the same for such sums, apart from some
+induction on the number of terms.
+
+\todo{refer to Arbib and Manes; they do the same}
 
 \begin{lemma} \label{lemPolynomialFunctorsContinuous}
 Polynomial functors are continuous on arrows. That is, if $F : \Cppo \arr \Cppo$
