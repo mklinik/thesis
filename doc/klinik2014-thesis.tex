@@ -1706,16 +1706,15 @@ $\varepsilon : A \arr B$ and $\pi : B \arr A$ using the equivalences $[1
 \arr A \Arr B] \cong [1\product A \arr B] \cong [A \arr B]$.  We have
 $\varepsilon = \varphi(\varepsilon)$ and $\pi = \psi(\pi)$, so we calculate:
 \begin{IEEEeqnarray*}{rCl}
-\pi \circ \varepsilon & = & [\alpha^{-1} \circ F\pi, \pi] \circ \beta \circ
-  \beta^{-1} \circ \kappa_0 \circ F\varepsilon \circ \alpha \\
-& = & [\alpha^{-1} \circ F\pi, \pi] \circ \kappa_0 \circ F\varepsilon \circ
+\alpha \circ \pi \circ \varepsilon & = & \alpha \circ [\alpha^{-1} \circ F\pi, \pi]
+  \circ \beta \circ \beta^{-1} \circ \kappa_0 \circ F\varepsilon \circ \alpha \\
+& = & \alpha \circ [\alpha^{-1} \circ F\pi, \pi] \circ \kappa_0 \circ F\varepsilon \circ
   \alpha \\
-& = & \alpha^{-1} \circ F\pi \circ F\varepsilon \circ \alpha \\
-& = & \alpha^{-1} \circ F(\pi \circ \varepsilon) \circ \alpha
+& = & \alpha \circ \alpha^{-1} \circ F\pi \circ F\varepsilon \circ \alpha \\
+& = & F(\pi \circ \varepsilon) \circ \alpha
 \end{IEEEeqnarray*}
-But this implies $\alpha \circ (\pi \circ \varepsilon)$ = $F(\pi \circ
-\varepsilon) \circ \alpha$, so by finality of $\alpha$ just as in the proof of
-\ref{propEpsilonPiExist}, $\pi \circ \varepsilon = \text{id}_A$.
+By finality of $\alpha$ just as in the proof of \ref{propEpsilonPiExist}, $\pi
+\circ \varepsilon = \text{id}_A$.
 
 \end{proof}
 
