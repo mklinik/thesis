@@ -77,12 +77,7 @@ computation steps in a similar way.
 
 Introduction
 
-\todo{fix location of qed signs}
-
 \section{Domain Theory}
-
-\todo{The section on domains in \cite{Gunter1992} is based on his paper with
-Scott from 1990}
 
 \begin{definition}
 
@@ -431,9 +426,10 @@ A there exists a unique arrow $0_A : 0 \arr A$.
 The prototypical example for an initial object is the empty set in Set. But
 there are categories where initial objects behave differently than the empty set
 in Set, perhaps unintuitively so. Important examples are categories where
-objects are algebraic structures whose signatures require the existence of
-elements, like monoids and groups. There, the initial objects are not empty
-sets. In such categories the equivalence $0 \cong 0 \product A$ may not hold.
+objects are algebraic structures whose signature requires the existence of
+elements, like monoids and groups. The initial objects in such categories are
+not empty sets. In such categories the equivalence $0 \cong 0 \product A$ may
+not hold.
 
 \begin{lemma} \label{lem0xAisInitial}
 In a CCC with initial object $0$ we have, for any object $A$, $0 \cong 0
@@ -448,16 +444,16 @@ empty diagram. Therefore, $0 \product A$ is initial as well.
 \end{proof}
 
 As concise as abstract proofs like this become, they aren't very illustrative.
-The following alternative proof of \ref{lem0xAisInitial} is a bit longer, but
-more insightful. The idea is that $0\product A$ is initial because all arrows $0
-\product A \arr B$ are identical, and that is because their curried counterparts
-are identical.
+The following alternative proof of lemma \ref{lem0xAisInitial} is a bit longer,
+but more insightful. The idea is that $0\product A$ must be initial because all
+arrows $0 \product A \arr B$ are identical, and that is because their curried
+counterparts are identical.
 
 \begin{proof}
 We show that $0 \product A$ is initial. Let $B$ be an object. Then the
 arrow $f = 0_B \circ \pi_1\ :\ 0 \product A \arr B$ exists. To see that it is
 unique, let $g : 0 \product A \arr B$ be an arrow. The exponent diagram of the
-CCC gives us:
+CCC gives:
 \begin{figure}[h]
 \begin{center}
 \begin{tikzpicture}
@@ -531,7 +527,7 @@ Boolean algebra axioms hold.
 
 The definition of Boolean algebra can be lifted to category theory in the
 obvious way. Operations and elements become arrows, and the Boolean algebra
-axioms, which are all equations, become commutative diagrams.
+axioms, which are all equations, become commutative diagrams:
 
 \begin{definition}
 A \emph{Boolean algebra object} in a CCC with coproducts is an object A,
@@ -563,7 +559,7 @@ In a CCC with coproducts, $2 = 1+1$ is a boolean algebra object. \qed
 
 \begin{corollary}
 In a CCC with fixpoints where the coproduct $1+1$ exists, the coproduct
-injections $\true, \false : 1 \arr 1+1$ are identified.
+injections $\true, \false : 1 \arr 1+1$ are identified. \qed
 \end{corollary}
 
 \begin{proposition}
@@ -608,8 +604,8 @@ $1+1$ exists.
 The singleton set $\set{\bot}$ is not initial in Cppo, because morphisms don't
 preserve all cppo structure. Continuous functions must preserve lubs, but are
 allowed to map $\bot$ to elements other that $\bot$. Otherwise the fixpoint
-theorem would hold trivially, not giving rise to the application of fixpoint
-semantics of recursive equations.
+theorem would hold trivially, not giving rise to fixpoint semantics of recursive
+equations.
 
 Propositions \ref{propCCCNoFixpointInitialObject} and
 \ref{propCCCNoFixpointCoproducts} are due to Huwig \cite{Huwig1990}, and
@@ -654,7 +650,7 @@ is called \emph{separated sum}, the latter \emph{coalesced sum}.  Figure
 
 \begin{definition} \label{defCoalescedSum}
 For objects $A$, $B$ in Cppo, define the \emph{coalesced sum} $A \oplus B$ as
-the disjoint union of $A$ and $B$ where we identify the bottom elements.
+the disjoint union $A \dot\cup B$ where we identify the bottom elements.
 \end{definition}
 
 \begin{definition} \label{defSeparatedSum}
@@ -663,13 +659,13 @@ For objects $A$, $B$ in Cppo, define the \emph{separated sum} $A + B$ as $A
 \below \bot_A$ and $\bot_{AB} \below \bot_B$.
 \end{definition}
 
-It is not hard to see that both constructions yield cppos, and that the obvious
+It is not hard to see that both constructions yield cppos, and that their
 inclusions are continuous.
 
 The coalesced sum is not useful for categorical fixpoint semantics of
 programming languages. We intend to use a generalized fixpoint construction to
 ensure existence of final coalgebras. The construction works by iterating a
-functor on the terminal object. If we consider the functor $F(X) = 1 \oplus X$,
+functor on the terminal object. (todo: and taking the limit) If we consider the functor $F(X) = 1 \oplus X$,
 then the first iteration yields $F(1) = 1 \oplus 1 = 1$, so $F$ has a trivial
 fixpoint. Using the separated sum however, this approach yields what we expect
 to be the semantics for the lazy natural numbers.
@@ -766,8 +762,7 @@ all functions in $F$. We have: if $f \in F$ then $f \subseteq \bigcup F$, so $f
 
 Furthermore if $g$ is an upper bound of $F$ then $\forall f \in F \ldotp f
 \below g$, so $\bigcup F \below g$. In other words $\bigcup F$ is the lub of $F$
-and it is justified to write $\lub F$
-
+and it is justified to write $\lub F$.
 \end{proof}
 
 
@@ -903,7 +898,6 @@ which implies $(\lub \varphi(C))(n)\isdefined$ and we have:
 (\lub \varphi(C))(n) = \varphi(g)(n) = n \cdot g(n-1) = n \cdot (\lub C)(n-1)
  = \varphi(\lub C)(n)
 \end{IEEEeqnarray*}
-
 \end{proof}
 
 
@@ -1762,5 +1756,10 @@ perspective of category theory can be found in \cite{Pierce1991},
 \bibliographystyle{plain}
 \bibliography{computer_science}
 \end{document}
+
+\todo{fix location of qed signs}
+
+\todo{The section on domains in \cite{Gunter1992} is based on his paper with
+Scott from 1990}
 
 % vim: textwidth=80:spell:spelllang=en_us
