@@ -1660,10 +1660,9 @@ f & \mapsto & [\alpha^{-1} \circ Ff, f] \circ \beta
 \end{IEEEeqnarray*}
 
 To see why $\psi$ is well-defined, consider diagram \ref{figPsiGeneral}. We want
-to show that $\varphi$ and $\psi$ are themselves arrows in Cppo.
-
-\todo{between exponent objects $\varphi : A \Arr B \arr A \Arr B$ and $\psi : B
-\Arr A \arr B \Arr A$}
+to show that $\varphi$ and $\psi$ are themselves arrows in Cppo, between
+exponent objects $\varphi : A \Arr B \arr A \Arr B$ and $\psi : B \Arr A \arr B
+\Arr A$.
 
 \begin{figure}[ht]
 \begin{center}
@@ -1688,6 +1687,18 @@ to show that $\varphi$ and $\psi$ are themselves arrows in Cppo.
 \end{center}
 \caption{Definition of $\psi$.} \label{figPsiGeneral}
 \end{figure}
+
+Monotonicity of $\varphi$ and $\psi$ follows from the fact that they are
+composed of monotone functions. Preservation of lubs follows because they are
+composed of continuous functions and lemma
+\ref{lemPolynomialFunctorsContinuous}: Let $C$ be a chain in $[A \arr B]$. Then
+\begin{IEEEeqnarray*}{rCl"s} %"
+\varphi(\lub C)(a) & = & \beta^{-1}(\kappa_0(F(\lub C)(\alpha(a)))) \\
+  & = & \beta^{-1}(\kappa_0(\lub \set{Ff_i})(\alpha(a))) \\
+  & = & \lub \set{\beta^{-1}(\kappa_0(Ff_i(\alpha(a))))} \\
+  & = & \lub \varphi(C).
+\end{IEEEeqnarray*}
+Similarly for $\psi$.
 
 The fixpoint property of Cppo provides fixpoints $\varepsilon : 1 \arr A \Arr B$
 and $\pi : 1 \arr B \Arr A$ of $\varphi$ and $\psi$ which correspond to arrows
