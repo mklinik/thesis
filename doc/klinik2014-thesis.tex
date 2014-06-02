@@ -1248,6 +1248,15 @@ Let $b$ be an upper bound of $C''$. Then
 
 \end{proof}
 
+A similar result holds for a chain in $B$ which eventually rises into $S$. The
+constructor $\_$ is not relevant, so the proof proceeds just as in
+\ref{lemChainInversion}:
+
+\begin{lemma} \label{lemChainInversionB}
+If $C$ is a chain in $B$ with $\lub C = S(b)$ for some $b \in B$, then $\lub C =
+S(\lub C'')$ where $C'' = \set{x \mid S(x) \in C}$.  \qed
+\end{lemma}
+
 
 \begin{proof}
 
@@ -1427,18 +1436,16 @@ y'$. We have:
 Lub preservation: Let $C$ be a chain in $B$. To prove: $\psi(f)(\lub
 C) = \lub \psi(f)(C)$.
 
-\todo{we need a chain inversion lemma similar to \ref{lemChainInversion}}
-
 If $C$ is infinite and $\lub C = S(b)$ for some $b \in B$, then:
 \begin{IEEEeqnarray*}{rCl's}
 &&    \psi(f)(\lub C) \\
 & = & \psi(f)(S(b)) \\
-& = & S(f(b)) \\
-& = & S(f(\lub C'')) & (todo chain inversion lemma) \\
-& = & \lub S(f(C'')) \\
-& = & \lub \psi(f)(S(C'')) \\
-& = & \lub \psi(f)(C') \\
-& = & \lub \psi(f)(C)
+& = & S(f(b)) & (def. $\psi$) \\
+& = & S(f(\lub C'')) & (lemma \ref{lemChainInversionB}) \\
+& = & \lub S(f(C'')) & ($S$, $f$ continuous) \\
+& = & \lub \psi(f)(S(C'')) & (def. $\psi$) \\
+& = & \lub \psi(f)(C') & (def. $C''$) \\
+& = & \lub \psi(f)(C) & (lemma \ref{lemCoFiniteSubsetLub})
 \end{IEEEeqnarray*}
 
 If $C$ is infinite and $\lub C = \_(b)$ for some $b \in B$, then:
