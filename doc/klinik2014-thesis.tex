@@ -1208,9 +1208,9 @@ is a chain and the lub of the first is the same as the successor of the lub of
 the second. The set $C'$ is the chain with all leading non-$S$ elements removed, and $C''$ is $\set{x_0, x_1, x_2, \ldots}$.
 
 This lemma is the opposite of lemma \ref{lemMonotoneAlwaysBelowLub}, which
-intuitively states that any monotone function factors into a chain, while the
-interaction between $S$ and $\below$ is required for $S$ to factor out of a
-chain.
+intuitively states that monotone functions preserve chains and lubs, while the
+interaction between $S$ and $\below$ is required for $S$ to also reflect chains
+and lubs.
 
 
 \begin{proof}
@@ -1282,7 +1282,7 @@ If $x = \bot$ then $\varphi(f)(x) = \bot \below \varphi(f)(y)$ always.
 
 If $x = 0$ then $y = 0$ as well, so $\varphi(f)(x) = \varphi(f)(y)$.
 
-If $x = S(x')$ then, because $x \below y$, there must be a $y'$ such that $y =
+If $x = S(x')$ then, because $x \below y$ and lemma \ref{lemDefinitionBelowAandB}, there must be a $y'$ such that $y =
 S(y')$ and $x' \below y'$. But $S$ and $f$ are both monotone, so
 \begin{equation*}
 \varphi(f)(x) = S(f(x')) \below S(f(y')) = \varphi(f)(y).
@@ -1313,7 +1313,7 @@ $C'$ and $C''$, we calculate:
 \ref{proofEpsilonExists2}. Monotonicity: Let $f,g \in [A \arr B]$ such that $f
 \below g$.  To prove: $\varphi(f) \below \varphi(g)$, i.e. $\forall a \in A
 \ldotp \varphi(f)(a) \below \varphi(g)(a)$.  The cases $a = \bot$ and $a = 0$
-are trivial, so let $a = S(a')$. Then
+are straight forward, so let $a = S(a')$. Then
 \begin{IEEEeqnarray*}{c}
 \varphi(f)(a) = S(f(a')) \below S(g(a')) = \varphi(g)(a).
 \end{IEEEeqnarray*}
@@ -1365,7 +1365,7 @@ S(\varepsilon(a'))$.
 \end{proof}
 
 The proof that $\pi$ exists and has the desired properties follows the same
-sche\-ma as above, except we have one more case to consider. We leave out all the
+sche\-ma as for $\varepsilon$, except we have one more case to consider. We leave out all the
 boilerplate and concentrate on the interesting cases.
 
 \begin{lemma} \label{lemPiExists}
