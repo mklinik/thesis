@@ -1248,13 +1248,15 @@ Let $b$ be an upper bound of $C''$. Then
 
 \end{proof}
 
-A similar result holds for a chain in $B$ which eventually rises into $S$. The
-constructor $\_$ is not relevant, so the proof proceeds just as in
+A similar result holds for a chain in $B$ which eventually rises into $S$ or
+$\_$. The respective other constructor is not relevant,
+so the proof proceeds in both cases just as in
 \ref{lemChainInversion}:
 
 \begin{lemma} \label{lemChainInversionB}
 If $C$ is a chain in $B$ with $\lub C = S(b)$ for some $b \in B$, then $\lub C =
-S(\lub C'')$ where $C'' = \set{x \mid S(x) \in C}$.  \qed
+S(\lub C'')$ where $C'' = \set{x \mid S(x) \in C}$. Symmetrically for $\lub C =
+\_(b)$. \qed
 \end{lemma}
 
 
@@ -1453,7 +1455,7 @@ If $C$ is infinite and $\lub C = \_(b)$ for some $b \in B$, then:
 &&    \psi(f)(\lub C) \\
 & = & \psi(f)(\_(b)) \\
 & = & f(b) \\
-& = & f(\lub C'') & (todo chain inversion lemma) \\
+& = & f(\lub C'') & (lemma \ref{lemChainInversionB}) \\
 & = & \lub f(C'') \\
 & = & \lub \psi(f)(\_(C'')) \\
 & = & \lub \psi(f)(C') \\
