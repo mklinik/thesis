@@ -1130,7 +1130,8 @@ vice versa. Same for $B$ and $1+B+B$. When appropriate, we write ``$x$ is of the
 form $S(-)$'' instead of $\exists x' \ldotp \alpha(x) = S(x')$ .
 
 Second, $1$ as the terminal object in Cppo is a one-element set, so
-$\kappa_0(a')$ can be of only one form, for which we write $0$.
+$\kappa_0(a')$ can only be of the form $\kappa_0(\bot)$ for which we write
+$0$.
 
 Third, we write $S$ for $\kappa_1$ and $\_$ for $\kappa_2$.
 
@@ -1149,7 +1150,7 @@ The requirements for \ref{lemEpsilonExists} then become:
 From this it is easier to see that $\varepsilon$ doesn't do anything except
 replacing the constructors of $1+A$ by their equivalent of $1+B+B$. The proof
 proceeds similarly to the one of \ref{propFactorialExists}, but now we have
-slightly more work to do. We need the following lemmas.
+more work to do. We need the following lemmas.
 
 
 \begin{lemma} \label{lemDefinitionBelowAandB}
@@ -1195,15 +1196,17 @@ then
 
 \end{lemma}
 
-Intuitively, this lemma states that if
+Intuitively, this lemma states that if a chain eventually rises into $S$:
 \begin{IEEEeqnarray*}{c}
-\bot \below S(x_0) \below S(x_1) \below S(x_2) \below \ldots
+\bot \below \ldots \below \bot \below S(x_0) \below S(x_1) \below S(x_2) \below \ldots
 \end{IEEEeqnarray*}
-is a chain, then so is
+then
 \begin{IEEEeqnarray*}{c}
 x_0 \below x_1 \below x_2 \below \ldots
 \end{IEEEeqnarray*}
-and the lub of the first is the same as the successor of the lub of the second.
+is a chain and the lub of the first is the same as the successor of the lub of
+the second. The set $C'$ is the chain with all leading non-$S$ elements removed, and $C''$ is $\set{x_0, x_1, x_2, \ldots}$.
+
 This lemma is the opposite of lemma \ref{lemMonotoneAlwaysBelowLub}, the latter
 holding for any cpo and monotone function, while here the interaction between
 $S$ and $\below$ is required.
@@ -1221,14 +1224,14 @@ $S(a)$ is the least upper bound of $C$.
 
 \ref{lemChainInversion2}. We show that the order on $C''$ is total. Let $x', y'
 \in C''$. Then by definition of $C''$, there are $x, y \in C'$ such that $x
-\below y \aand x = S(x') \aand y = S(y')$. By definition of $\below$ this gives
-$x' \below y'$.
+\below y \aand x = S(x') \aand y = S(y')$. By lemma
+\ref{lemDefinitionBelowAandB} this gives $x' \below y'$.
 
 It remains to show that $\lub C = S(\lub C'')$. It suffices to show that $a =
 \lub C''$, because then $\lub C = S(a) = S(\lub C'')$. We calculate:
 \begin{IEEEeqnarray*}{rCls}
 && \forall x' \in C'' \ldotp S(x') \below S(a) & ($S(a)$ upper bound of $C'$) \\
-& \implies & \forall x' \in C'' \ldotp x' \below a & (definition $\below$)\\
+& \implies & \forall x' \in C'' \ldotp x' \below a & (lemma \ref{lemDefinitionBelowAandB})\\
 & \implies & a \text{ is an upper bound of } C''.
 \end{IEEEeqnarray*}
 
@@ -1238,7 +1241,7 @@ Let $b$ be an upper bound of $C''$. Then
 & \implies & \forall x' \in C'' \ldotp S(x') \below S(b) & ($S$ monotone)\\
 & \implies & S(b) \text{ is an upper bound of } C' & (definition $C''$) \\
 & \implies & \lub C' = S(a) \below S(b) & (S(a) least upper bound) \\
-& \implies & a \below b & (definition $\below$) \\
+& \implies & a \below b & (lemma \ref{lemDefinitionBelowAandB}) \\
 & \implies & a \text{ is the least upper bound of } C''.
 \end{IEEEeqnarray*}
 
@@ -1293,7 +1296,7 @@ If $\lub C = \bot$ then $C$ is finite, and the conclusion follows by lemma
 If $\lub C = 0$ then again $C$ must be finite.
 
 If $\lub C = S(a)$ for some $a \in A$ then if $C$ is finite, we're done. Let $C$
-be infinite. Then, using lemma \ref{lemChainInversion} and its constructions
+be infinite. Using lemma \ref{lemChainInversion} and its constructions
 $C'$ and $C''$, we calculate:
 \begin{IEEEeqnarray*}{rCl's}
 && \varphi(f)(\lub C) \\
@@ -1398,7 +1401,7 @@ To prove:
 \begin{enumerate}[noitemsep]
 \item \label{proofPiExists1} $\psi$ maps continuous functions to
 continuous functions.
-\item \label{proofPiExists2} $\psi$ is itself continuous.
+\item \label{proofPiExists2} $\psi$ itself is continuous.
 \item \label{proofPiExists3} $\pi$ as the fixpoint of $\psi$
 satisfies the desired equation.
 \end{enumerate}
