@@ -915,8 +915,43 @@ to be continuous and show that its fixpoint fulfills the desired definition.
 want all that follows.}
 
 \begin{lemma} \label{lemLambek}
-todo Lambek's lemma op: final coalgebras are isomorphisms.
+(Lambek op) Final coalgebras are isomorphisms.
 \end{lemma}
+
+\begin{proof}
+Let $F$ be a functor and $\alpha : A \arr FA$ its final coalgebra. Then $F\alpha
+: FA \arr FFA$ is an $F$-coalgebra, so the coalgebra map $f : FA \arr A$ exists
+such that diagram $II$ commutes.
+
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}
+\matrix (m) [matrix of math nodes
+            ,row sep=1.5em
+            ,column sep=2em
+            ,minimum width=1em]
+  {
+     A & & FA & & A \\
+     & I & & II & \\
+     FA & & F^2A & & FA \\
+  };
+  \path[-stealth]
+    (m-1-1) edge node [left] {$\alpha$} (m-3-1)
+    (m-1-1) edge node [above] {$\alpha$} (m-1-3)
+    (m-3-1.east|-m-3-3) edge node [below] {$F\alpha$} (m-3-3)
+    (m-1-3) edge node [right] {$F\alpha$} (m-3-3)
+    (m-1-3) edge node [above] {$f$} (m-1-5)
+    (m-3-3.east|-m-3-5) edge node [below] {$Ff$} (m-3-5)
+    (m-1-5) edge node [right] {$\alpha$} (m-3-5)
+    ;
+\end{tikzpicture}
+\end{center}
+\end{figure}
+
+Diagram $I$ commutes as well, so by finality of $\alpha$ we have $f \circ
+\alpha = \text{id}_A$. Furthermore $\alpha \circ f = Ff \circ F\alpha = F(f
+\circ \alpha) = F(\text{id}_A) = \text{id}_{FA}$.
+\end{proof}
 
 \subsection{Draft: Naming}
 
