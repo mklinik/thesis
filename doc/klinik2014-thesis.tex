@@ -933,15 +933,15 @@ such that diagram $II$ commutes.
   {
      A & & FA & & A \\
      & I & & II & \\
-     FA & & F^2A & & FA \\
+     FA & & FFA & & FA \\
   };
   \path[-stealth]
     (m-1-1) edge node [left] {$\alpha$} (m-3-1)
     (m-1-1) edge node [above] {$\alpha$} (m-1-3)
-    (m-3-1.east|-m-3-3) edge node [below] {$F\alpha$} (m-3-3)
+    (m-3-1) edge node [below] {$F\alpha$} (m-3-3)
     (m-1-3) edge node [right] {$F\alpha$} (m-3-3)
     (m-1-3) edge node [above] {$f$} (m-1-5)
-    (m-3-3.east|-m-3-5) edge node [below] {$Ff$} (m-3-5)
+    (m-3-3) edge node [below] {$Ff$} (m-3-5)
     (m-1-5) edge node [right] {$\alpha$} (m-3-5)
     ;
 \end{tikzpicture}
