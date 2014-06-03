@@ -200,7 +200,6 @@ P_{n+1}$, so $Q$ is non-decreasing, and therefore has a lub $z$.  Each $x \in S$
 eventually occurs in some $P_n$, and we have $x \below \lub P_n \below z$, so
 $z$ is an upper bound of $S$. Any upper bound $z'$ of $S$ is also an upper bound
 of $Q$, and therefore $z \below z'$, i.e. $z$ is the lub of $S$.
-
 \end{proof}
 
 
@@ -276,12 +275,10 @@ The identity function is continuous.
 \end{lemma}
 
 \begin{proof}
-
 Let $P \in C$ be a chain. Then
-\begin{equation*}
-id(\lub P) = \lub P = \lub_{x \in P} id(x)
-\end{equation*}
-
+\begin{IEEEeqnarray*}{c+x*}
+id(\lub P) = \lub P = \lub_{x \in P} id(x) & \qedhere
+\end{IEEEeqnarray*}
 \end{proof}
 
 
@@ -292,16 +289,14 @@ Composition of two continuous functions is continuous.
 \end{lemma}
 
 \begin{proof}
-
 Let $f : C \arr D$, $g : D \arr E$ be continuous. Let $P \subseteq C$ be a
 chain. Then
-\begin{IEEEeqnarray*}{rCl}
+\begin{IEEEeqnarray*}{rCl+x*}
 (g \circ f)(\lub P) & = & g(f(\lub_{x \in P} x)) \\
   & = & g( \lub_{x \in P} f(x) ) \\
   & = & \lub_{x \in P} g(f(x)) \\
-  & = & \lub_{x \in P} (g \circ f)(x)
+  & = & \lub_{x \in P} (g \circ f)(x) & \qedhere
 \end{IEEEeqnarray*}
-
 \end{proof}
 
 
@@ -369,13 +364,12 @@ doesn't affect the lub.
 
 To see that $x$ is the least fixpoint, let $y = f(y)$ be a fixpoint of $f$. We
 have:
-\begin{IEEEeqnarray*}{rCl}
+\begin{IEEEeqnarray*}{rCl+x*}
 \bot \below y & \implies & f(\bot) \below f(y) = y \\
  & \implies & \forall n \in \bbN \ldotp f^n(\bot) \below y \\
  & \implies & y \text{ is an upper bound of F} \\
- & \implies & \lub F = x \below y
+ & \implies & \lub F = x \below y & \qedhere
 \end{IEEEeqnarray*}
-
 \end{proof}
 
 This is the well-known fixpoint theorem, which is sometimes attributed to
@@ -389,7 +383,7 @@ Cppo has a terminal object, the singleton $\set{\bot}$. \qed
 \end{lemma}
 
 \begin{lemma} \label{lemCppoBinaryProducts}
-Cppo has binary products, defined pointwise as usual in algebra. \qed
+Cppo has binary products, defined pointwise. \qed
 \end{lemma}
 
 \begin{lemma} \label{lemCppoExponentials}
@@ -476,12 +470,11 @@ Where $\overline{f}$ is the curried counterpart of $f$. We have: $\overline{f} =
 \overline{g}$, because $0$ is initial. Therefore $\overline{f}\product
 \text{id}_A = \overline{g}\product \text{id}_A$, and
 thus
-\begin{IEEEeqnarray*}{c}
+\begin{IEEEeqnarray*}{c+x*}
 f\ =\ \text{ev} \circ \overline{f}\product\text{id}_A
  \ =\ \text{ev} \circ \overline{g}\product\text{id}_A
- \ =\ g.
+ \ =\ g & \qedhere
 \end{IEEEeqnarray*}
-
 \end{proof}
 
 \begin{lemma} \label{lem0isomorphic1}
@@ -785,11 +778,11 @@ be a chain in A. Then $\lub f(C) \below f(\lub C)$.
 
 \begin{proof}
 We have:
-\begin{IEEEeqnarray*}{rCl}
+\begin{IEEEeqnarray*}{rCl+x*}
            && \forall a \in C \ldotp a \below \lub C \\
  & \implies & \forall a \in C \ldotp f(a) \below f(\lub C) \\
  & \implies & f(\lub C) \text{ is an upper bound of } f(C) \\
- & \implies & \lub f(C) \below f(\lub C)
+ & \implies & \lub f(C) \below f(\lub C) & \qedhere
 \end{IEEEeqnarray*}
 \end{proof}
 
@@ -896,9 +889,9 @@ $\varphi(\lub C)(n)\isdefined$ we get $(\lub C)(n - 1)\isdefined$. But then
 there must be a $g$ in $C$ such that $g(n-1)\isdefined$ and $g(n-1) = (\lub C)(n
 - 1)$. But then $n \cdot g(n-1)\isdefined$, therefore $\varphi(g)(n)\isdefined$,
 which implies $(\lub \varphi(C))(n)\isdefined$ and we have:
-\begin{IEEEeqnarray*}{c}
+\begin{IEEEeqnarray*}{c+x*}
 (\lub \varphi(C))(n) = \varphi(g)(n) = n \cdot g(n-1) = n \cdot (\lub C)(n-1)
- = \varphi(\lub C)(n)
+ = \varphi(\lub C)(n) & \qedhere
 \end{IEEEeqnarray*}
 \end{proof}
 
@@ -1197,13 +1190,12 @@ For $x,y \in A$, we have $x \below y$ iff
 \end{IEEEeqnarray*}
 
 For $x,y \in B$, we have $x \below y$ iff
-\begin{IEEEeqnarray*}{tlClClCl}
+\begin{IEEEeqnarray*}{tlClClCl+x*}
 & x = \bot \\
 or\quad & x = y \\
 or\quad & x = S(x') & \aand & y & = & S(y') & \aand & x' \below y' \\
-or\quad & x = \_(x') & \aand & y & = & \_(y') & \aand & x' \below y'
+or\quad & x = \_(x') & \aand & y & = & \_(y') & \aand & x' \below y' & \qed
 \end{IEEEeqnarray*}
-\qed
 \end{lemma}
 
 
@@ -1272,15 +1264,14 @@ It remains to show that $\lub C = S(\lub C'')$. It suffices to show that $a =
 \end{IEEEeqnarray*}
 
 Let $b$ be an upper bound of $C''$. Then
-\begin{IEEEeqnarray*}{rCls}
+\begin{IEEEeqnarray*}{rClsx*}
 && \forall x' \in C'' \ldotp x' \below b \\
 & \implies & \forall x' \in C'' \ldotp S(x') \below S(b) & ($S$ monotone)\\
 & \implies & S(b) \text{ is an upper bound of } C' & (definition $C''$) \\
 & \implies & \lub C' = S(a) \below S(b) & (S(a) least upper bound) \\
 & \implies & a \below b & (lemma \ref{lemDefinitionBelowAandB}) \\
-& \implies & a \text{ is the least upper bound of } C''.
+& \implies & a \text{ is the least upper bound of } C'' & & \qedhere
 \end{IEEEeqnarray*}
-
 \end{proof}
 
 A similar result holds for a chain in $B$ which eventually rises into $S$ or
@@ -1407,7 +1398,6 @@ If $a = 0$ then $\varepsilon(a) = \varphi(\varepsilon)(a) = 0$.
 
 If $a = S(a')$ then $\varepsilon(a) = \varphi(\varepsilon)(a) =
 S(\varepsilon(a'))$.
-
 \end{proof}
 
 The proof that $\pi$ exists and has the desired properties follows the same
@@ -1545,7 +1535,6 @@ If $b = 0$ then $\pi(b) = \psi(\pi)(b) = 0$.
 If $b = S(b')$ then $\pi(b) = \psi(\pi)(b) = S(\pi(b'))$.
 
 If $b = \_(b')$ then $\pi(b) = \psi(\pi)(b) = \pi(b')$.
-
 \end{proof}
 
 We are now ready to conclude the result of this section.
@@ -1583,7 +1572,6 @@ $\alpha$ is the final coalgebra for $F$, this implies $\pi \circ \varepsilon =
 \end{tikzpicture}
 \end{center}
 \end{figure}
-
 \end{proof}
 
 For the other direction it would be nice to have at least $\varepsilon \circ
@@ -1690,7 +1678,7 @@ F(\lub C) & = & G(\lub C) \product H(\lub C) \\
 
 If $F$ is a separated sum of the form $FX = GX + HX$ for continuous $G$ and $H$,
 we have:
-\begin{IEEEeqnarray*}{rCl"s} %"
+\begin{IEEEeqnarray*}{rCl"sx*} %"
 F(\lub C) & = & G(\lub C) + H(\lub C) \\
   & = & [\kappa_0 \circ G(\lub C), \kappa_1 \circ H(\lub C)] \\
   & = & [\kappa_0 \circ \lub \set{Gf_i}, \kappa_1 \circ \lub \set{Hf_j}]
@@ -1699,9 +1687,8 @@ F(\lub C) & = & G(\lub C) + H(\lub C) \\
               & (lemma \ref{lemFunctionCompositionContinuous}) \\
   & = & \lub \set{[\kappa_0 \circ Gf_i, \kappa_1 \circ Hf_i]}
               & (lemma \ref{lemLubSumPointwise}) \\
-  & = & \lub \set{Ff_i} = \lub FC
+  & = & \lub \set{Ff_i} = \lub FC && \qedhere
 \end{IEEEeqnarray*}
-
 \end{proof}
 
 \begin{definition}
@@ -1785,7 +1772,6 @@ $\varepsilon = \varphi(\varepsilon)$ and $\pi = \psi(\pi)$, so we calculate:
 \end{IEEEeqnarray*}
 By finality of $\alpha$ just as in the proof of \ref{propEpsilonPiExist}, $\pi
 \circ \varepsilon = \text{id}_A$.
-
 \end{proof}
 
 %\section{Junkyard}
@@ -1827,8 +1813,6 @@ perspective of category theory can be found in \cite{Pierce1991},
 \bibliographystyle{plain}
 \bibliography{computer_science}
 \end{document}
-
-\todo{fix location of qed signs}
 
 \todo{The section on domains in \cite{Gunter1992} is based on his paper with
 Scott from 1990}
