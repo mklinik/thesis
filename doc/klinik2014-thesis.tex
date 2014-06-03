@@ -904,8 +904,16 @@ to be continuous and show that its fixpoint fulfills the desired definition.
 
 \section{$1+X$ and $1+X+X$}
 
-\todo{explain what $1+X$, $1+X+X$ are (simultaneous separated sum!) and why we
-want all that follows.}
+In this section we look at the relationship between the functors
+\begin{IEEEeqnarray*}{rCl}
+FX & = & 1 + X \\
+GX & = & 1 + X + X
+\end{IEEEeqnarray*}
+and their respective final coalgebras:
+\begin{IEEEeqnarray*}{c}
+\alpha : A \arr FA \\
+\beta : B \arr GB
+\end{IEEEeqnarray*}
 
 \begin{lemma} \label{lemLambek}
 (Lambek op) Final coalgebras are isomorphisms.
@@ -945,23 +953,6 @@ Diagram $I$ commutes as well, so by finality of $\alpha$ we have $f \circ
 \alpha = \text{id}_A$. Furthermore $\alpha \circ f = Ff \circ F\alpha = F(f
 \circ \alpha) = F(\text{id}_A) = \text{id}_{FA}$.
 \end{proof}
-
-\subsection{Draft: Naming}
-
-The things involved need names.
-
-Base functors:
-\begin{IEEEeqnarray*}{rCl}
-F(X) & = & 1 + X \\
-G(X) & = & 1 + X + X
-\end{IEEEeqnarray*}
-
-Their final coalgebras:
-\begin{IEEEeqnarray*}{rCl}
-\nu F & = & \alpha : A \leftrightarrow FA \\
-\nu G & = & \beta : B \leftrightarrow GB
-\end{IEEEeqnarray*}
-
 
 
 \begin{proposition} \label{propEpsilonPiExist}
@@ -1554,7 +1545,7 @@ S(\pi(\varepsilon(a')))$.
 
 In all cases, $\alpha \circ (\pi \circ \varepsilon) = F(\pi \circ \varepsilon)
 \circ \alpha$, which means that the following diagram commutes, and because
-$\alpha$ is the final coalgebra for $F$, this implies $\pi \circ \varepsilon =
+$\alpha$ is the final coalgebra for $F$ this implies $\pi \circ \varepsilon =
 \text{id}_A$.
 \begin{figure}[h]
 \begin{center}
