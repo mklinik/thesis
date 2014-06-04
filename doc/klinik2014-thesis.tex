@@ -654,23 +654,36 @@ For objects $A$, $B$ in Cppo, define the \emph{separated sum} $A + B$ as $A
 \below \bot_A$ and $\bot_{AB} \below \bot_B$.
 \end{definition}
 
-It is not hard to see that both constructions yield cppos, and that their
-inclusions are continuous.
+Both constructions yield cppos and their inclusions are continuous.
 
 The coalesced sum is not useful for categorical fixpoint semantics of
 programming languages. We intend to use a generalized fixpoint construction to
 ensure existence of final coalgebras. The construction works by iterating a
-functor on the terminal object. (todo: and taking the limit) If we consider the functor $F(X) = 1 \oplus X$,
+functor on the terminal object and taking the limit of the resulting chain. If
+we consider the functor $F(X) = 1 \oplus X$,
 then the first iteration yields $F(1) = 1 \oplus 1 = 1$, so $F$ has a trivial
 fixpoint. Using the separated sum however, this approach yields what we expect
-to be the semantics for the lazy natural numbers.
+to be the semantics for the lazy natural numbers. In the following, we
+concentrate on the separated sum.
 
-As seen in \ref{propCCCNoFixpointCoproducts}, the separated sum cannot be the
-categorical coproduct. If we look at the usual coproduct diagram in figure
-\ref{figCoproductDiagram}, for continuous non-strict functions $f$ and $g$,
-there might be different functions $A+B \arr D$ making the diagram commute. The
-strict function $[f\!,g]$ exists and makes the diagram commute, so we use it as
-the BLAH BLAH BLAH
+As seen in \ref{propCCCNoFixpointCoproducts}, the separated sum cannot be a
+categorical coproduct. If we look at the usual coproduct diagram in Cppo in
+figure \ref{figCoproductDiagram}, for arrows $f$ and $g$,
+there might be different functions $A+B \arr D$ making the diagram commute:
+$\bot_{AB}$ is not in the image of the inclusions, so a function $A+B \arr D$
+may map $\bot_{AB}$ to any element in $D$.  The strict function $[f\!,g]$
+defined as
+\begin{equation*}
+[f\!,g] = x \mapsto \left\{
+  \begin{array}{lcl}
+   \bot   & \text{if} & x = \bot \\
+   f(x')  & \text{if} & x = \kappa_0(x') \\
+   g(x')  & \text{if} & x = \kappa_1(x')
+  \end{array}
+\right.
+\end{equation*}
+does make the diagram commute, and it is canonical in the sense that it
+works for all $A$, $B$ and $D$.
 
 \begin{figure}[ht]
 \begin{center}
@@ -692,6 +705,11 @@ the BLAH BLAH BLAH
 \caption{The usual coproduct diagram} \label{figCoproductDiagram}
 \end{figure}
 
+While the separated sum is not a categorical coproduct, it is still a
+useful construction and we can work with it as long as we keep in mind that
+$[f\!,g]$ doesn't have the universal mapping property. In particular, Cppo is
+closed under the separated sum construction. In fact, it is a functor.
+
 
 \begin{definition}
 A \emph{bifunctor} is a functor with two arguments. Formally, $F : \bbC \times \bbD \arr
@@ -699,8 +717,28 @@ A \emph{bifunctor} is a functor with two arguments. Formally, $F : \bbC \times \
 is for all fixed $C \in \bbC$ and $D \in \bbD$, both $F_C(D) = F(C \times D) : \bbD
 \arr \bbE$ and $F_D(C) = F(C \times D) : \bbC \arr \bbE$ must be functors.
 Furthermore, for arrows $f : C \arr C'$ in $\bbC$ and $g : D \arr D'$ in $\bbD$,
-we must have $F_{D'}(f) \circ F_C(g) = F_{C'}(g) \circ F_D(f) : F(C \times D)
-\arr F(C' \times D')$, where
+we must have the diagram commute
+%\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}
+\matrix (m) [matrix of math nodes
+            ,row sep=3em
+            ,column sep=4em
+            ,minimum width=2em]
+  {
+     F(C \product D) & F(C' \product D) \\
+     F(C \product D') & F(C' \product D') \\
+  };
+  \path[-stealth]
+    (m-1-1) edge node [left] {$F_C(g)$} (m-2-1)
+    (m-1-1) edge node [above] {$F_D(f)$} (m-1-2)
+    (m-2-1) edge node [below] {$F_{D'}(f)$} (m-2-2)
+    (m-1-2) edge node [right] {$F_{C'}(g)$} (m-2-2)
+    ;
+\end{tikzpicture}
+\end{center}
+%\end{figure}
+where
 \begin{IEEEeqnarray*}{rCl}
 F_D(f : C \arr C') & = & F(f \times 1_D) : F(C \times D) \arr F(C' \times D) \\
 F_C(g : D \arr D') & = & F(1_C \times g) : F(C \times D) \arr F(C \times D')
@@ -709,17 +747,32 @@ F_C(g : D \arr D') & = & F(1_C \times g) : F(C \times D) \arr F(C \times D')
 
 \begin{proposition}
 
-For a fixed $D$, the object mapping $L_D : A \mapsto A \oplus D$ extends to a
-functor.  Symmetrically for $R_D : A \mapsto D \oplus A$, and we have for all $f
-: A \arr A'$ and $g : B \arr B'$, $L_{B'}(f) \circ R_A(g) = R_{A'}(g) \circ
-L_B(f) : A \oplus B \arr A' \oplus B'$.  Therefore $\oplus : \Cppo \times
-\Cppo \arr \Cppo$ is a bifunctor. \qed
+The separated sum construction is a bifunctor $+ : \Cppo \times
+\Cppo \arr \Cppo$. That is for all $D$, the
+object mapping $L_D : A \mapsto A + D$ extends to a functor: $f \mapsto
+[\kappa_0 \circ f, \kappa_1 \circ \text{id}_D]$.  Symmetrically
+for $R_D : A \mapsto D + A$, and we have for all $f
+: A \arr A'$ and $g : B \arr B'$ the following diagram commutes.
+\begin{center}
+\begin{tikzpicture}
+\matrix (m) [matrix of math nodes
+            ,row sep=3em
+            ,column sep=4em
+            ,minimum width=2em]
+  {
+     A + B & A' + B \\
+     A + B' & A' + B' \\
+  };
+  \path[-stealth]
+    (m-1-1) edge node [above] {$f + \text{id}_B$} (m-1-2)
+    (m-1-1) edge node [left] {$\text{id}_A + g$} (m-2-1)
+    (m-2-1) edge node [below] {$f + \text{id}_{B'}$} (m-2-2)
+    (m-1-2) edge node [right] {$\text{id}_{A'} + g$} (m-2-2)
+    ;
+\end{tikzpicture}
+\end{center}
 
 \end{proposition}
-
-So while the separated sum is not the categorical coproduct, it is still a
-useful construction and we can work with it as long as we keep in mind that
-$[f\!,g]$ doesn't have the universal mapping property.
 
 This sets up the stage for our following considerations.
 
