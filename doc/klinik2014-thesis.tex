@@ -1027,7 +1027,7 @@ Greatest fixpoints of functors arise as limits of left chains. See theorem
 \end{IEEEeqnarray*}
 Intuitively, the cppos we use for data structure semantics arise by
 $\omega$-fold iteration of the base functor on the terminal object $1$. The
-first few iterations for the functor $F(X) = 1 + X$, together with the partial
+first few iterations for the functor $FX = 1 + X$, together with the partial
 order induced by the separated sum, are illustrated in figure
 \ref{figFirstIterationsOfF}. In each iteration, the cppo of the previous step is
 lifted through $\kappa_1$ to the upper right, and fresh $\kappa_0(\bot)$ and
@@ -1257,7 +1257,7 @@ If $C$ is an infinite chain in $A$ such that $\lub C = S(a)$ for some $a \in A$,
 then
 \begin{enumerate}
 
-  \item \label{lemChainInversion1} all but finitely many $x \in C$ are of the
+  \item \label{lemChainInversion1} All but finitely many $x \in C$ are of the
   form $S(-)$.  In other words, there is a co-finite subset $C'$ of $C$ having
   the same lub, where all elements of $C'$ are of the form $S(-)$.
 
@@ -1271,7 +1271,7 @@ Intuitively, this lemma states that if a chain eventually rises into $S$:
 \begin{IEEEeqnarray*}{c}
 \bot \below \ldots \below \bot \below S(x_0) \below S(x_1) \below S(x_2) \below \ldots
 \end{IEEEeqnarray*}
-then
+then the sequence
 \begin{IEEEeqnarray*}{c}
 x_0 \below x_1 \below x_2 \below \ldots
 \end{IEEEeqnarray*}
@@ -1279,9 +1279,8 @@ is a chain and the lub of the first is the same as the successor of the lub of
 the second. The set $C'$ is the chain with all leading non-$S$ elements removed, and $C''$ is $\set{x_0, x_1, x_2, \ldots}$.
 
 This lemma is the opposite of lemma \ref{lemMonotoneAlwaysBelowLub}, which
-intuitively states that monotone functions preserve chains and lubs, while the
-interaction between $S$ and $\below$ is required for $S$ to also reflect chains
-and lubs.
+intuitively states that monotone functions factor into chains, while the
+interaction between $S$ and $\below$ is required for $S$ to factor out of chains.
 
 
 \begin{proof}
