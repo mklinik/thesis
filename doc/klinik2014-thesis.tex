@@ -719,7 +719,7 @@ For objects $A$, $B$ in Cppo, define the \emph{separated sum} $A + B$ as $A
 
 Both constructions yield cppos and their inclusions are continuous.
 
-The coalesced sum is not useful for categorical fixpoint semantics of
+The coalesced sum is not useful (todo: that's just plain wrong!) for categorical fixpoint semantics of
 programming languages. We intend to use a generalized fixpoint construction to
 ensure existence of final coalgebras. The construction works by iterating a
 functor on the terminal object and taking the limit of the resulting chain. If
@@ -838,6 +838,8 @@ for $R_D : A \mapsto D + A$, and we have for all $f
 \end{proposition}
 
 This sets up the stage for our following considerations.
+
+
 
 \section{Fixpoint Semantics for Recursive Functions}
 \label{secFixpointSemantics}
@@ -1918,9 +1920,12 @@ perspective of category theory can be found in \cite{Pierce1991},
 
 \bibliographystyle{plain}
 \bibliography{computer_science}
-\end{document}
 
 \todo{The section on domains in \cite{Gunter1992} is based on his paper with
 Scott from 1990}
+
+\todo{decide whether it is ``datatypes'' or ``data types''}
+
+\end{document}
 
 % vim: textwidth=80:spell:spelllang=en_us
