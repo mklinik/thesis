@@ -75,7 +75,49 @@ computation steps in a similar way.
 
 \section{Introduction}
 
-Introduction
+Writing computer programs is a two-fold activity, as is proving mathematical
+propositions. There is the syntactical exercise of producing well-formed
+formulas on the one hand, and mental manipulation of abstract objects on the
+other. The intuition is that our formulas describe objects and their properties
+in some semantic domain, often a mathematical set or algebraic structure. In
+mathematics, the study of their relationship is called model theory.  Classic
+model theory in particular deals with first order predicate logic on the
+syntactic side and Tarski's notion of model and truth on the semantic side.
+
+One may be tempted to wonder whether first order predicate logic is \emph{the}
+language for mathematics. Is Tarski's definition of truth the \emph{true} one?
+Are the universal and existential quantifiers canonical? Why these two, why the
+sentential connectives \emph{and} and \emph{or}? Russel (todo: cite Intro to
+Mathematical Philosophy) argues that the kind of question that starts at a
+certain topic and proceeds toward the general is called philosophy. Another kind
+of question starts at the same topic but proceeds in the other direction,
+toward the concrete: Which properties does the object under consideration have
+and how to conclude that? Let's call this kind of endeavor science. The boundary
+between these two is elusive, and often shifts as questions on either side are
+answered. It is still a useful distinction to classify research
+activity.
+
+Scientific questions are often motivated not by fundamental but by practical
+considerations. Even if we wouldn't know what the natural numbers \emph{are},
+their properties were still useful to decide whether it is time to go shopping
+for more eggs. The same can be said for first order predicate logic. Potential
+incompletenesses notwithstanding, it has stood the test of time as a tool for
+mathematicians to convince others of their work.
+
+The first two big questions in any discipline that deals with the interplay of
+syntax and semantics are those of soundness and completeness, and programming is
+no exception. In logic, soundness is the property that every provable formula is
+true in the model, and completeness that every true formula is provable. In
+programming, the situation is similar in spirit. Soundness is the property that
+every well-formed formula denotes an element in the semantic domain, and
+completeness that every element in the semantic domain is representable by a
+well-formed formula.
+
+The notions soundness and completeness are used similarly in other areas of
+programming language research, for example to relate type systems and evaluation
+strategies.  We won't be considering such topics here.
+
+In this paper, we \ldots
 
 \section{Domain Theory}
 
