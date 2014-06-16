@@ -121,6 +121,25 @@ In this paper, we \ldots
 
 \section{Domain Theory}
 
+Programming languages usually feature a set of built-in base types like integers
+and booleans. On a semantical level, we imagine programs as manipulations of
+such objects, in particular we want to view algorithms as mathematical
+functions. If we care for completeness, for reasons of cardinality this
+immediately restricts our choices for semantic domains. The set of all programs
+in a programming language is at most all finite words over some finite alphabet,
+hence countable. There are however uncountably many functions $\bbN \arr \bbN$,
+which implies that not every such function can be represented by a program.
+
+\begin{proposition}
+If $D$ is a countable complete partial order, then the space of Scott-continuous
+functions $[D \arr D]$ is countable as well.
+\end{proposition}
+
+This result, besides others, motivates our search for domains as denotations for
+data types.
+
+\todo{Does this not exclude useful functions?}
+
 \begin{definition}
 
 Let $D$ be a poset, $S \subseteq D$. The \emph{least upper bound} (``lub'') of
@@ -289,8 +308,8 @@ it is order preserving, that is for all $x, y \in C$,
 
 \begin{definition}
 
-Let $C$, $D$ be cpos. A function $f : C \arr D$ is \emph{continuous} iff it
-is monotone and preserves lubs, that is for all chains $P \subseteq C$,
+Let $C$, $D$ be cpos. A function $f : C \arr D$ is \emph{Scott-continuous} iff
+it is monotone and preserves lubs, that is for all chains $P \subseteq C$,
 \begin{IEEEeqnarray*}{rCl}
   f(\lub_{x \in P} x) = \lub_{x \in P} f(x)
 \end{IEEEeqnarray*}
@@ -307,7 +326,9 @@ Note that if a function preserves lubs, it is monotone,
 but in a proof of continuity of a function $f$ we usually need to prove
 monotonicity as a first step so that for a chain $P$, $\set{f(x) \mid x \in P}$
 is again a chain. This motivates the explicit mention of
-monotonicity in the definition of continuity.
+monotonicity in the definition of Scott-continuity. Because we are only
+concerned with this one notion of continuity here, we will speak of just
+continuous functions.
 
 
 \begin{lemma}
