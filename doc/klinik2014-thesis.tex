@@ -1023,34 +1023,77 @@ to be continuous and show that its fixpoint fulfills the desired definition.
 
 \section{Syntax and Semantics of Algebraic Data Types}
 
-Algebraic data types (\emph{ADT}) are a way to allow the programmer to add new
-base types besides the built-in ones to the programming language. As feature of
+Algebraic data types (\emph{ADT}) allow the programmer to add new
+base types besides the built-in ones to a programming language. As feature of
 the formal system of a programming language, they need to be incorporated into
-syntax and semantics. While the details of the concrete syntax differs ...
+syntax and semantics.
 
-it's always sums of products where factors are either constant or recursive -
-empty product is allowed, but not empty sum
+ADTs are sums of products, where the factors are either constant or recursive.
+Empty products are allowed, but sums usually need to have at least one term.
 
-<ADT> ::= data <ID> = <CONSTRUCTOR> (| <CONSTRUCTOR>)*
+Consider for example the ADT modeling the natural numbers in Haskell:
 
-<CONSTRUCTOR> ::= <ID> <TYPE>*
+\begin{verbatim}
+data Nat = Zero | Succ Nat
+\end{verbatim}
+
+The datatype Nat is a sum of two terms. The term Zero is the empty product while
+the term Succ is a singleton product with one recursive factor.
+
+The datatype for binary trees with boolean values at the leaves, is a sum of two
+terms, where the Leaf term has one constant factor and the Node term has two
+recursive factors.
+
+\begin{verbatim}
+data Tree = Leaf Bool | Node Tree Tree
+\end{verbatim}
+
+Semantics for a programming language depend on the reduction strategy. Or
+rather, if we have an operational and a denotational semantics we would like
+them to commute as in diagram \ref{figOperateDenoteSemantics}, where $P$ are
+programs and $D$ is our semantic domain.
 
 \begin{figure}[h]
 \begin{center}
 \begin{tikzpicture}
-\matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+\matrix (m) [matrix of math nodes,row sep=3em,column sep=6em,minimum width=2em]
   {
      P & D \\
      P & D \\
   };
   \path[-stealth]
-    (m-1-1) edge node [left] {eval} (m-2-1)
-    (m-1-1) edge node [above] {translate} (m-1-2)
-    (m-2-1.east|-m-2-2) edge node [below] {translate} (m-2-2)
-    (m-1-2) edge node [right] {eval} (m-2-2);
+    (m-1-1) edge node [left] {reduce} (m-2-1)
+    (m-1-1) edge node [above] {denote} (m-1-2)
+    (m-2-1.east|-m-2-2) edge node [below] {denote} (m-2-2)
+    (m-1-2) edge node [right] {evaluate} (m-2-2);
 \end{tikzpicture}
 \end{center}
+\caption{Operational and denotational semantics.}
+\label{figOperateDenoteSemantics}
 \end{figure}
+
+Consider for example the program $\lambda x . 1$. When using a lazy evaluation
+strategy we want it to denote the constant function $x \mapsto 1$. Under strict
+evaluation however we would like it to denote the function
+\begin{equation*}
+x \mapsto \left\{
+  \begin{array}{lcl}
+   1     & \text{if} & x \neq \bot \\
+   \bot  & \text{if} & x = \bot
+  \end{array}
+\right.
+\end{equation*}
+otherwise diagram \ref{figOperateDenoteSemantics} would not commute
+for the program $(\lambda x . 1)\Omega$ where $\Omega$ is some diverging
+term.
+
+The same holds for sum and product types, and therefore for ADTs. The program
+$\text{fst}\langle M,N\rangle$ only reduces to $M$ in all cases under a lazy
+evaluation strategy. Strict evaluation diverges if $N$ is $\Omega$, and our
+denotational semantics should capture this. Technically this means for strict
+evaluation we would like all pairs to be identified with $\bot$ if at least one
+of the components is $\bot$.
+
 semantics depends on evaluation strategy - strict and lazy - require different
 interpretations of ADTs - constructor = product (empty product?) - list of
 constructors = sum (singleton sum?) - recursion - (final)initial (co)algebras of
@@ -1965,6 +2008,7 @@ perspective of category theory can be found in \cite{Pierce1991},
 Scott from 1990}
 
 \todo{decide whether it is ``datatypes'' or ``data types''}
+\todo{decide whether it is ``typechecking'' or ``type checking''}
 
 \end{document}
 
