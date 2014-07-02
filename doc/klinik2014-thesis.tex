@@ -121,24 +121,21 @@ In this paper, we \ldots
 
 \section{Domain Theory}
 
-Programming languages usually feature a set of built-in base types like integers
-and booleans. On a semantical level, we imagine programs as manipulations of
-such objects, in particular we want to view algorithms as mathematical
-functions. If we care for completeness, for reasons of cardinality this
-immediately restricts our choices for semantic domains. The set of all programs
-in a programming language is at most all finite words over some finite alphabet,
-hence countable. There are however uncountably many functions $\bbN \arr \bbN$,
-which implies that not every such function can be represented by a program.
+Programming languages usually feature some built-in basic objects like integers
+and booleans. On a semantic level, we imagine programs as manipulations of such
+objects, in particular we want to view algorithms as mathematical functions.
+When studying the semantics of untyped languages with higher-order functions,
+which we think of as sugar coated untyped lambda calculi, where terms denote
+both elements of and functions between the semantic domain $D$, we soon run into
+the equation $D \cong D \arr D$ or slight variants thereof.
 
-\begin{proposition}
-If $D$ is a countable complete partial order, then the space of Scott-continuous
-functions $[D \arr D]$ is countable as well.
-\end{proposition}
+Furthermore, in most languages we can specify functions recursively. In such a
+specification the name of the function being defined occurs both on the left and
+right hand side of an equation, and the question arises whether such functions
+are actually well-defined.
 
-This result, besides others, motivates our search for domains as denotations for
-data types.
-
-\todo{Does this not exclude useful functions?}
+For both recursive domain equations and recursive function definitions, domain
+theory offers tools to approach solutions.
 
 \begin{definition}
 
