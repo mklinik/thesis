@@ -147,7 +147,7 @@ to call it \emph{the} lub.
 
 \begin{definition}
 
-A \emph{chain} $C$ in a poset is a non-empty linearly ordered subset, that is
+A \emph{chain} $C$ in a poset is a linearly ordered subset, that is
 $\forall x,y \in C \ldotp x \below y \oor y \below x$
 
 \end{definition}
@@ -160,6 +160,8 @@ $F \subseteq D$ has an upper bound in $D$.
 
 \end{definition}
 
+Note that chains may be empty, while directed sets D may not, as the upper bound
+of the empty set must be in D.
 
 In literature on domain theory and semantics of programming languages, one
 encounters three different definitions of complete partial orders.  There is
@@ -181,8 +183,8 @@ directed set has a least upper bound.
 
 \begin{definition} \label{defCpoChainComplete}
 
-A chain-complete partial order, \emph{ccpo}, is a partial order where every chain
-has a least upper bound.
+A chain-complete partial order, \emph{ccpo}, is a partial order where every
+non-empty chain has a least upper bound.
 
 \end{definition}
 
@@ -211,8 +213,8 @@ refer to the literature for the uncountable case. \todo{refer to the literature}
 
 \begin{proof}
 
-$\ref{defCpoDirectedComplete} \implies \ref{defCpoChainComplete}$: Every chain
-is a directed set.
+$\ref{defCpoDirectedComplete} \implies \ref{defCpoChainComplete}$: Every
+non-empty chain is a directed set.
 
 $\ref{defCpoChainComplete} \implies \ref{defCpoOmegaSequenceComplete}$:
 The image of a non-decreasing $\omega$-sequence is a chain.
