@@ -115,13 +115,17 @@ both elements of and functions between some semantic domain $D$, we soon run
 into the equation $D \cong D \arr D$ or variants thereof. The question
 arises whether there is some $D$ satisfying this equation.
 
+The untyped lambda calculus has fixpoint combinators. A semantics for the
+untyped lambda calculus must reflect this, which means that if we want functions
+of some kind as denotations for abstractions, such functions must have
+fixpoints.
+
 Furthermore, in most languages we can specify functions recursively. In such a
 specification the name of the function being defined occurs both on the left and
 right hand side of an equation, and the question arises whether such functions
 are actually well-defined.
 
-For both recursive domain equations and recursive function definitions, domain
-theory offers tools to approach solutions.
+Domain theory offers tools to approach answers to such questions.
 
 \begin{definition}
 
