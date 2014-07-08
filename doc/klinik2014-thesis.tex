@@ -62,6 +62,8 @@
 \author{Markus Klinik}
 \maketitle
 
+\todo{Find out how the title page should be organized.}
+
 \begin{abstract}
 
 (todo: state high-level problem) We study the relation between lazy natural numbers with and without computation
@@ -1029,7 +1031,7 @@ to be continuous and show that its fixpoint fulfills the desired definition.
 \section{Syntax and Semantics of Algebraic Data Types}
 \label{secAlgebraicDataTypeSemantics}
 
-\todo{This chapter is work in progress.}
+\todo{This section is work in progress.}
 
 Algebraic data types (\emph{ADT}) allow the programmer to add new
 base types besides the built-in ones to a programming language. As feature of
@@ -1171,9 +1173,6 @@ There exists a continuous embedding-projection pair
 \end{IEEEeqnarray*}
 such that $\pi \circ \varepsilon = \text{id}_A$.
 \end{proposition}
-
-
-\todo{define $f \below g$ for $f, g : [A \arr B]$ and lub of chains pointwise}
 
 
 Greatest fixpoints of functors arise as limits of left chains. See theorem
@@ -1331,6 +1330,10 @@ the Hasse diagrams of figures \ref{figDomainOfLazyNaturals} and
 \caption{The cppo $(B, \below)$.}
 \label{figDomainOfNuF}
 \end{figure}
+
+
+\todo{define $f \below g$ for $f, g : [A \arr B]$ and lub of chains pointwise}
+
 
 \begin{lemma} \label{lemEpsilonExists}
 There is a continuous function $\varepsilon : A \arr B$ such that
@@ -1783,11 +1786,9 @@ where $\_S0$ and $S0$ are not related by $\below$ in $B$.
 
 \section{Generalization of the Construction}
 
-\todo{This chapter is work in progress.}
-
-\todo{Move part about polynomial functors to section
-\ref{secAlgebraicDataTypeSemantics}, explain there how to go from ADTs to polynomial
-functors.}
+\todo{Move definition of polynomial functors to section
+\ref{secAlgebraicDataTypeSemantics}, explain there how to go from ADTs to
+polynomial functors. Otherwise this chapter is done.}
 
 \begin{lemma} \label{lemFunctionCompositionContinuous}
 Function composition
@@ -2001,7 +2002,7 @@ By finality of $\alpha$ just as in the proof of \ref{propEpsilonPiExist}, $\pi
 
 \section{Related Work}
 
-\todo{Say something about Caprettas Partiality is an Effect and the Delay Monad}
+\todo{Say something about \emph{Caprettas Partiality is an Effect} and the Delay Monad}
 
 \section{Bibliographic notes}
 
