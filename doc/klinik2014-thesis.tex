@@ -681,15 +681,17 @@ Propositions \ref{propCCCNoFixpointInitialObject} and
 \ref{propCCCNoFixpointCoproducts} are due to Huwig \cite{Huwig1990}, and
 demonstrate that if we want to use Cppo, or in fact any CCC with fixpoints,  as
 model for programming languages, we won't get interpretations for sum types that
-correspond to categorical coproducts. Nevertheless, we have a similar
-construction that serves our purpose.
+correspond to categorical coproducts. Nevertheless, we have similar
+constructions that serve our purpose.
 
 The disjoint union of cppos fails to have a bottom element, thus it is not a
 cppo. There are two common ways to remedy this situation. We can either use a
 construction that artificially adds a new bottom element below the disjoint
-union, or one that identifies all bottom elements \cite{Gunter1992}. The former
-is called \emph{separated sum}, the latter \emph{coalesced sum}.  Figure
-\ref{figSeparatedAndCoalescedSum} sketches both these constructions of two given cppos.
+union, or one that identifies all bottom elements. This is standard practice in
+domain theory, see for example \cite{Gunter1992}. The former is called
+\emph{separated sum}, the latter \emph{coalesced sum}.  Figure
+\ref{figSeparatedAndCoalescedSum} sketches both these constructions of two given
+cppos.
 
 \begin{figure}[ht]
 \begin{center}
@@ -729,21 +731,14 @@ For objects $A$, $B$ in Cppo, define the \emph{separated sum} $A + B$ as $A
 \below \bot_A$ and $\bot_{AB} \below \bot_B$.
 \end{definition}
 
-Both constructions yield cppos and their inclusions are continuous.
-
-The coalesced sum is not useful (todo: that's just plain wrong!) for categorical fixpoint semantics of
-programming languages. We intend to use a generalized fixpoint construction to
-ensure existence of final coalgebras. The construction works by iterating a
-functor on the terminal object and taking the limit of the resulting chain. If
-we consider the functor $F(X) = 1 \oplus X$,
-then the first iteration yields $F(1) = 1 \oplus 1 = 1$, so $F$ has a trivial
-fixpoint. Using the separated sum however, this approach yields what we expect
-to be the semantics for the lazy natural numbers. In the following, we
-concentrate on the separated sum.
+Both constructions yield cppos and their inclusions are continuous.  Both
+constructions are useful for programming language semantics, as seen in section
+\ref{secAlgebraicDataTypeSemantics}.  We concentrate on the separated sum for
+now, because it will be important for us later on.
 
 As seen in \ref{propCCCNoFixpointCoproducts}, the separated sum cannot be a
-categorical coproduct. If we look at the usual coproduct diagram in Cppo in
-figure \ref{figCoproductDiagram}, for arrows $f$ and $g$,
+categorical coproduct. Consider the usual coproduct diagram in Cppo in
+figure \ref{figCoproductDiagram}. For arrows $f$ and $g$,
 there might be different functions $A+B \arr D$ making the diagram commute:
 $\bot_{AB}$ is not in the image of the inclusions, so a function $A+B \arr D$
 may map $\bot_{AB}$ to any element in $D$.  The strict function $[f\!,g]$
