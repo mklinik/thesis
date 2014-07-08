@@ -1474,8 +1474,8 @@ Let $b$ be an upper bound of $C''$. Then
 \end{proof}
 
 A similar result holds for a chain in $B$ which eventually rises into $S$ or
-$\_$. The respective other constructor is not relevant,
-so the proof proceeds in both cases just as in
+$\_$. The proof proceeds for each constructor separately, where the respective other
+constructor is not relevant, so the proof works in both cases just as in
 \ref{lemChainInversion}:
 
 \begin{lemma} \label{lemChainInversionB}
@@ -1609,9 +1609,9 @@ There is a function $\pi : B \arr A$ such that
 \begin{IEEEeqnarray*}{c}
 \pi(b) = \left\{
   \begin{array}{rcl}
-   \bot_A & \text{if} & b = \bot_B \\
-   0_A & \text{if} & b = 0_B \\
-   S_A(\pi(b')) & \text{if} & b = S_B(b') \\
+   \bot & \text{if} & b = \bot \\
+   0 & \text{if} & b = 0 \\
+   S(\pi(b')) & \text{if} & b = S(b') \\
    \pi(b') & \text{if} & b = \_(b')
   \end{array}
 \right.
@@ -1741,7 +1741,7 @@ We are now ready to conclude the result of this section.
 \begin{proof}
 (Proposition \ref{propEpsilonPiExist}) The existence of $\varepsilon$ and $\pi$
 was proven in lemmas \ref{lemEpsilonExists} and \ref{lemPiExists}. To show that
-this is an embedding-projection-pair, i.e. $\pi \circ \varepsilon =
+they form an embedding-projection-pair, i.e. $\pi \circ \varepsilon =
 \text{id}_A$, let $a \in A$.
 
 If $a = \bot$ then $\pi(\varepsilon(\bot)) = \pi(\bot) = \bot$.
@@ -1755,6 +1755,7 @@ In all cases, $\alpha \circ (\pi \circ \varepsilon) = F(\pi \circ \varepsilon)
 \circ \alpha$, which means that the following diagram commutes, and because
 $\alpha$ is the final coalgebra for $F$ this implies $\pi \circ \varepsilon =
 \text{id}_A$.
+\end{proof}
 \begin{figure}[h]
 \begin{center}
 \begin{tikzpicture}
@@ -1771,7 +1772,6 @@ $\alpha$ is the final coalgebra for $F$ this implies $\pi \circ \varepsilon =
 \end{tikzpicture}
 \end{center}
 \end{figure}
-\end{proof}
 
 For the other direction it would be nice to have at least $\varepsilon \circ
 \pi \below \text{id}_B$, but that's not the case. To see why,
