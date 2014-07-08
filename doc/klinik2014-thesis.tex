@@ -460,9 +460,20 @@ requirement for functions in $[D \arr D]$ to be continuous restricts the
 function space sufficiently as to not increase in cardinality.
 
 So far, the situation in Cppo is quite satisfying. For a programming language
-semantics however, we also want coproducts. Unfortunately, due to the following
-results, the best we can hope for are approximations.  These results were known
-before, but made precise by Huwig \cite{Huwig1990},
+semantics however, we also want coproducts. Unfortunately, CCCs with fixpoints
+cannot have coproducts, so the best we can hope for are approximations.  These
+results were known before, but made precise by Huwig \cite{Huwig1990}.
+
+\begin{definition}
+A category is \emph{trivial} iff it has, up to isomorphism, exactly one object
+with only the identity arrow.
+\end{definition}
+
+\begin{proposition} \label{propCCCNoFixpointCoproducts}
+Any CCC with the fixpoint property and binary coproducts is trivial.
+\end{proposition}
+
+The proof uses some intermediary constructions which we introduce first.
 
 \begin{definition}
 An \emph{initial object} in a category is an object $0$ such that for any object
@@ -540,11 +551,6 @@ $Y(\text{id}_0) : 1 \arr 0$.  Composing it with the terminal map $!_0 : 0 \arr
 isomorphism $0 \cong 1$.
 \end{proof}
 
-\begin{definition}
-A category is \emph{trivial} iff it has, up to isomorphism, exactly one object
-with only the identity arrow.
-\end{definition}
-
 \begin{proposition} \label{propCCCNoFixpointInitialObject}
 Any CCC with the fixpoint property and initial object is trivial.
 \end{proposition}
@@ -556,12 +562,6 @@ Let $A$ be an object.  Then $1 \cong 0 \cong 0 \product A \cong 1 \product A
 the last one always holds.
 \end{proof}
 
-\begin{proposition} \label{propCCCNoFixpointCoproducts}
-Any CCC with the fixpoint property and binary coproducts is trivial.
-\end{proposition}
-
-The proof uses some intermediary constructions which we introduce first.
-
 \newcommand{\true}{\text{tt}}
 \newcommand{\false}{\text{ff}}
 
@@ -572,16 +572,40 @@ operation, and $\true, \false$ are distinguished elements of $A$, such that the
 Boolean algebra axioms hold.
 \end{definition}
 
-The definition of Boolean algebra can be lifted to category theory in the
-obvious way. Operations and elements become arrows, and the Boolean algebra
+The definition of Boolean algebra can be lifted to category theory in a
+straightforward way. This enables us to lift theorems about Boolean algebras to
+category theory. Operations and elements become arrows, and the Boolean algebra
 axioms, which are all equations, become commutative diagrams:
 
 \begin{definition}
-A \emph{Boolean algebra object} in a CCC with coproducts is an object A,
+A \emph{Boolean algebra object} in a category is an object A,
 together with arrows $\wedge, \vee : A \product A \arr A$, $\neg : A \arr A$,
 $\true, \false : 1 \arr A$ such that the diagrams corresponding to the boolean
 algebra axioms commute.
 \end{definition}
+
+For example, the axiom $\forall p . p \wedge \true = p$ corresponds to the
+requirement that the following diagram commutes.
+
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}
+\matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     A \product A & A \\
+     1 \\
+  };
+  \path[-stealth]
+    (m-2-1) edge node [left] {$\langle p, \true \rangle$} (m-1-1)
+    (m-1-1) edge node [above] {$\wedge$} (m-1-2)
+    (m-2-1) edge node [below right] {$p$} (m-1-2) ;
+\end{tikzpicture}
+\end{center}
+\end{figure}
+
+\begin{lemma}
+In a CCC with coproducts, $2 = 1+1$ is a boolean algebra object. \qed
+\end{lemma}
 
 \begin{lemma}
 In a Boolean algebra $A$ where $\neg$ has a fixpoint $Y(\neg) = \neg Y(\neg)$,
@@ -600,24 +624,23 @@ all elements are identified.
 Further, for any $a \in A$, $\false = a \wedge \false = a \wedge \true = a$.
 \end{proof}
 
-\begin{lemma}
-In a CCC with coproducts, $2 = 1+1$ is a boolean algebra object. \qed
-\end{lemma}
-
 \begin{corollary}
+\label{lemCoproductInjectionsIdentified}
 In a CCC with fixpoints where the coproduct $1+1$ exists, the coproduct
 injections $\true, \false : 1 \arr 1+1$ are identified. \qed
 \end{corollary}
 
 \begin{proposition}
+\label{propCCCWith11IsTrivial}
 Every CCC with fixpoints where the coproduct $1+1$ exists is trivial.
 \end{proposition}
 
 \begin{proof}
 We have that the functor $- \product A$ preserves coproducts, so $(1+1)\product
-A = 2 \product A = A + A$ exists. From the embeddings $\true \product A, \false
-\product A : 1 \product A \arr 2 \product A$, and the fact that $1 \product A
-\cong A$ we get $\kappa_0 = \kappa_1 : A \arr A + A$. Consider the following
+A = 2 \product A = A + A$ is a coproduct. Applying
+\ref{lemCoproductInjectionsIdentified} to the embeddings $\true \product A, \false
+\product A : 1 \product A \arr A + A$, and the fact that $1 \product A
+\cong A$ we get $\kappa_0 = \kappa_1 : A \arr A + A$. Now consider the following
 diagram.
 
 \begin{center}
@@ -645,7 +668,7 @@ The diagram commutes, and together with $\kappa_0 = \kappa_1$ we get $\bot_A
 
 \begin{proof}
 (Proposition \ref{propCCCNoFixpointCoproducts}) In a CCC with binary coproducts,
-$1+1$ exists.
+$1+1$ exists. Apply \ref{propCCCWith11IsTrivial}.
 \end{proof}
 
 The singleton set $\set{\bot}$ is not initial in Cppo, because morphisms don't
