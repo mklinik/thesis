@@ -818,7 +818,7 @@ F_C(g : D \arr D') & = & F(1_C \times g) : F(C \times D) \arr F(C \times D')
 \begin{proposition}
 
 The separated sum construction is a bifunctor $+ : \Cppo \times
-\Cppo \arr \Cppo$. That is for all $D$, the
+\Cppo \arr \Cppo$. That is for fixed $D$, the
 object mapping $L_D : A \mapsto A + D$ extends to a functor: $f \mapsto
 [\kappa_0 \circ f, \kappa_1 \circ \text{id}_D]$.  Symmetrically
 for $R_D : A \mapsto D + A$, and we have for all $f
@@ -858,8 +858,6 @@ purposes that don't concern programming.
 
 First, we look at the factorial function, as it is a simple example that nicely
 demonstrates the technique at work.
-
-\todo{cite critique 1 in Arbib and Manes for the factorial example}
 
 \begin{lemma} \label{lemPartialFunctionSpaceCppo}
 
@@ -962,7 +960,7 @@ f = \varphi(f) \label{eqnFactorialFixpoint}
 \end{IEEEeqnarray}
 
 Using equation (\ref{eqnFactorialFixpoint}) we proceed to show that the required
-equations (\ref{eqnFactorial1}) and (\ref{eqnFactorial2}) hold.
+equations (\ref{eqnFactorial1}) and (\ref{eqnFactorial2}) hold:
 \begin{IEEEeqnarray*}{rCl}
 f(0) & = & \varphi(f)(0) = 1 \\
 f(n) & = & \varphi(f)(n) = n \cdot f(n - 1) \quad\text{if}\ \ n > 0
@@ -1110,7 +1108,7 @@ polynomial functors - existence thereof
 
 
 
-\section{$1+X$ and $1+X+X$}
+\section{Naturals With And Without Computation Steps}
 
 In this section we look at the relationship between the functors
 \begin{IEEEeqnarray*}{rCl}
@@ -1333,7 +1331,7 @@ the Hasse diagrams of figures \ref{figDomainOfLazyNaturals} and
 \end{figure}
 
 \begin{lemma} \label{lemEpsilonExists}
-There is a function $\varepsilon : A \arr B$ such that
+There is a continuous function $\varepsilon : A \arr B$ such that
 
 \begin{equation*}
 \varepsilon(a) = \left\{
@@ -1362,7 +1360,7 @@ $0$.
 
 Third, we write $S$ for $\kappa_1$ and $\_$ for $\kappa_2$.
 
-The requirements for \ref{lemEpsilonExists} then become:
+The equation of \ref{lemEpsilonExists} then becomes:
 
 \begin{equation*}
 \varepsilon(a) = \left\{
@@ -1375,9 +1373,10 @@ The requirements for \ref{lemEpsilonExists} then become:
 \end{equation*}
 
 From this it is easier to see that $\varepsilon$ doesn't do anything except
-replacing the constructors of $1+A$ by their equivalent of $1+B+B$. The proof
-proceeds similarly to the one of \ref{propFactorialExists}, but now we have
-more work to do. We need the following lemmas.
+embedding a value of $1+A$ in $1+B+B$. The proof proceeds similarly to the one
+of \ref{propFactorialExists}, but now we have more work to do, as we
+additionally want $\varepsilon$ to be continuous. We need the following
+lemmas.
 
 
 \begin{lemma} \label{lemDefinitionBelowAandB}
@@ -1433,9 +1432,9 @@ x_0 \below x_1 \below x_2 \below \ldots
 is a chain and the lub of the first is the same as the successor of the lub of
 the second. The set $C'$ is the chain with all leading non-$S$ elements removed, and $C''$ is $\set{x_0, x_1, x_2, \ldots}$.
 
-This lemma is the opposite of lemma \ref{lemMonotoneAlwaysBelowLub}, which
-intuitively states that monotone functions factor into chains, while the
-interaction between $S$ and $\below$ is required for $S$ to factor out of chains.
+This lemma is similar to lemma \ref{lemMonotoneAlwaysBelowLub}, which
+intuitively states that arbitrary monotone functions factor into chains, while
+here $S$ factors out of chains.
 
 
 \begin{proof}
