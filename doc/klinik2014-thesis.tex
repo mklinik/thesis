@@ -168,7 +168,7 @@ $F \subseteq D$ has an upper bound in $D$.
 
 \end{definition}
 
-Note that chains may be empty, while directed sets D may not, as the upper bound
+Note that chains can be empty, while directed sets D can not, as the upper bound
 of the empty set must be in D.
 
 In literature on domain theory and semantics of programming languages, one
@@ -258,15 +258,15 @@ set doesn't need to be linearly ordered. Every directed set does however contain
 a chain which threads through the whole set, eventually rising above all
 elements. The lub of the chain is then the lub of the directed set.
 
-This equivalence justifies simply talking about \emph{complete partial orders},
-or \emph{cpos}. We use the definitions interchangeably, whichever is most handy
-in a given situation.
+The equivalence between the three definitions justifies simply talking about
+\emph{complete partial orders}, or \emph{cpos}. We use the definitions
+interchangeably, which\-ev\-er is most handy in a given situation.
 
 The fixpoint theorem constructs least fixpoints using countable chains.
 Even if a domain is uncountable, the chains for which we want lubs are therefore
-at most countable. Whenever we consider chains, we mean countable ones.
+at most countable. Whenever we consider chains, we mean non-empty countable ones.
 
-A countable chain $\set{x_n \mid x \in \bbN}$ is always also a non-decreasing
+A non-empty countable chain $\set{x_n \mid x \in \bbN}$ is always also a non-decreasing
 sequence \begin{IEEEeqnarray*}{c} x_0 \below x_1 \below x_2 \below \ldots
 \end{IEEEeqnarray*} and vice versa.
 
@@ -316,7 +316,7 @@ but in a proof of continuity of a function $f$ we usually need to prove
 monotonicity as a first step so that for a chain $P$, $\set{f(x) \mid x \in P}$
 is again a chain. This motivates the explicit mention of
 monotonicity in the definition of Scott-continuity. Because we are only
-concerned with this one notion of continuity here, we will speak of just
+concerned with this one notion of continuity here, we will call them simply
 continuous functions.
 
 
@@ -385,7 +385,7 @@ that $Y(f) = f \circ Y(f)$.
 \begin{theorem} \label{thmFixpoint}
 
 (Fixpoint Theorem) Cppo has the fixpoint property. In fact, every continuous
-function on a cppo has a \emph{unique} least fixpoint.
+function on a cppo has a unique least fixpoint.
 
 \end{theorem}
 
@@ -396,7 +396,7 @@ there exists an element $x \in D$ such that $x = f(x)$. Consider the set
 \begin{equation*}
 F = \set{f^n(\bot) \mid n \in \bbN}.
 \end{equation*}
-This set is a chain, because for $n = 0$
+F is a chain: For $n = 0$
 we have $f^0(\bot) = \bot \below f(\bot)$. Now assume that $f^n(\bot) \below
 f^{n+1}(\bot)$. Then $f(f^n(\bot)) \below f(f^{n+1}(\bot))$, so $f^{n+1}(\bot)
 \below f^{n+2}(\bot)$. Because $F$ is a chain and $D$ a cppo, $F$ has a lub $x =
@@ -474,7 +474,7 @@ there are categories where initial objects behave differently than the empty set
 in Set, perhaps unintuitively so. Important examples are categories where
 objects are algebraic structures whose signature requires the existence of
 elements, like monoids and groups. The initial objects in such categories are
-not empty sets. In such categories the equivalence $0 \cong 0 \product A$ may
+not empty sets. In such categories the equivalence $0 \cong 0 \product A$ might
 not hold.
 
 \begin{lemma} \label{lem0xAisInitial}
