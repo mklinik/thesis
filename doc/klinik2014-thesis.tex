@@ -64,7 +64,7 @@
 
 \begin{abstract}
 
-We study the relation between lazy natural numbers with and without computation
+(todo: state high-level problem) We study the relation between lazy natural numbers with and without computation
 steps. In particular we show that there exists a mediating em\-bed\-ding
 projection pair between the final coalgebras of the functors $1+X$ and $1+X+X$
 in the category of complete pointed partial orders. The construction is then
@@ -1783,6 +1783,11 @@ where $\_S0$ and $S0$ are not related by $\below$ in $B$.
 
 \section{Generalization of the Construction}
 
+\todo{This chapter is work in progress.}
+
+\todo{Move part about polynomial functors to section
+\ref{secAlgebraicDataTypeSemantics}, explain there how to go from ADTs to polynomial
+functors.}
 
 \begin{lemma} \label{lemFunctionCompositionContinuous}
 Function composition
@@ -1837,8 +1842,6 @@ G_nX$ where all $G_i$ are polynomial. The disjoint union is then taken of all
 the terms simultaneously, and one new bottom element is introduced below the
 result. The following proofs work just the same for such sums, apart from some
 induction on the number of terms.
-
-\todo{refer to Arbib and Manes; they do the same}
 
 \begin{lemma} \label{lemPolynomialFunctorsContinuous}
 Polynomial functors are continuous on arrows. That is, if $F : \Cppo \arr \Cppo$
@@ -1996,7 +1999,14 @@ By finality of $\alpha$ just as in the proof of \ref{propEpsilonPiExist}, $\pi
 
 %\section{Further directions}
 
+\section{Related Work}
+
+\todo{Say something about Caprettas Partiality is an Effect and the Delay Monad}
+
 \section{Bibliographic notes}
+
+\todo{There are lots of bibliographic notes in the text, I probably don't need an
+extra chapter.}
 
 This work is based on chapter 7 of the PhD thesis of Venanzio Capretta
 \cite{Capretta2002}, where coinductive natural numbers are discussed.  Some
@@ -2012,10 +2022,8 @@ perspective of category theory can be found in \cite{Pierce1991},
 \bibliographystyle{plain}
 \bibliography{computer_science}
 
-\todo{The section on domains in \cite{Gunter1992} is based on his paper with
-Scott from 1990}
-
 \todo{decide whether it is ``datatypes'' or ``data types''}
+
 \todo{decide whether it is ``typechecking'' or ``type checking''}
 
 \end{document}
