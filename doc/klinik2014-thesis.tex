@@ -1027,6 +1027,9 @@ to be continuous and show that its fixpoint fulfills the desired definition.
 
 
 \section{Syntax and Semantics of Algebraic Data Types}
+\label{secAlgebraicDataTypeSemantics}
+
+\todo{This chapter is work in progress.}
 
 Algebraic data types (\emph{ADT}) allow the programmer to add new
 base types besides the built-in ones to a programming language. As feature of
@@ -1061,16 +1064,15 @@ programs and $D$ is our semantic domain.
 \begin{figure}[h]
 \begin{center}
 \begin{tikzpicture}
-\matrix (m) [matrix of math nodes,row sep=3em,column sep=6em,minimum width=2em]
+\matrix (m) [matrix of math nodes,row sep=3em,column sep=5em,minimum width=2em]
   {
-     P & D \\
+     P \\
      P & D \\
   };
   \path[-stealth]
     (m-1-1) edge node [left] {reduce} (m-2-1)
-    (m-1-1) edge node [above] {denote} (m-1-2)
-    (m-2-1.east|-m-2-2) edge node [below] {denote} (m-2-2)
-    (m-1-2) edge node [right] {evaluate} (m-2-2);
+    (m-1-1) edge node [above right = 1mm and -3mm] {denote} (m-2-2)
+    (m-2-1.east|-m-2-2) edge node [below] {denote} (m-2-2);
 \end{tikzpicture}
 \end{center}
 \caption{Operational and denotational semantics.}
