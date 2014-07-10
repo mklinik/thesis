@@ -1151,7 +1151,9 @@ empty product type & 2 & 1
 
 \section{Naturals With And Without Computation Steps}
 
-In this section we look at the relationship between the functors
+Section \ref{secAlgebraicDataTypeSemantics} gave the motivation for lazy
+polynomial functors. In this section we look at the relationship between the
+concrete functors
 \begin{IEEEeqnarray*}{rCl}
 FX & = & 1 + X \\
 GX & = & 1 + X + X
@@ -1162,6 +1164,8 @@ and their respective final coalgebras:
 \beta : B \arr GB
 \end{IEEEeqnarray*}
 
+The following is a well-known fact in the field of algebras and coalgebras.
+
 \begin{lemma} \label{lemLambek}
 (Lambek op) Final coalgebras are isomorphisms.
 \end{lemma}
@@ -1169,9 +1173,9 @@ and their respective final coalgebras:
 \begin{proof}
 Let $F$ be a functor and $\alpha : A \arr FA$ its final coalgebra. Then $F\alpha
 : FA \arr FFA$ is an $F$-coalgebra, so the coalgebra map $f : FA \arr A$ exists
-such that diagram $II$ commutes.
+such that diagram $II$ in figure \ref{figLambeksLemmaOp} commutes.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
 \begin{tikzpicture}
 \matrix (m) [matrix of math nodes
@@ -1194,6 +1198,8 @@ such that diagram $II$ commutes.
     ;
 \end{tikzpicture}
 \end{center}
+\caption{Lambek's lemma op}
+\label{figLambeksLemmaOp}
 \end{figure}
 
 Diagram $I$ commutes as well, so by finality of $\alpha$ we have $f \circ
