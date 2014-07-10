@@ -1033,37 +1033,28 @@ to be continuous and show that its fixpoint fulfills the desired definition.
 
 \todo{This section is work in progress.}
 
-Algebraic data types (\emph{ADT}) allow the programmer to add new
-base types besides the built-in ones to a programming language. As feature of
-the formal system of a programming language, they need to be incorporated into
-syntax and semantics.
+In this section, we motivate our interest in certain polynomial functors.
 
-ADTs are sums of products, where the factors are either constant or recursive.
-Empty products are allowed, but sums usually need to have at least one term.
+Algebraic data types (\emph{ADT}s) allow the programmer to add new base types
+besides the built-in ones to a programming language. Conceptually, ADTs are sums
+of products, where the factors are either constant or recursive.  Empty products
+are allowed, but sums usually need to have at least one term.
 
-Consider for example the ADT modeling the natural numbers in Haskell:
-
-\begin{verbatim}
-data Nat = Zero | Succ Nat
-\end{verbatim}
-
-The datatype Nat is a sum of two terms. The term Zero is the empty product while
-the term Succ is a singleton product with one recursive factor.
-
-The datatype for binary trees with boolean values at the leaves, is a sum of two
-terms, where the Leaf term has one constant factor and the Node term has two
-recursive factors.
+Consider for example the ADT modeling lists of integers in Haskell:
 
 \begin{verbatim}
-data Tree = Leaf Bool | Node Tree Tree
+data IntList = Nil | Cons Int IntList
 \end{verbatim}
 
-Semantics for a programming language depend on the reduction strategy. Or
-rather, if we have an operational and a denotational semantics we would like
+The datatype IntList is a sum of two terms. The term Nil is the empty product
+while the term Cons has one constant and one recursive factor.
+
+Denotational semantics of programming languages depend on the reduction
+strategy. More precisely, if we have an operational and a denotational semantics we would like
 them to commute as in diagram \ref{figOperateDenoteSemantics}, where $P$ are
-programs and $D$ is our semantic domain.
+programs and $D$ is our semantic domain. We want diverging programs to denote $\bot$.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
 \begin{tikzpicture}
 \matrix (m) [matrix of math nodes,row sep=3em,column sep=5em,minimum width=2em]
@@ -1081,9 +1072,10 @@ programs and $D$ is our semantic domain.
 \label{figOperateDenoteSemantics}
 \end{figure}
 
-Consider for example the program $\lambda x . 1$. When using a lazy evaluation
-strategy we want it to denote the constant function $x \mapsto 1$. Under strict
-evaluation however we would like it to denote the function
+Consider for example the program $\lambda x . 1$. When using a call-by-name evaluation
+strategy we want it to denote the constant function $x \mapsto 1$. Under
+call-by-value
+evaluation however we would like it to denote the following function.
 \begin{equation*}
 x \mapsto \left\{
   \begin{array}{lcl}
@@ -1092,25 +1084,70 @@ x \mapsto \left\{
   \end{array}
 \right.
 \end{equation*}
-otherwise diagram \ref{figOperateDenoteSemantics} would not commute
+Otherwise diagram \ref{figOperateDenoteSemantics} would not commute
 for the program $(\lambda x . 1)\Omega$ where $\Omega$ is some diverging
-term.
+term, whose denotation is $\bot$. In general, for call-by-value evaluation
+strategies we want abstractions to denote strict continuous functions, while for
+call-by-name we only require continuity.
 
 The same holds for sum and product types, and therefore for ADTs. The program
-$\text{fst}\langle M,N\rangle$ only reduces to $M$ in all cases under a lazy
-evaluation strategy. Strict evaluation diverges if $N$ is $\Omega$, and our
-denotational semantics should capture this. Technically this means for strict
-evaluation we would like all pairs to be identified with $\bot$ if at least one
-of the components is $\bot$.
+$\text{fst}\langle M,N\rangle$ for example always reduces to $M$ under a
+call-by-name evaluation strategy. Call-by-value reduction however diverges if $N$ is
+$\Omega$, and our denotational semantics should capture this. Technically this
+means for strict evaluation we would like all pairs where at least one of the
+components is $\bot$ to be identified with $\bot$. This construction is often
+called the \emph{smash product}.
 
-semantics depends on evaluation strategy - strict and lazy - require different
-interpretations of ADTs - constructor = product (empty product?) - list of
-constructors = sum (singleton sum?) - recursion - (final)initial (co)algebras of
-polynomial functors - existence thereof
+Similarly, the following program, which uses pseudo-code pattern matching,
+diverges under call-by-value reduction, while it yields the number 1 under
+call-by-name reduction.
+\begin{IEEEeqnarray*}{l}
+(\lambda x . \text{case}\ x\ \text{of}\\
+\quad \kappa_0(-) \arr 1\\
+\quad \kappa_1(-) \arr 2)\ (\kappa_0(\Omega))
+\end{IEEEeqnarray*}
+For denotational semantics we can use coalesced and separated sums to capture
+this. In a coalesced sum of two cppos $A$ and $B$ we have $\kappa_0(\bot_A) =
+\kappa_1(\bot_B) = \bot_{A \oplus B}$, while in a separated sum these are distinct
+elements, which allows us to give denotations to the above program which
+capture the respective termination behavior. See chapter 6 in \cite{Gunter1992}
+for a more thorough treatment of sums and products under different evaluation
+strategies.
 
+The separated sum construction is not associative, that is in general we don't
+have for domains $A$, $B$ and $C$ that $(A + B) + C \cong A + (B + C)$. This is
+inconvenient if we want ADTs to denote sums with multiple terms. To work around
+this, we use a sum construction which sums all terms simultaneously and then
+adds one new bottom element, as in \cite{Manes1986}.
 
+The empty product type arises from ADT constructors without arguments, such as
+Nil in the example above. As its denotation, choosing the one-element domain for
+call-by-name and the two-element domain for call-by-value
+works nicely with their respective sum constructions.
 
+The cartesian product in $\Cppo$ is a categorical product. Likewise, the
+coalesced sum is a categorical coproduct in $\Cppo_\bot$. The separated sum
+however is not a coproduct in $\Cppo$, and the smash product not a product in
+$\Cppo_\bot$. This result, that call-by-value doesn't have products and
+call-by-name doesn't have coproducts, is discussed in \cite{Filinski1989}.
 
+We summarize above considerations in table \ref{figTableDenSem}.
+
+\begin{figure}[ht]
+\begin{center}
+\begin{tabular}{c|c|c}
+ & call-by-value & call-by-name \\
+\hline
+category & $\Cppo_{\bot}$ & $\Cppo$ \\
+abstraction & strict continuous function & continuous function \\
+sum type & coalesced sum & separated sum \\
+product type & smash product & cartesian product \\
+empty product type & 2 & 1
+\end{tabular}
+\end{center}
+\caption{Denotational semantics for algebraic data types}
+\label{figTableDenSem}
+\end{figure}
 
 \section{Naturals With And Without Computation Steps}
 
@@ -1786,10 +1823,6 @@ where $\_S0$ and $S0$ are not related by $\below$ in $B$.
 
 \section{Generalization of the Construction}
 
-\todo{Move definition of polynomial functors to section
-\ref{secAlgebraicDataTypeSemantics}, explain there how to go from ADTs to
-polynomial functors. Otherwise this chapter is done.}
-
 \begin{lemma} \label{lemFunctionCompositionContinuous}
 Function composition
 \begin{IEEEeqnarray*}{c}
@@ -1825,7 +1858,7 @@ If $x = \kappa_1(b)$, analogous to the previous case.
 \end{proof}
 
 \begin{definition}
-A functor F is called \emph{polynomial} iff it is of one of the following forms.
+A functor $F : \Cppo \arr \Cppo$ is called \emph{polynomial} iff it is of one of the following forms.
 \begin{itemize}[noitemsep]
 \item F is a constant functor $FX = D$, $Ff = id_D$ for some $D$.
 \item F is the identity functor $FX = X$, $Ff = f$.
@@ -1834,15 +1867,13 @@ A functor F is called \emph{polynomial} iff it is of one of the following forms.
 \end{itemize}
 \end{definition}
 
-Note that the separated sum is not associative, that is $(A + B) + C$ is not
-isomorphic to $A + (B + C)$. This is unpleasant when using polynomial functors
-as model for algebraic datatypes, where we want to represent constructors of
-datatypes as terms of a sum. We can work around this by allowing our separated
-sums to have many terms simultaneously, that is $FX = G_0X + G_1X + \ldots +
-G_nX$ where all $G_i$ are polynomial. The disjoint union is then taken of all
-the terms simultaneously, and one new bottom element is introduced below the
-result. The following proofs work just the same for such sums, apart from some
-induction on the number of terms.
+As discussed in section \ref{secAlgebraicDataTypeSemantics}, the separated sum
+is not associative. We can work around this by allowing our separated sums to
+have many terms simultaneously, that is $FX = G_0X + G_1X + \ldots + G_nX$ where
+all $G_i$ are polynomial. The disjoint union is then taken of all the terms
+simultaneously, and one new bottom element is introduced below the result. The
+following proofs work just the same for such sums, apart from some induction on
+the number of terms.
 
 \begin{lemma} \label{lemPolynomialFunctorsContinuous}
 Polynomial functors are continuous on arrows. That is, if $F : \Cppo \arr \Cppo$
