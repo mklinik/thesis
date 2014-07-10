@@ -440,6 +440,20 @@ Cppo has a terminal object, the singleton $\set{\bot}$. \qed
 Cppo has binary products, defined pointwise. \qed
 \end{lemma}
 
+\begin{definition}
+For $f, g : D \arr E$ continuous functions between domains, define $f \below g$ iff
+$\forall d \in D \ldotp f(d) \below g(d)$.
+\end{definition}
+
+\begin{lemma} (Lubs of function chains are defined pointwise)
+If $F$ is a chain of continuous
+functions $D \arr E$ then the function
+\begin{IEEEeqnarray*}{c}
+d \mapsto \lub \set{f(d) \mid f \in F}
+\end{IEEEeqnarray*}
+is continuous and the least upper bound of $F$. \qed
+\end{lemma}
+
 \begin{lemma} \label{lemCppoExponentials}
 Cppo has exponentials, that is
 \begin{enumerate}[noitemsep]
@@ -1373,9 +1387,6 @@ the Hasse diagrams of figures \ref{figDomainOfLazyNaturals} and
 \caption{The cppo $(B, \below)$.}
 \label{figDomainOfNuF}
 \end{figure}
-
-
-\todo{define $f \below g$ for $f, g : [A \arr B]$ and lub of chains pointwise}
 
 
 \begin{lemma} \label{lemEpsilonExists}
