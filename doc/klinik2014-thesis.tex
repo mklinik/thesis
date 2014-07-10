@@ -526,8 +526,8 @@ counterparts are identical.
 We show that $0 \product A$ is initial. Let $B$ be an object. Then the
 arrow $f = 0_B \circ \pi_1\ :\ 0 \product A \arr B$ exists. To see that it is
 unique, let $g : 0 \product A \arr B$ be an arrow. The exponent diagram of the
-CCC gives:
-\begin{figure}[h]
+CCC gives rise to figure \ref{fig0xAInitialInCCCs},
+\begin{figure}[ht]
 \begin{center}
 \begin{tikzpicture}
 \matrix (m) [matrix of math nodes,row sep=4em,column sep=4em,minimum width=2em]
@@ -543,9 +543,10 @@ CCC gives:
     (m-2-2) [out=25,in=225] edge node [below] {$g$} (m-1-3);
 \end{tikzpicture}
 \end{center}
+\caption{$0\product A$ is initial in CCCs}
+\label{fig0xAInitialInCCCs}
 \end{figure}
-
-Where $\overline{f}$ is the curried counterpart of $f$. We have: $\overline{f} =
+where $\overline{f}$ is the curried counterpart of $f$. We have: $\overline{f} =
 \overline{g}$, because $0$ is initial. Therefore $\overline{f}\product
 \text{id}_A = \overline{g}\product \text{id}_A$, and
 thus
@@ -804,7 +805,6 @@ is for all fixed $C \in \bbC$ and $D \in \bbD$, both $F_C(D) = F(C \times D) : \
 \arr \bbE$ and $F_D(C) = F(C \times D) : \bbC \arr \bbE$ must be functors.
 Furthermore, for arrows $f : C \arr C'$ in $\bbC$ and $g : D \arr D'$ in $\bbD$,
 we must have the diagram commute
-%\begin{figure}[h]
 \begin{center}
 \begin{tikzpicture}
 \matrix (m) [matrix of math nodes
@@ -823,7 +823,6 @@ we must have the diagram commute
     ;
 \end{tikzpicture}
 \end{center}
-%\end{figure}
 where
 \begin{IEEEeqnarray*}{rCl}
 F_D(f : C \arr C') & = & F(f \times 1_D) : F(C \times D) \arr F(C' \times D) \\
@@ -1044,8 +1043,6 @@ to be continuous and show that its fixpoint fulfills the desired definition.
 
 \section{Syntax and Semantics of Algebraic Data Types}
 \label{secAlgebraicDataTypeSemantics}
-
-\todo{This section is work in progress.}
 
 In this section, we motivate our interest in certain polynomial functors.
 
