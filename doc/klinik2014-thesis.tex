@@ -67,7 +67,7 @@
 \begin{abstract}
 
 Capretta \cite{Capretta2002} shows how to represent recursive functions in a
-type theory by using datatype of coinductive natural numbers. We study the
+type theory by using the datatype of coinductive natural numbers. We study the
 denotational side by analyzing the relation between the domains of the lazy and
 the coinductive natural numbers.  In particular we show that there exists a
 mediating em\-bed\-ding projection pair between the final coalgebras of the
@@ -80,19 +80,17 @@ can be augmented with computation steps in a similar way.
 \section{Introduction}
 
 Many type theories are strongly normalizing, but recursive functions may
-diverge.  As a result, not all recursive functions are representable as elements
-of a function type in such type theories. In his PhD thesis, Venanzio Capretta
-\cite{Capretta2002} shows how by using a datatype that allows infinite elements,
-it is possible to represent recursive functions as elements of a function type
-in his type theory.  He extends the formal system with the datatype of
-\emph{coinductive natural numbers}, the greatest fixpoint of the functor $F(X) =
-1 + X + X$.
+diverge.  As a result, not all recursive functions are representable in such
+theories. In his PhD thesis, Venanzio Capretta \cite{Capretta2002} shows how by
+using a datatype that allows infinite elements, it is possible to represent
+recursive functions as elements of a certain function type in his type theory.
+He extends the formal system with the datatype of \emph{coinductive natural
+numbers}, the greatest fixpoint of the functor $F(X) = 1 + X + X$.
 
-In this thesis we loosely take up this idea and study the denotational semantics
-of this datatype. Dana Scott, one of the pioneers of programming language
-semantics, discovered that complete partial orders and continuous functions lend
-themselves well for giving denotations to programs. Our study takes place in
-this setting.
+We loosely take up this idea and study the denotational semantics of this
+datatype. Dana Scott, one of the pioneers of programming language semantics,
+discovered that complete partial orders and continuous functions lend themselves
+well for giving denotations to programs. Our study takes place in this setting.
 
 In this thesis we give an introduction to domain theory, and explain how it can
 be used to guarantee the existence of denotations of certain recursive
