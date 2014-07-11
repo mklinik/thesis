@@ -66,18 +66,40 @@
 
 \begin{abstract}
 
-(todo: state high-level problem) We study the relation between lazy natural numbers with and without computation
-steps. In particular we show that there exists a mediating em\-bed\-ding
-projection pair between the final coalgebras of the functors $1+X$ and $1+X+X$
-in the category of complete pointed partial orders. The construction is then
-generalized to show that arbitrary polynomial functors can be augmented with
-computation steps in a similar way.
+Capretta \cite{Capretta2002} shows how to represent recursive functions in a
+type theory by using datatype of coinductive natural numbers. We study the
+denotational side by analyzing the relation between the domains of the lazy and
+the coinductive natural numbers.  In particular we show that there exists a
+mediating em\-bed\-ding projection pair between the final coalgebras of the
+functors $1+X$ and $1+X+X$ in the category of complete pointed partial orders.
+The construction is then generalized to show that arbitrary polynomial functors
+can be augmented with computation steps in a similar way.
 
 \end{abstract}
 
 \section{Introduction}
 
-\todo{Put thesis in relation to Capretta's work. Provide overview over document.}
+Many type theories are strongly normalizing, but recursive functions may
+diverge.  As a result, not all recursive functions are representable as elements
+of a function type in such type theories. In his PhD thesis, Venanzio Capretta
+\cite{Capretta2002} shows how by using a datatype that allows infinite elements,
+it is possible to represent recursive functions as elements of a function type
+in his type theory.  He extends the formal system with the datatype of
+\emph{coinductive natural numbers}, the greatest fixpoint of the functor $F(X) =
+1 + X + X$.
+
+In this thesis we loosely take up this idea and study the denotational semantics
+of this datatype. Dana Scott, one of the pioneers of programming language
+semantics, discovered that complete partial orders and continuous functions lend
+themselves well for giving denotations to programs. Our study takes place in
+this setting.
+
+In this thesis we give an introduction to domain theory, and explain how it can
+be used to guarantee the existence of denotations of certain recursive
+specifications. We show how the functor $1+X+X$ arises as denotation of an
+algebraic data type, and study from a computational viewpoint how it relates to
+the lazy natural numbers. The method is then generalized to add computation
+steps to arbitrary polynomial functors.
 
 \section{Background}
 
