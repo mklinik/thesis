@@ -2045,7 +2045,21 @@ By finality of $\alpha$ just as in the proof of \ref{propEpsilonPiExist}, $\pi
 
 \section{Related Work}
 
-\todo{Say something about \emph{Caprettas Partiality is an Effect} and the Delay Monad}
+This thesis is loosely based on Capretta's PhD thesis \cite{Capretta2002}, in
+which he adds a coinductive version of the natural numbers to a type theory in
+order to model recursive functions. The coinductive naturals are an instance of
+the delay monad applied to the lazy natural numbers \cite{Capretta2005}. In this
+thesis, we use well established practices of domain theory, see for example
+\cite{Gunter1992}, to study the denotational semantics of such datatypes.
+
+Yanofsky \cite{Yanofsky2003} presents a general framework to explain many common
+paradoxes as instances of similar diagonalization arguments. He constructs
+commutative diagrams around functions which obviously don't have fixpoints to
+conclude that they do have fixpoints, obtaining proofs by contradiction. Huwig's
+results \cite{Huwig1990} could be phrased in this framework, as his proof's
+central idea is to use the contradiction that the negation operation in certain
+boolean algebras has a fixpoint to conclude that these boolean algebras are
+trivial.
 
 \bibliographystyle{plain}
 \bibliography{computer_science}
