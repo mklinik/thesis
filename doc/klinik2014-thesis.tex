@@ -2045,21 +2045,56 @@ By finality of $\alpha$ just as in the proof of \ref{propEpsilonPiExist}, $\pi
 
 \section{Related Work}
 
-This thesis is loosely based on Capretta's PhD thesis \cite{Capretta2002}, in
-which he adds a coinductive version of the natural numbers to a type theory in
-order to model recursive functions. The coinductive naturals are an instance of
-the delay monad applied to the lazy natural numbers \cite{Capretta2005}. In this
-thesis, we use well established practices of domain theory, see for example
-\cite{Gunter1992}, to study the denotational semantics of such datatypes.
+This thesis is based on an idea from Capretta's PhD thesis \cite{Capretta2002},
+where he extends a type theory with a coinductive variant of the natural numbers
+in order to model general recursion. In his subsequent work, Capretta
+identified the coinductive naturals to be an instance of the delay monad applied
+to the lazy natural numbers \cite{Capretta2005}. In this thesis, we use well
+established practices of domain theory, see for example \cite{Gunter1992}, to
+study the denotational semantics of such delayed datatypes.
+
+The proof that Cppo, and in general every CCC with fixpoints, cannot have
+categorical coproducts is due to Huwig \cite{Huwig1990}. The result was known
+before, but Huwig made it precise.
 
 Yanofsky \cite{Yanofsky2003} presents a general framework to explain many common
 paradoxes as instances of similar diagonalization arguments. He constructs
 commutative diagrams around functions which obviously don't have fixpoints to
-conclude that they do have fixpoints, obtaining proofs by contradiction. Huwig's
-results \cite{Huwig1990} could be phrased in this framework, as his proof's
+conclude that they do have fixpoints, thus obtaining proofs by contradiction. Huwig's
+results could be phrased in this framework, as his proof's
 central idea is to use the contradiction that the negation operation in certain
 boolean algebras has a fixpoint to conclude that these boolean algebras are
 trivial.
+
+\section{Further Directions}
+
+Typed lambda calculi are strongly normalizing and therefore not Turing complete,
+as opposed to the untyped lambda calculus. When used as a basis for programming
+language research, typed systems are often extended with constructs that restore
+Turing completeness. One of the most common examples of such an extended system
+is Plotkin's PCF. During the past decades of programming language research, many
+variants of PCF have been designed, but they usually feature a fixpoint operator
+\cite{Gunter1992} \cite{Harper2012}. It could be worthwhile to design another
+variant of PCF with Capretta's coinductive naturals and accompanying recursion
+operator instead, give suitable operational and denotational semantics for it
+and compare this language to the variants with fixpoints. One expects them to be
+interdefinable.
+
+Many works in computer science dealing with algebraic datatypes don't consider
+denotational semantics. As sums and products are the core building blocks of
+ADTs, but we cannot have both categorical products and coproducts in a
+denotational semantics, it could be interesting to compare existing languages
+featuring ADTs like Haskell, ML and Clean in this respect. How do they deal with
+this dilemma?
+
+A lot of the work in the proofs of this thesis feels like boilerplate, that is
+instances of more general concepts. It could be interesting to approach the
+situation with the idea of the delay monad \cite{Capretta2005} in mind. The
+proofs and constructions can probably be simplified when we take the monadic
+nature of the coinductive naturals into account.
+
+
+
 
 \bibliographystyle{plain}
 \bibliography{computer_science}
