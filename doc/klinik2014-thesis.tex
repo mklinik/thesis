@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper]{report}
 
 % font stuff
 \usepackage{fouriernc}
@@ -58,13 +58,59 @@
 
 \begin{document}
 
-\title{Domains for Algebraic Datatypes with Computation Steps}
-\author{Markus Klinik}
-\maketitle
+%\title{Domains for Algebraic Datatypes with Computation Steps}
+%\author{Markus Klinik}
+%\maketitle
 
-\todo{Find out how the title page should be organized.}
+\thispagestyle{empty}
 
-\begin{abstract}
+
+\begin{center}
+
+\textbf{\Large Domains for Algebraic Datatypes with Computation Steps}
+
+\setlength{\baselineskip}{1.8\baselineskip}
+
+\vspace{1.0cm}
+
+by \\
+Markus Klinik
+
+\vspace{\fill}
+
+\vspace{\fill}
+
+A thesis submitted \\
+in partial fulfillment of the \\
+requirements for the degree of \\
+Master of Mathematical Foundations of Computing Science \\
+
+\vspace{\fill}
+
+Faculty of Science \\
+Radboud University Nijmegen
+
+\vspace{\fill}
+
+Supervised by \\
+Herman Geuvers
+
+\vspace{\fill}
+
+August 2014 \\
+
+\vspace{\fill}
+
+
+\end{center}
+
+\newpage
+
+\addcontentsline{toc}{chapter}{Abstract}
+\begin{center}
+\textbf{\large Abstract}
+\end{center}
+
 
 Capretta \cite{Capretta2002} shows how to represent recursive functions in a
 type theory by using the datatype of coinductive natural numbers. We study the
@@ -75,9 +121,26 @@ functors $1+X$ and $1+X+X$ in the category of complete pointed partial orders.
 The construction is then generalized to show that arbitrary polynomial functors
 can be augmented with computation steps in a similar way.
 
-\end{abstract}
 
-\section{Introduction}
+\newpage
+
+\addcontentsline{toc}{chapter}{Acknowledgments}
+\begin{center}
+\textbf{\large Acknowledgments}
+\end{center}
+
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\listoffigures
+
+\newpage
+
+\chapter{Introduction}
 
 Many type theories are strongly normalizing, but recursive functions may
 diverge.  As a result, not all recursive functions are representable in such
@@ -126,7 +189,9 @@ mathematics comes for a big part from its usefulness for mathematicians to
 convince others of their work. Similarly, domain theory turns out to be useful
 for the study of programming language semantics.
 
-\section{Domain Theory}
+\chapter{Domain Theory}
+
+\section{Principles}
 
 Programming languages usually feature some built-in basic objects like integers
 and booleans. On a semantic level, we imagine programs as manipulations of such
@@ -296,7 +361,7 @@ A sequence is \emph{eventually constant} iff there exists an $n \in \bbN$ such
 that for all $m > n$, $x_n = x_m$.  An eventually constant non-decreasing
 sequence is equivalent to a finite chain, and vice versa.
 
-\subsection{The Category Cppo}
+\section{The Category Cppo}
 
 
 \begin{definition}
@@ -1060,6 +1125,7 @@ function corresponding to $f$ in spirit of our $\varphi$. Then prove $\varphi$
 to be continuous and show that its fixpoint fulfills the desired definition.
 
 
+\chapter{Algebraic Data Types}
 
 \section{Syntax and Semantics of Algebraic Data Types}
 \label{secAlgebraicDataTypeSemantics}
@@ -2043,7 +2109,7 @@ By finality of $\alpha$ just as in the proof of \ref{propEpsilonPiExist}, $\pi
 \end{proof}
 
 
-\section{Related Work}
+\chapter{Related Work}
 
 This thesis is based on an idea from Capretta's PhD thesis \cite{Capretta2002},
 where he extends a type theory with a coinductive variant of the natural numbers
@@ -2066,7 +2132,7 @@ central idea is to use the contradiction that the negation operation in certain
 boolean algebras has a fixpoint to conclude that these boolean algebras are
 trivial.
 
-\section{Further Directions}
+\chapter{Further Directions}
 
 Typed lambda calculi are strongly normalizing and therefore not Turing complete,
 as opposed to the untyped lambda calculus. When used as a basis for programming
@@ -2094,9 +2160,9 @@ proofs and constructions can probably be simplified when we take the monadic
 nature of the coinductive naturals into account.
 
 
-
-
-\bibliographystyle{plain}
+% newpage needed to make page number of addcontentsline appear correctly in toc
+\newpage
+\addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{computer_science}
 
 \todo{decide whether it is ``datatypes'' or ``data types''}
