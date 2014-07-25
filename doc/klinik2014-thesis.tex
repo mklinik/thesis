@@ -591,7 +591,8 @@ function space sufficiently as to not increase in cardinality.
 So far, the situation in Cppo is quite satisfying. For a programming language
 semantics however, we also want coproducts. Unfortunately, CCCs with fixpoints
 cannot have coproducts, so the best we can hope for are approximations.  These
-results were known before, but made precise by Huwig \cite{Huwig1990}.
+results were known before as folklore theorems, the following exposition is due
+to Huwig and Poign\'e \cite{Huwig1990}.
 
 \begin{definition}
 A category is \emph{trivial} iff it has, up to isomorphism, exactly one object
@@ -808,11 +809,11 @@ theorem would hold trivially, not giving rise to fixpoint semantics of recursive
 equations.
 
 Propositions \ref{propCCCNoFixpointInitialObject} and
-\ref{propCCCNoFixpointCoproducts} are due to Huwig \cite{Huwig1990}, and
-demonstrate that if we want to use Cppo, or in fact any CCC with fixpoints,  as
-model for programming languages, we won't get interpretations for sum types that
-correspond to categorical coproducts. Nevertheless, we have similar
-constructions that serve our purpose.
+\ref{propCCCNoFixpointCoproducts} in this form are due to Huwig
+\cite{Huwig1990}, and demonstrate that if we want to use Cppo, or in fact any
+CCC with fixpoints,  as model for programming languages, we won't get
+interpretations for sum types that correspond to categorical coproducts.
+Nevertheless, we have similar constructions that serve our purpose.
 
 The disjoint union of cppos fails to have a bottom element, thus it is not a
 cppo. There are two common ways to remedy this situation. We can either use a
@@ -2148,8 +2149,9 @@ established practices of domain theory, see for example \cite{Gunter1992}, to
 study the denotational semantics of such delayed datatypes.
 
 The proof that Cppo, and in general every CCC with fixpoints, cannot have
-categorical coproducts is due to Huwig \cite{Huwig1990}. The result was known
-before, but Huwig made it precise.
+categorical coproducts is due to Huwig and Poign\'e \cite{Huwig1990}. These
+results were known before as folklore theorems, Huwig and Poign\'e coined the
+exposition given here.
 
 Yanofsky \cite{Yanofsky2003} presents a general framework to explain many common
 paradoxes as instances of similar diagonalization arguments. He constructs
