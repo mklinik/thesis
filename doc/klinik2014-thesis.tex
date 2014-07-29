@@ -1156,10 +1156,12 @@ to be continuous and show that its fixpoint fulfills the desired definition.
 
 \chapter{Algebraic Data Types}
 
-\section{Syntax and Semantics of Algebraic Data Types}
+\section{Syntax and Semantics}
 \label{secAlgebraicDataTypeSemantics}
 
-In this section, we motivate our interest in certain polynomial functors.
+In this section, we motivate our interest in certain polynomial functors. We
+briefly look at algebraic datatypes and informally argue how polynomial functors
+can be used to give denotational semantics for them.
 
 Algebraic data types (\emph{ADT}s) allow the programmer to add new base types
 besides the built-in ones to a programming language. Conceptually, ADTs are sums
@@ -1175,10 +1177,10 @@ data IntList = Nil | Cons Int IntList
 The datatype IntList is a sum of two terms. The term Nil is the empty product
 while the term Cons has one constant and one recursive factor.
 
-Denotational semantics of programming languages depend on the reduction
+Denotational semantics of programming languages depend on their reduction
 strategy. More precisely, if we have an operational and a denotational semantics we would like
 them to commute as in diagram \ref{figOperateDenoteSemantics}, where $P$ are
-programs and $D$ is our semantic domain. We want diverging programs to denote $\bot$.
+programs and $D$ is our semantic domain. Furthermore, we want diverging programs to denote $\bot$.
 
 \begin{figure}[ht]
 \begin{center}
@@ -1216,7 +1218,7 @@ term, whose denotation is $\bot$. In general, for call-by-value evaluation
 strategies we want abstractions to denote strict continuous functions, while for
 call-by-name we only require continuity.
 
-The same holds for sum and product types, and therefore for ADTs. The program
+Something similar holds for sum and product types, and therefore for ADTs. The program
 $\text{fst}\langle M,N\rangle$ for example always reduces to $M$ under a
 call-by-name evaluation strategy. Call-by-value reduction however diverges if $N$ is
 $\Omega$, and our denotational semantics should capture this. Technically this
@@ -1224,7 +1226,7 @@ means for strict evaluation we would like all pairs where at least one of the
 components is $\bot$ to be identified with $\bot$. This construction is often
 called the \emph{smash product}.
 
-Similarly, the following program, which uses pseudo-code pattern matching,
+Similarly, the following program in some language with pattern matching,
 diverges under call-by-value reduction, while it yields the number 1 under
 call-by-name reduction.
 \begin{IEEEeqnarray*}{l}
@@ -1232,8 +1234,7 @@ call-by-name reduction.
 \quad \kappa_0(-) \arr 1\\
 \quad \kappa_1(-) \arr 2)\ (\kappa_0(\Omega))
 \end{IEEEeqnarray*}
-For denotational semantics we can use coalesced and separated sums to capture
-this. In a coalesced sum of two cppos $A$ and $B$ we have $\kappa_0(\bot_A) =
+To capture this difference in denotational semantics, we can use coalesced and separated sums. In a coalesced sum of two cppos $A$ and $B$ we have $\kappa_0(\bot_A) =
 \kappa_1(\bot_B) = \bot_{A \oplus B}$, while in a separated sum these are distinct
 elements, which allows us to give denotations to the above program which
 capture the respective termination behavior. See chapter 6 in \cite{Gunter1992}
@@ -1243,20 +1244,67 @@ strategies.
 The separated sum construction is not associative, that is in general we don't
 have for domains $A$, $B$ and $C$ that $(A + B) + C \cong A + (B + C)$. This is
 inconvenient if we want ADTs to denote sums with multiple terms. To work around
-this, we use a sum construction which sums all terms simultaneously and then
+this, we can use a sum construction which sums all terms simultaneously and then
 adds one new bottom element, as in \cite{Manes1986}.
 
 The empty product type arises from ADT constructors without arguments, such as
-Nil in the example above. As its denotation, choosing the one-element domain for
-call-by-name and the two-element domain for call-by-value
-works nicely with their respective sum constructions.
+Nil in the example above. As its denotation, choosing the one-element domain 1 for
+call-by-name and the two-element domain 2 for call-by-value
+works nicely with their respective sum constructions. For example, under both
+call-by-name and call-by-value we would like the one-valued datatype
+\begin{verbatim}
+data Unit = Unit
+\end{verbatim}
+to have the flat two-element cppo 2 as denotation. Taking the one-placed
+separated sum of 1 yields this, as does taking the coalesced sum of 2.
 
-The cartesian product in $\Cppo$ is a categorical product. Likewise, the
-coalesced sum is a categorical coproduct in $\Cppo_\bot$, the category of
-complete partial orders with strict continuous functions. The separated sum
-however is not a coproduct in $\Cppo$, and the smash product not a product in
-$\Cppo_\bot$. This result, that call-by-value doesn't have products and
-call-by-name doesn't have coproducts, is discussed in \cite{Filinski1989}.
+Consider as another example the natural numbers. We want the datatype
+\begin{verbatim}
+data Nat = Zero | Succ Nat
+\end{verbatim}
+to denote the flat naturals in call-by-value languages, and the lazy naturals
+for call-by-name. This datatype is recursive, and denotations of recursive
+datatypes arise by iterating the appropriate functor on the singleton cppo, see
+\cite{Manes1986}.  By iterating the coalesced sum $2 \oplus X$ on
+1, we obtain the flat natural numbers, as suggested by figure \ref{figFlatNats}.
+How the lazy naturals arise from iterating $1+X$ on 1 is explained in more
+detail in section \ref{secNaturalsWithAndWithoutComputationSteps}.
+
+\begin{figure}[ht]
+\begin{center}
+\begin{tikzpicture}
+  \path (0,0) node [inner xsep=1em] {$\bot$} [grow'=up, sibling distance=2.0em, level distance=2.5em]
+    child { node {$0$} }
+    child { node {$1$} }
+    child { node {$2$} }
+    child { node {$\ldots$} edge from parent [draw=none]}
+
+  (0,-1) node {$\bbN_\bot$}
+
+  (5,0) node [inner xsep=1em] {$\bot$} [grow'=up, sibling distance=2.0em, level distance=2.5em]
+    child { node [inner xsep=1em] {$*$} }
+    child { node {$0$} }
+    child { node {$1$} }
+    child { node {$2$} }
+    child { node {$\ldots$} edge from parent [draw=none]}
+
+  (5, -1) node {$2 \oplus \bbN_\bot$}
+  ;
+\end{tikzpicture}
+\end{center}
+\caption{The flat natural numbers}
+\label{figFlatNats}
+\end{figure}
+
+
+The cartesian product in $\Cppo$ fulfils the requirements for a categorical
+product. Likewise, the coalesced sum is a categorical coproduct in $\Cppo_\bot$,
+the category of complete partial orders with strict continuous functions. The
+separated sum however is not a coproduct in $\Cppo$, and the smash product not a
+product in $\Cppo_\bot$. This result, that call-by-value doesn't have products
+and call-by-name doesn't have coproducts, is discussed in \cite{Filinski1989}.
+It would be interesting to study the consequences of this for denotational
+semantics of languages with ADTs in more detail.
 
 We summarize above considerations in table \ref{figTableDenSem}.
 
@@ -1272,11 +1320,12 @@ product type & smash product & cartesian product \\
 empty product type & 2 & 1
 \end{tabular}
 \end{center}
-\caption{Denotational semantics for algebraic data types}
+\caption{Suggested denotational semantics for algebraic data types}
 \label{figTableDenSem}
 \end{figure}
 
 \section{Naturals With and Without Computation Steps}
+\label{secNaturalsWithAndWithoutComputationSteps}
 
 Section \ref{secAlgebraicDataTypeSemantics} gave the motivation for lazy
 polynomial functors. In this section we look at the relationship between the
@@ -2171,7 +2220,7 @@ language research, typed systems are often extended with constructs that restore
 Turing completeness. One of the most common examples of such an extended system
 is Plotkin's PCF. During the past decades of programming language research, many
 variants of PCF have been designed, but they usually feature a fixpoint operator
-\cite{Gunter1992} \cite{Harper2012}. It could be worthwhile to design another
+\cite{Gunter1992, Harper2012}. It could be worthwhile to design another
 variant of PCF with Capretta's coinductive naturals and accompanying recursion
 operator instead, give suitable operational and denotational semantics for it
 and compare this language to the variants with fixpoints. One expects them to be
