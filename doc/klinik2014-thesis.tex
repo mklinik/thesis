@@ -186,7 +186,7 @@ well for giving denotations to programs. Our study takes place in this setting.
 In this thesis we give an introduction to domain theory, and explain how it can
 be used to guarantee the existence of denotations of certain recursive
 specifications. We show how the functor $1+X+X$ arises as denotation of an
-algebraic data type, and study from a computational viewpoint how it relates to
+algebraic datatype, and study from a computational viewpoint how it relates to
 the lazy natural numbers. The method is then generalized to add computation
 steps to arbitrary polynomial functors.
 
@@ -240,7 +240,8 @@ specification the name of the function being defined occurs both on the left and
 right hand side of an equation, and the question arises whether such functions
 are actually well-defined.
 
-Domain theory offers tools to approach answers to such questions.
+Domain theory offers tools to approach answers to such questions. We are
+particularly interested in ordered sets where certain subsets have upper bounds.
 
 \begin{definition}
 
@@ -289,8 +290,8 @@ of the empty set must be in D.
 In literature on domain theory and semantics of programming languages, one
 encounters three different definitions of complete partial orders.  There is
 chain-completeness \cite{Moschovakis1994}, directed-completeness
-\cite{DaveyPriestly1990}, \cite{Gunter1992}, and $\omega$-sequence-completeness
-\cite{Allison1986}, \cite{Winskel1993}, \cite{BarrWells1990}. Abramsky and Jung
+\cite{DaveyPriestly1990, Gunter1992}, and $\omega$-sequence-completeness
+\cite{Allison1986, Winskel1993, BarrWells1990}. Abramsky and Jung
 \cite{Abramsky1994} have a short discussion on the equivalence of these
 definitions, but refer to further literature for proofs. The proof given here
 occurs as an exercise in Davey and Priestly \cite{DaveyPriestly1990}.
@@ -376,6 +377,9 @@ elements. The lub of the chain is then the lub of the directed set.
 The equivalence between the three definitions justifies simply talking about
 \emph{complete partial orders}, or \emph{cpos}. We use the definitions
 interchangeably, which\-ev\-er is most handy in a given situation.
+Non-decreasing sequences are rather notation-heavy to write about, but probably
+more intuitive. We encourage the reader to think in terms of non-decreasing
+sequences whenever we write about chains.
 
 The fixpoint theorem constructs least fixpoints using countable chains.
 Even if a domain is uncountable, the chains for which we want lubs are therefore
@@ -420,7 +424,7 @@ it is monotone and preserves lubs, that is for all chains $P \subseteq C$,
 
 \end{definition}
 
-Note that if a function preserves lubs, it is monotone,
+Note that if a function preserves lubs then it is monotone,
 \begin{IEEEeqnarray*}{rCl}
   x \below y \implies
   y = \lub \set{x, y} \implies
@@ -500,7 +504,7 @@ that $Y(f) = f \circ Y(f)$.
 \begin{theorem} \label{thmFixpoint}
 
 (Fixpoint Theorem) Cppo has the fixpoint property. In fact, every continuous
-function on a cppo has a unique least fixpoint.
+endofunction on a cppo has a unique least fixpoint.
 
 \end{theorem}
 
@@ -511,7 +515,7 @@ there exists an element $x \in D$ such that $x = f(x)$. Consider the set
 \begin{equation*}
 F = \set{f^n(\bot) \mid n \in \bbN}.
 \end{equation*}
-F is a chain: For $n = 0$
+This is the set of all finite iterations of $f$ on $\bot$. F is a chain: For $n = 0$
 we have $f^0(\bot) = \bot \below f(\bot)$. Now assume that $f^n(\bot) \below
 f^{n+1}(\bot)$. Then $f(f^n(\bot)) \below f(f^{n+1}(\bot))$, so $f^{n+1}(\bot)
 \below f^{n+2}(\bot)$. Because $F$ is a chain and $D$ a cppo, $F$ has a lub $x =
@@ -526,7 +530,7 @@ f(x) & = & f(\lub F) \\
      & = & \lub F = x
 \end{IEEEeqnarray*}
 Line (\ref{lineFContinuous}) is because $f$ is continuous, and line
-(\ref{lineLubLeastElement}) is because omitting the least element in a chain
+(\ref{lineLubLeastElement}) is because omitting the least element of an infinite chain
 doesn't affect the lub.
 
 To see that $x$ is the least fixpoint, let $y = f(y)$ be a fixpoint of $f$. We
@@ -588,11 +592,11 @@ function space $[D \arr D]$.  This result is due to Scott \cite{Scott1990}, who
 requirement for functions in $[D \arr D]$ to be continuous restricts the
 function space sufficiently as to not increase in cardinality.
 
-So far, the situation in Cppo is quite satisfying. For a programming language
-semantics however, we also want coproducts. Unfortunately, CCCs with fixpoints
-cannot have coproducts, so the best we can hope for are approximations.  These
-results were known before as folklore theorems, the following exposition is due
-to Huwig and Poign\'e \cite{Huwig1990}.
+So far, the situation in Cppo is quite satisfying. For most programming language
+semantics however, we also want coproducts. Unfortunately, as we will see now,
+CCCs with fixpoints cannot have coproducts, so the best we can hope for are
+approximations.  These results were known before as folklore theorems, the
+following exposition is due to Huwig and Poign\'e \cite{Huwig1990}.
 
 \begin{definition}
 A category is \emph{trivial} iff it has, up to isomorphism, exactly one object
@@ -610,7 +614,7 @@ An \emph{initial object} in a category is an object $0$ such that for any object
 A there exists a unique arrow $0_A : 0 \arr A$.
 \end{definition}
 
-The prototypical example for an initial object is the empty set in Set. But
+The prototypical example for initial objects is the empty set in Set. But
 there are categories where initial objects behave differently than the empty set
 in Set, perhaps unintuitively so. Important examples are categories where
 objects are algebraic structures whose signature requires the existence of
@@ -678,8 +682,8 @@ In a category with fixpoints, initial and terminal objects are isomorphic.
 \begin{proof}
 As all endomorphisms have fixpoints, the identity on $0$ has a fixpoint
 $Y(\text{id}_0) : 1 \arr 0$.  Composing it with the terminal map $!_0 : 0 \arr
-1$ in both ways, the universal mapping properties of $0$ and $1$ give the
-isomorphism $0 \cong 1$.
+1$ in both ways, the universal mapping properties of $0$ and $1$ give that
+$0 \cong 1$ are isomorphic.
 \end{proof}
 
 \begin{proposition} \label{propCCCNoFixpointInitialObject}
@@ -703,7 +707,8 @@ operation, and $\true, \false$ are distinguished elements of $A$, such that the
 Boolean algebra axioms hold.
 \end{definition}
 
-The definition of Boolean algebra can be lifted to category theory in a
+For the Boolean algebra axioms, see for example \cite{Givant2009}. The
+definition of Boolean algebra can be lifted to category theory in a
 straightforward way. This enables us to lift theorems about Boolean algebras to
 category theory. Operations and elements become arrows, and the Boolean algebra
 axioms, which are all equations, become commutative diagrams:
@@ -767,7 +772,7 @@ Every CCC with fixpoints where the coproduct $1+1$ exists is trivial.
 \end{proposition}
 
 \begin{proof}
-We have that the functor $- \product A$ preserves coproducts, so $(1+1)\product
+We show that every object A is isomorphic to 1. We have that the functor $- \product A$ preserves coproducts, so $(1+1)\product
 A = 2 \product A = A + A$ is a coproduct. Applying
 \ref{lemCoproductInjectionsIdentified} to the embeddings $\true \product A, \false
 \product A : 1 \product A \arr A + A$, and the fact that $1 \product A
@@ -792,10 +797,13 @@ diagram.
     ;
 \end{tikzpicture}
 \end{center}
-The diagram commutes, and together with $\kappa_0 = \kappa_1$ we get $\bot_A
+The diagram commutes because our category has coproducts, and together with $\kappa_0 = \kappa_1$ we get $\bot_A
 \circ !_A = \text{id}_A$. Furthermore, because $1$ is terminal, we have $!_A
 \circ \bot_A = \text{id}_1$. We conclude that $A \cong 1$ for every $A$.
 \end{proof}
+
+We can now easily show that CCCs with fixpoints and binary coproducts are
+trivial.
 
 \begin{proof}
 (Proposition \ref{propCCCNoFixpointCoproducts}) In a CCC with binary coproducts,
@@ -804,7 +812,7 @@ $1+1$ exists. Apply \ref{propCCCWith11IsTrivial}.
 
 The singleton set $\set{\bot}$ is not initial in Cppo, because morphisms don't
 preserve all cppo structure. Continuous functions must preserve lubs, but are
-allowed to map $\bot$ to elements other that $\bot$. Otherwise the fixpoint
+allowed to map $\bot$ to elements other that $\bot$. This is in fact desired, otherwise the fixpoint
 theorem would hold trivially, not giving rise to fixpoint semantics of recursive
 equations.
 
@@ -863,7 +871,7 @@ For objects $A$, $B$ in Cppo, define the \emph{separated sum} $A + B$ as $A
 \end{definition}
 
 Both constructions yield cppos and their inclusions are continuous.  Both
-constructions are useful for programming language semantics, as seen in section
+constructions are useful for programming language semantics, as will be seen in section
 \ref{secAlgebraicDataTypeSemantics}.  We concentrate on the separated sum for
 now, because it will be important for us later on.
 
@@ -1154,7 +1162,7 @@ function corresponding to $f$ in spirit of our $\varphi$. Then prove $\varphi$
 to be continuous and show that its fixpoint fulfills the desired definition.
 
 
-\chapter{Algebraic Data Types}
+\chapter{Algebraic Datatypes}
 
 \section{Syntax and Semantics}
 \label{secAlgebraicDataTypeSemantics}
@@ -1163,7 +1171,7 @@ In this section, we motivate our interest in certain polynomial functors. We
 briefly look at algebraic datatypes and informally argue how polynomial functors
 can be used to give denotational semantics for them.
 
-Algebraic data types (\emph{ADT}s) allow the programmer to add new base types
+Algebraic datatypes (\emph{ADT}s) allow the programmer to add new base types
 besides the built-in ones to a programming language. Conceptually, ADTs are sums
 of products, where the factors are either constant or recursive.  Empty products
 are allowed, but sums usually need to have at least one term.
@@ -1226,9 +1234,8 @@ means for strict evaluation we would like all pairs where at least one of the
 components is $\bot$ to be identified with $\bot$. This construction is often
 called the \emph{smash product}.
 
-Similarly, the following program in some language with pattern matching,
-diverges under call-by-value reduction, while it yields the number 1 under
-call-by-name reduction.
+Similarly the following program, in some language with pattern matching,
+diverges under call-by-value, while call-by-name yields the number 1.
 \begin{IEEEeqnarray*}{l}
 (\lambda x . \text{case}\ x\ \text{of}\\
 \quad \kappa_0(-) \arr 1\\
@@ -1324,7 +1331,8 @@ empty product type & 2 & 1
 \label{figTableDenSem}
 \end{figure}
 
-\section{Naturals With and Without Computation Steps}
+
+\section{Natural Numbers With and Without Computation Steps}
 \label{secNaturalsWithAndWithoutComputationSteps}
 
 Section \ref{secAlgebraicDataTypeSemantics} gave the motivation for lazy
@@ -1704,6 +1712,9 @@ S(\lub C'')$ where $C'' = \set{x \mid S(x) \in C}$. Symmetrically for $\lub C =
 \end{lemma}
 
 
+We now have everything we need to prove the existence of the embedding
+$\varepsilon : A \arr B$.
+
 \begin{proof}
 
 (Lemma \ref{lemEpsilonExists}) Define $\varphi : [A \arr B] \arr [A \arr B]$ as:
@@ -1839,7 +1850,7 @@ There is a function $\pi : B \arr A$ such that
 \end{lemma}
 
 \begin{proof}
-(Lemma \ref{lemPiExists}) Define $\psi : [B \arr A] \arr [B \arr A]$ as:
+Define $\psi : [B \arr A] \arr [B \arr A]$ as:
 
 \begin{IEEEeqnarray*}{c}
 \psi(f) = b \mapsto \left\{
@@ -2002,6 +2013,10 @@ where $\_S0$ and $S0$ are not related by $\below$ in $B$.
 
 \section{Generalization of the Construction}
 
+In the previous section we saw that the lazy natural numbers are contained in
+the coinductive natural numbers. In this section we show that any datatype
+admits a coinductive variant in a similar way.
+
 \begin{lemma} \label{lemFunctionCompositionContinuous}
 Function composition
 \begin{IEEEeqnarray*}{c}
@@ -2056,7 +2071,7 @@ the number of terms.
 
 \begin{lemma} \label{lemPolynomialFunctorsContinuous}
 Polynomial functors are continuous on arrows. That is, if $F : \Cppo \arr \Cppo$
-is a polynomial functor and $C = \set{f_i}$ a chain in some function space $[A
+is a polynomial functor and $C = \set{f_i}$ a chain in a function space $[A
 \arr B]$, then $F(\lub C) = \lub FC$, where $FC = \set{Ff_i}$.
 \end{lemma}
 
@@ -2129,7 +2144,9 @@ and
 f & \mapsto & [\alpha^{-1} \circ Ff, f] \circ \beta
 \end{IEEEeqnarray*}
 
-To see why $\psi$ is well-defined, consider diagram \ref{figPsiGeneral}. We want
+To see why $\psi$ is well-defined, consider diagram \ref{figPsiGeneral}. To get
+fixpoints of
+$\varphi$ and $\psi$, we want
 to show that $\varphi$ and $\psi$ are themselves arrows in Cppo, between
 exponent objects $\varphi : A \Arr B \arr A \Arr B$ and $\psi : B \Arr A \arr B
 \Arr A$.
