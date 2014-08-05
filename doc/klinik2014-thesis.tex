@@ -1145,7 +1145,7 @@ into $\varphi$. It suffices to show
 Let $n \in \bbN$. Assume $\varphi(\lub C)(n)\isdefined$.
 
 If $n = 0$ then $\varphi(\lub C)(0) = 1$, and we have $\forall f \in C
-\ldotp \varphi(f)(0) = 1$, so $(\lub \varphi(C))(0)~= 1$.
+\ldotp \varphi(f)(0) = 1$, so $(\lub \varphi(C))(0) = 1$.
 
 If $n > 0$ then $\varphi(\lub C)(n) = n \cdot (\lub C)(n - 1)$, and thus from
 $\varphi(\lub C)(n)\isdefined$ we get $(\lub C)(n - 1)\isdefined$. But then
@@ -1268,7 +1268,7 @@ data Unit = Unit
 to have the flat two-element cppo 2 as denotation. Taking the one-placed
 separated sum of 1 yields this, as does taking the coalesced sum of 2.
 
-Consider as another example the natural numbers. We want the datatype
+Consider as another example the natural numbers. We want the data type
 \begin{verbatim}
 data Nat = Zero | Succ Nat
 \end{verbatim}
@@ -1418,7 +1418,7 @@ lifted through $\kappa_1$ to the upper right, and fresh $\kappa_0(\bot)$ and
 $\bot$ are introduced.
 
 
-\begin{figure}
+\begin{figure}[ht]
 \begin{center}
 \begin{tikzpicture}[scale=1.2]
   \node {$\bot$} [grow'=up, sibling distance=4.0em, level distance=1.9em]
@@ -1989,7 +1989,7 @@ In all cases, $\alpha \circ (\pi \circ \varepsilon) = F(\pi \circ \varepsilon)
 $\alpha$ is the final coalgebra for $F$ this implies $\pi \circ \varepsilon =
 \text{id}_A$.
 \end{proof}
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
 \begin{tikzpicture}
 \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
@@ -2017,7 +2017,7 @@ where $\_S0$ and $S0$ are not related by $\below$ in $B$.
 \section{Generalization of the Construction}
 
 In the previous section we saw that the lazy natural numbers are contained in
-the coinductive natural numbers. In this section we show that any datatype
+the coinductive natural numbers. In this section we show that any data type
 admits a coinductive variant in a similar way.
 
 \begin{lemma} \label{lemFunctionCompositionContinuous}
