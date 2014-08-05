@@ -196,7 +196,7 @@ Writing computer programs is a two-fold activity, as is proving mathematical
 propositions. There is the syntactical exercise of producing well-formed
 formulas, or programs, on the one hand, and mental manipulation of
 abstract objects on the other. The idea is that formulas describe objects
-and their properties in some semantic domain, often a mathematical set or
+and their properties of some semantic domain, often a mathematical set or
 algebraic structure. In mathematics, the study of the relationship between
 syntax and semantics is called model theory.  Classic model theory in particular
 deals with first order predicate logic on the syntactic side and Tarski's notion
@@ -225,7 +225,7 @@ Programming languages usually feature some built-in basic objects like integers
 and booleans. On a semantic level, we imagine programs as manipulations of such
 objects, in particular we want to view algorithms as mathematical functions.
 When studying the semantics of languages with higher-order functions,
-which we think of as sugar coated untyped lambda calculi, where terms denote
+which we can think of as sugar coated untyped lambda calculi, where terms denote
 both elements of and functions between some semantic domain $D$, we soon run
 into the equation $D \cong D \arr D$ or variants thereof. The question
 arises whether there is some $D$ satisfying this equation.
@@ -345,7 +345,8 @@ The image of a non-decreasing $\omega$-sequence is a chain.
 
 $\ref{defCpoOmegaSequenceComplete} \implies \ref{defCpoDirectedComplete}$: Let
 $D$ be an $\omega$-cpo as in definition
-\ref{defCpoOmegaSequenceComplete}, let $S = \set{x_0, x_1, x_2, \ldots}
+\ref{defCpoOmegaSequenceComplete}, let $S = $\\
+$\set{x_0, x_1, x_2, \ldots}
 \subseteq D$ be countable and directed. For each finite $F \subseteq S$, let
 $u(F)$ be an upper bound of $F$ in $S$.  Construct a sequence of sets $P_n
 \subseteq S$ as follows,
@@ -378,7 +379,7 @@ The equivalence between the three definitions justifies simply talking about
 \emph{complete partial orders}, or \emph{cpos}. We use the definitions
 interchangeably, which\-ev\-er is most handy in a given situation.
 Non-decreasing sequences are rather notation-heavy to write about, but probably
-more intuitive. We encourage the reader to think in terms of non-decreasing
+more intuitive. The reader be encouraged to think in terms of non-decreasing
 sequences whenever we write about chains.
 
 The fixpoint theorem constructs least fixpoints using countable chains.
@@ -638,7 +639,8 @@ As concise as abstract proofs like this become, they aren't very illustrative.
 The following alternative proof of lemma \ref{lem0xAisInitial} is a bit longer,
 but more insightful. The idea is that $0\product A$ must be initial because all
 arrows $0 \product A \arr B$ are identical, and that is because their curried
-counterparts are identical.
+counterparts are identical. For $f : A \times B \arr C$  an arrow, let
+$\overline{f} : A \arr B \Arr C$ denote its curried counterpart.
 
 \begin{proof}
 We show that $0 \product A$ is initial. Let $B$ be an object. Then the
@@ -664,8 +666,8 @@ CCC gives rise to figure \ref{fig0xAInitialInCCCs},
 \caption{$0\product A$ is initial in CCCs}
 \label{fig0xAInitialInCCCs}
 \end{figure}
-where $\overline{f}$ is the curried counterpart of $f$. We have: $\overline{f} =
-\overline{g}$, because $0$ is initial. Therefore $\overline{f}\product
+We have $\overline{f} =
+\overline{g}$ because $0$ is initial. Therefore $\overline{f}\product
 \text{id}_A = \overline{g}\product \text{id}_A$, and
 thus
 \begin{IEEEeqnarray*}{c+x*}
@@ -681,7 +683,7 @@ In a category with fixpoints, initial and terminal objects are isomorphic.
 
 \begin{proof}
 As all endomorphisms have fixpoints, the identity on $0$ has a fixpoint
-$Y(\text{id}_0) : 1 \arr 0$.  Composing it with the terminal map $!_0 : 0 \arr
+$Y(\text{id}_0) : 1 \arr 0$.  By composing it with the terminal map $!_0 : 0 \arr
 1$ in both ways, the universal mapping properties of $0$ and $1$ give that
 $0 \cong 1$ are isomorphic.
 \end{proof}
@@ -707,7 +709,7 @@ operation, and $\true, \false$ are distinguished elements of $A$, such that the
 Boolean algebra axioms hold.
 \end{definition}
 
-For the Boolean algebra axioms, see for example \cite{Givant2009}. The
+For the Boolean algebra axioms see for example \cite{Givant2009}. The
 definition of Boolean algebra can be lifted to category theory in a
 straightforward way. This enables us to lift theorems about Boolean algebras to
 category theory. Operations and elements become arrows, and the Boolean algebra
@@ -807,7 +809,7 @@ trivial.
 
 \begin{proof}
 (Proposition \ref{propCCCNoFixpointCoproducts}) In a CCC with binary coproducts,
-$1+1$ exists. Apply \ref{propCCCWith11IsTrivial}.
+$1+1$ exists.
 \end{proof}
 
 The singleton set $\set{\bot}$ is not initial in Cppo, because morphisms don't
@@ -817,7 +819,7 @@ theorem would hold trivially, not giving rise to fixpoint semantics of recursive
 equations.
 
 Propositions \ref{propCCCNoFixpointInitialObject} and
-\ref{propCCCNoFixpointCoproducts} in this form are due to Huwig
+\ref{propCCCNoFixpointCoproducts} in this form are due to
 \cite{Huwig1990}, and demonstrate that if we want to use Cppo, or in fact any
 CCC with fixpoints,  as model for programming languages, we won't get
 interpretations for sum types that correspond to categorical coproducts.
@@ -1071,9 +1073,10 @@ f(n) & = & n \cdot f(n - 1) \quad\text{if}\ \ n > 0 \label{eqnFactorial2}
 
 \end{proposition}
 
-Proposition \ref{propFactorialExists} can be rephrased in different ways: the
-recursive definition of the factorial function is not vacuous; it is not a
-circular definition; it does not lead to infinite regress.
+Proposition \ref{propFactorialExists} can be rephrased in different ways:
+despite the defined term $f$ occurring on both sides of the equation, the
+definition of the factorial function is not vacuous; it is not a circular
+definition; it does not lead to infinite regress.
 
 \begin{proof}
 From \ref{lemPartialFunctionSpaceCppo} we know that $[\bbN \pfun
@@ -1093,7 +1096,7 @@ $\varphi$ is not defined recursively, so it certainly is a function $[\bbN
 $\varphi$ is continuous, then it is an arrow in Cppo, so by theorem
 \ref{thmFixpoint} it has a fixpoint $f$ such that
 \begin{IEEEeqnarray}{rCl}
-f = \varphi(f) \label{eqnFactorialFixpoint}
+f = \varphi(f). \label{eqnFactorialFixpoint}
 \end{IEEEeqnarray}
 
 Using equation (\ref{eqnFactorialFixpoint}) we proceed to show that the required
@@ -1952,8 +1955,8 @@ If $b = \_(b')$ then
   & = & \psi(\lub C)(b) & (definition of $\psi$)
 \end{IEEEeqnarray*}
 
-By the fixpoint theorem, $\psi$ has a least fixpoint $\pi$. We have $\pi =
-\psi(\pi)$, and we still need to prove the equation of the lemma.
+By the fixpoint theorem, $\psi$ has a least fixpoint $\pi$ such that $\pi =
+\psi(\pi)$. We still need to prove the equation of the lemma.
 
 \ref{proofPiExists3}. Let $b \in B$.
 
@@ -2211,7 +2214,7 @@ The existence of fixpoints in complete partial orders is useful for theoretical
 computer science on different levels. In algorithms, programming language
 semantics and data type semantics, we often have to deal with infinity and
 self-reference. By framing our problems in the right setting, we can employ
-fixpoints to guarantee well-definedness of desired constructs.
+fixpoints to guarantee well-definedness of certain desired constructs.
 
 Algebraic data types capture the essence of data: sums, products and recursion.
 ADTs are a convenient and powerful feature for programming languages.  Ascribing
@@ -2288,10 +2291,6 @@ nature of the coinductive naturals into account.
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliographystyle{alpha}
 \bibliography{computer_science}
-
-\todo{decide whether it is ``datatypes'' or ``data types''}
-
-\todo{decide whether it is ``typechecking'' or ``type checking''}
 
 \end{document}
 
