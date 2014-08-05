@@ -2205,6 +2205,32 @@ By finality of $\alpha$ just as in the proof of \ref{propEpsilonPiExist}, $\pi
 \end{proof}
 
 
+\chapter{Conclusion}
+
+The existence of fixpoints in complete partial orders is useful for theoretical
+computer science on different levels. In algorithms, programming language
+semantics and data type semantics, we often have to deal with infinity and
+self-reference. By framing our problems in the right setting, we can employ
+fixpoints to guarantee well-definedness of desired constructs.
+
+Algebraic data types capture the essence of data: sums, products and recursion.
+ADTs are a convenient and powerful feature for programming languages.  Ascribing
+denotational semantics to them however is trickier than one might expect. In
+fact there are several possible ways to do so, and the language in which we want
+to use them impacts the choice for their semantics. In call-by-value languages
+we want different denotations for sums and products than in call-by-name
+languages.
+
+The coinductive natural numbers are a special example of an algebraic data type.
+Venanzio Capretta uses them as a language primitive, together with suitable
+recursion and iteration operators, to show how they can be used to make a type
+system Turing complete. The denotation of the coinductive naturals, which arises
+from our considerations about ADTs, looks quite different from both the flat and
+the lazy natural numbers.  We use well-established techniques from programming
+language semantics to study in which sense the coinductive natural numbers still
+are natural numbers.
+
+
 \chapter{Related Work}
 
 This thesis is based on an idea from Capretta's PhD thesis \cite{Capretta2002},
