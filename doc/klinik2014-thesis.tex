@@ -185,14 +185,15 @@ theories. In his PhD thesis, Venanzio Capretta \cite{Capretta2002} shows how by
 using a datatype that allows infinite elements, it is possible to represent
 recursive functions as elements of a certain function type in his type theory.
 He extends the formal system with the datatype of \emph{coinductive natural
-numbers}, the greatest fixpoint of the functor $F(X) = 1 + X + X$.
+numbers}, the greatest fixpoint of the functor $1 + X + X$.
 
 We loosely take up this idea and study the denotational semantics of this
 datatype. Dana Scott, one of the pioneers of programming language semantics,
 discovered that complete partial orders and continuous functions lend themselves
-well for giving denotations to programs. Our study takes place in this setting.
+well to giving denotations to programs. Our study takes place in this setting.
 
-In this thesis we give an introduction to domain theory, and explain how it can
+Our thesis begins with
+an introduction to domain theory, and explains how it can
 be used to guarantee the existence of denotations of certain recursive
 specifications. We show how the functor $1+X+X$ arises as denotation of an
 algebraic datatype, and study from a computational viewpoint how it relates to
@@ -201,29 +202,35 @@ steps to arbitrary polynomial functors.
 
 \section{Background}
 
-Writing computer programs is a two-fold activity, as is proving mathematical
+The description of a thing is not the thing itself, and the
+connection between these two, or rather the gap in between, has been subject
+to much debate in philosophy and science.
+
+Writing computer programs is a two-fold activity in this sense, as is proving mathematical
 propositions. There is the syntactical exercise of producing well-formed
 formulas, or programs, on the one hand, and mental manipulation of
 abstract objects on the other. The idea is that formulas describe objects
 and their properties of some semantic domain, often a mathematical set or
-algebraic structure. In mathematics, the study of the relationship between
-syntax and semantics is called model theory.  Classic model theory in particular
+algebraic structure.
+
+In mathematics, the study of the relationship between
+syntax and semantics is called model theory.  Classical model theory, in particular,
 deals with first order predicate logic on the syntactic side and Tarski's notion
 of model and truth on the semantic side.
 
-One may wonder whether first order predicate logic is \emph{the} language for
+One may wonder whether first order predicate logic is the \emph{right} language for
 mathematics. Is Tarski's definition of truth the \emph{true} one?  Are the
-universal and existential quantifiers canonical? Why these two, why the
+universal and existential quantifiers canonical? If so by what criterion? Why these two, why the
 sentential connectives \emph{and} and \emph{or}? Similarly, for programming
 languages we wonder which basic building blocks are essential for computation
 and which other features can be expressed in terms of them.
 
 Answers to such questions are often motivated not only by fundamental but also
-practical considerations. It doesn't need much for a programming language to be
+practical considerations. Not much is needed for a programming language to be
 Turing complete, but that doesn't imply that it is convenient to write
-algorithms in it. The prevalence of first order logic as the language of
-mathematics comes for a big part from its usefulness for mathematicians to
-convince others of their work. Similarly, domain theory turns out to be useful
+algorithms in it. The prevalence of first-order logic as the language of
+mathematics is due, in large part, to its utility for mathematicians in
+convincing others of their work. Similarly, domain theory turns out to be useful
 for the study of programming language semantics.
 
 \chapter{Domain Theory}
