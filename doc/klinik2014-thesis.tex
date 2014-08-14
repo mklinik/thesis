@@ -123,7 +123,7 @@ programming languages which have this property, different constructs can be
 added to the type theories to make them Turing complete.
 
 In a recent dissertation, Venanzio Capretta has shown how to represent general recursion in a
-type theory by using the datatype of coinductive natural numbers. We study the
+type theory by using the data type of coinductive natural numbers. We study the
 denotational side by analyzing the relation between the domains of the lazy and
 the coinductive natural numbers.  In particular we show that there exists a
 mediating em\-bed\-ding-projection pair between the final coalgebras of the
@@ -182,13 +182,13 @@ supported all my decisions unconditionally.
 Many type theories are strongly normalizing, but recursive functions may
 diverge.  As a result, not all recursive functions are representable in such
 theories. In his PhD thesis, Venanzio Capretta \cite{Capretta2002} shows how by
-using a datatype that allows infinite elements, it is possible to represent
+using a data type that allows infinite elements, it is possible to represent
 recursive functions as elements of a certain function type in his type theory.
-He extends the formal system with the datatype of \emph{coinductive natural
+He extends the formal system with the data type of \emph{coinductive natural
 numbers}, the greatest fixpoint of the functor $1 + X + X$.
 
 We loosely take up this idea and study the denotational semantics of this
-datatype. Dana Scott, one of the pioneers of programming language semantics,
+data type. Dana Scott, one of the pioneers of programming language semantics,
 discovered that complete partial orders and continuous functions lend themselves
 well to giving denotations to programs. Our study takes place in this setting.
 
@@ -196,7 +196,7 @@ Our thesis begins with
 an introduction to domain theory, and explains how it can
 be used to guarantee the existence of denotations of certain recursive
 specifications. We show how the functor $1+X+X$ arises as denotation of an
-algebraic datatype, and study from a computational viewpoint how it relates to
+algebraic data type, and study from a computational viewpoint how it relates to
 the lazy natural numbers. The method is then generalized to add computation
 steps to arbitrary polynomial functors.
 
@@ -414,7 +414,7 @@ Non-decreasing sequences are rather notation-heavy to write about, but probably
 more intuitive. The reader be encouraged to think in terms of non-decreasing
 sequences whenever we write about chains.
 
-The fixpoint theorem constructs least fixpoints using countable chains.
+The fixpoint theorem, as we shall see, constructs least fixpoints using countable chains.
 Even if a domain is uncountable, the chains for which we want lubs are therefore
 at most countable. Whenever we consider chains, we mean non-empty countable ones.
 
@@ -468,7 +468,7 @@ but in a proof of continuity of a function $f$ we usually need to prove
 monotonicity as a first step so that for a chain $P$, $\set{f(x) \mid x \in P}$
 is again a chain. This motivates the explicit mention of
 monotonicity in the definition of Scott-continuity. Because we are only
-concerned with this one notion of continuity here, we will call them simply
+concerned with this one notion of continuity here, we will call such functions simply
 continuous functions.
 
 
@@ -681,7 +681,7 @@ $\overline{f} : A \arr B \Arr C$ denote its curried counterpart.
 We show that $0 \product A$ is initial. Let $B$ be an object. Then the
 arrow $f = 0_B \circ \pi_1\ :\ 0 \product A \arr B$ exists. To see that it is
 unique, let $g : 0 \product A \arr B$ be an arrow. The exponent diagram of the
-CCC gives rise to figure \ref{fig0xAInitialInCCCs},
+CCC gives rise to figure \ref{fig0xAInitialInCCCs}.
 \begin{figure}[ht]
 \begin{center}
 \begin{tikzpicture}
@@ -777,7 +777,7 @@ requirement that the following diagram commutes.
 \end{figure}
 
 \begin{lemma}
-In a CCC with coproducts, $2 = 1+1$ is a boolean algebra object. \qed
+In a CCC with binary coproducts, $2 = 1+1$ is a boolean algebra object. \qed
 \end{lemma}
 
 \begin{lemma}
@@ -810,7 +810,7 @@ Every CCC with fixpoints where the coproduct $1+1$ exists is trivial.
 
 \begin{proof}
 We show that every object A is isomorphic to 1. We have that the functor $- \product A$ preserves coproducts, so $(1+1)\product
-A = 2 \product A = A + A$ is a coproduct. Applying
+A = 2 \product A \cong A + A$ is a coproduct. Applying
 \ref{lemCoproductInjectionsIdentified} to the embeddings $\true \product A, \false
 \product A : 1 \product A \arr A + A$, and the fact that $1 \product A
 \cong A$ we get $\kappa_0 = \kappa_1 : A \arr A + A$. Now consider the following
@@ -834,7 +834,7 @@ diagram.
     ;
 \end{tikzpicture}
 \end{center}
-The diagram commutes because our category has coproducts, and together with $\kappa_0 = \kappa_1$ we get $\bot_A
+The diagram commutes because $A + A$ is the coproduct of $A$ and $A$, and together with $\kappa_0 = \kappa_1$ we get $\bot_A
 \circ !_A = \text{id}_A$. Furthermore, because $1$ is terminal, we have $!_A
 \circ \bot_A = \text{id}_1$. We conclude that $A \cong 1$ for every $A$.
 \end{proof}
@@ -849,7 +849,7 @@ $1+1$ exists.
 
 The singleton set $\set{\bot}$ is not initial in Cppo, because morphisms don't
 preserve all cppo structure. Continuous functions must preserve lubs, but are
-allowed to map $\bot$ to elements other that $\bot$. This is in fact desired, otherwise the fixpoint
+allowed to map $\bot$ to elements other than $\bot$. This is in fact desired, otherwise the fixpoint
 theorem would hold trivially, not giving rise to fixpoint semantics of recursive
 equations.
 
@@ -996,7 +996,7 @@ The separated sum construction is a bifunctor $+ : \Cppo \times
 object mapping $L_D : A \mapsto A + D$ extends to a functor: $f \mapsto
 [\kappa_0 \circ f, \kappa_1 \circ \text{id}_D]$.  Symmetrically
 for $R_D : A \mapsto D + A$, and we have for all $f
-: A \arr A'$ and $g : B \arr B'$ the following diagram commutes.
+: A \arr A'$ and $g : B \arr B'$ the following diagram commutes. \qed
 \begin{center}
 \begin{tikzpicture}
 \matrix (m) [matrix of math nodes
@@ -1109,8 +1109,8 @@ f(n) & = & n \cdot f(n - 1) \quad\text{if}\ \ n > 0 \label{eqnFactorial2}
 \end{proposition}
 
 Proposition \ref{propFactorialExists} can be rephrased in different ways:
-despite the defined term $f$ occurring on both sides of the equation, the
-definition of the factorial function is not vacuous; it is not a circular
+despite $f$, the term to be defined, occurring on both sides of the equation, the
+definition is not vacuous; it is not a circular
 definition; it does not lead to infinite regress.
 
 \begin{proof}
@@ -1200,16 +1200,16 @@ function corresponding to $f$ in the spirit of our $\varphi$. Then prove $\varph
 to be continuous and show that its fixpoint fulfills the desired definition.
 
 
-\chapter{Algebraic Datatypes}
+\chapter{Algebraic Data Types}
 
 \section{Syntax and Semantics}
 \label{secAlgebraicDataTypeSemantics}
 
 In this section, we motivate our interest in certain polynomial functors. We
-briefly look at algebraic datatypes and informally argue how polynomial functors
+briefly look at algebraic data types and informally argue how polynomial functors
 can be used to give denotational semantics for them.
 
-Algebraic datatypes (\emph{ADT}s) allow the programmer to add new base types
+Algebraic data types (\emph{ADT}s) allow the programmer to add new base types
 besides the built-in ones to a programming language. Conceptually, ADTs are sums
 of products, where the factors are either constant or recursive.  Empty products
 are allowed, but sums usually need to have at least one term.
@@ -1220,7 +1220,7 @@ Consider for example the ADT modeling lists of integers in Haskell:
 data IntList = Nil | Cons Int IntList
 \end{verbatim}
 
-The datatype IntList is a sum of two terms. The term Nil is the empty product
+The data type IntList is a sum of two terms. The term Nil is the empty product
 while the term Cons has one constant and one recursive factor.
 
 Denotational semantics of programming languages depend on their reduction
@@ -1242,7 +1242,8 @@ programs and $D$ is our semantic domain. Furthermore, we want diverging programs
     (m-2-1.east|-m-2-2) edge node [below] {denote} (m-2-2);
 \end{tikzpicture}
 \end{center}
-\caption{Operational and denotational semantics.}
+\caption{Soundness of denotational semantics with respect to operational
+semantics.}
 \label{figOperateDenoteSemantics}
 \end{figure}
 
@@ -1297,7 +1298,7 @@ The empty product type arises from ADT constructors without arguments, such as
 Nil in the example above. As its denotation, choosing the one-element domain 1 for
 call-by-name and the two-element domain 2 for call-by-value
 works nicely with their respective sum constructions. For example, under both
-call-by-name and call-by-value we would like the one-valued datatype
+call-by-name and call-by-value we would like the one-valued data type
 \begin{verbatim}
 data Unit = Unit
 \end{verbatim}
@@ -1309,8 +1310,8 @@ Consider as another example the natural numbers. We want the data type
 data Nat = Zero | Succ Nat
 \end{verbatim}
 to denote the flat naturals in call-by-value languages, and the lazy naturals
-for call-by-name. This datatype is recursive, and denotations of recursive
-datatypes arise by iterating the appropriate functor on the singleton cppo, see
+for call-by-name. This data type is recursive, and denotations of recursive
+data types arise by iterating the appropriate functor on the singleton cppo, see
 \cite{Manes1986}.  By iterating the coalesced sum $2 \oplus X$ on
 1, we obtain the flat natural numbers, as suggested by figure \ref{figFlatNats}.
 How the lazy naturals arise from iterating $1+X$ on 1 is explained in more
@@ -2159,7 +2160,7 @@ F(\lub C) & = & G(\lub C) + H(\lub C) \\
 \end{proof}
 
 \begin{definition}
-Let $F : \Cppo \arr \Cppo$ be a polynomial functor. Then $G(X) = F(X) + X$ is a
+Let $F : \Cppo \arr \Cppo$ be a polynomial functor. Then $GX = FX + X$ is a
 polynomial functor as well. Let $\alpha : A \arr FA$ and $\beta : B \arr GB$
 be their respective final coalgebras.
 \end{definition}
@@ -2277,8 +2278,8 @@ in which he extends a type theory with a coinductive variant of the natural numb
 in order to model general recursion. In his subsequent work, Capretta
 identified the coinductive naturals as an instance of the delay monad applied
 to the lazy natural numbers \cite{Capretta2005}. In our thesis, we use well
-established techniques of domain theory, as exposed, for example, in \cite{Gunter1992}, to
-study the denotational semantics of such delayed datatypes.
+established techniques of domain theory, as exposed for example in \cite{Gunter1992}, to
+study the denotational semantics of such delayed data types.
 
 The proof that Cppo, and in general every CCC with fixpoints, cannot have
 categorical coproducts is due to Huwig and Poign\'e \cite{Huwig1990}. The
@@ -2316,7 +2317,7 @@ operational and denotational semantics for a thus enriched PCF variant and
 compare this language to the variants with fixpoints.  We would expect them to
 be interdefinable.
 
-Many works in computer science dealing with algebraic datatypes don't consider
+Many works in computer science dealing with algebraic data types don't consider
 denotational semantics. Now sums and products are the core building blocks of
 ADTs, but we cannot have both categorical products and coproducts in a
 denotational semantics. It might be interesting to compare existing languages
