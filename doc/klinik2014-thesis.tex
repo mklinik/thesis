@@ -741,7 +741,7 @@ Boolean algebra axioms hold.
 
 For the Boolean algebra axioms see for example \cite{Givant2009}. The
 definition of Boolean algebra can be lifted to category theory in a
-straightforward way. This enables us to lift theorems about Boolean algebras to
+straightforward way, enabling us to lift theorems about Boolean algebras to
 category theory. Operations and elements become arrows, and the Boolean algebra
 axioms, which are all equations, become commutative diagrams:
 
@@ -903,11 +903,11 @@ For objects $A$, $B$ in Cppo, define the \emph{separated sum} $A + B$ as $A
 \end{definition}
 
 Both constructions yield cppos and their inclusions are continuous.  Both
-constructions are useful for programming language semantics, as will be seen in section
+constructions are useful for programming language semantics, as we shall see in section
 \ref{secAlgebraicDataTypeSemantics}.  We concentrate on the separated sum for
 now, because it will be important for us later on.
 
-As seen in \ref{propCCCNoFixpointCoproducts}, the separated sum cannot be a
+As we have seen in \ref{propCCCNoFixpointCoproducts}, the separated sum cannot be a
 categorical coproduct. Consider the usual coproduct diagram in Cppo in
 figure \ref{figCoproductDiagram}. For arrows $f$ and $g$,
 there might be different functions $A+B \arr D$ making the diagram commute:
@@ -1191,7 +1191,7 @@ which implies $(\lub \varphi(C))(n)\isdefined$ and we have:
 
 The strategy just employed is prototypical for proving the existence of a
 recursively defined function $f$. First, find a non-recursive higher-order
-function corresponding to $f$ in spirit of our $\varphi$. Then prove $\varphi$
+function corresponding to $f$ in the spirit of our $\varphi$. Then prove $\varphi$
 to be continuous and show that its fixpoint fulfills the desired definition.
 
 
@@ -1277,7 +1277,8 @@ diverges under call-by-value, while call-by-name yields the number 1.
 To capture this difference in denotational semantics, we can use coalesced and separated sums. In a coalesced sum of two cppos $A$ and $B$ we have $\kappa_0(\bot_A) =
 \kappa_1(\bot_B) = \bot_{A \oplus B}$, while in a separated sum these are distinct
 elements, which allows us to give denotations to the above program which
-capture the respective termination behavior. See chapter 6 in \cite{Gunter1992}
+capture the respective termination behavior. See Chapter 6 in Gunter's semantics
+textbook \cite{Gunter1992}
 for a more thorough treatment of sums and products under different evaluation
 strategies.
 
