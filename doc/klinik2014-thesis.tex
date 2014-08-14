@@ -397,10 +397,10 @@ of $Q$, and therefore $z \below z'$, i.e. $z$ is the lub of $S$.
 \end{proof}
 
 
-The complication in the third implication comes from the fact that a directed
-set doesn't need to be linearly ordered. Every directed set does however contain
-a chain which threads through the whole set, eventually rising above all
-elements. The lub of the chain is then the lub of the directed set.
+The complication in the third implication arises because a directed set need not
+be linearly ordered.  Every directed set does however contain a chain which
+threads through the whole set, eventually rising above all elements. The lub of
+the chain is then the lub of the directed set.
 
 The equivalence between the three definitions justifies simply talking about
 \emph{complete partial orders}, or \emph{cpos}. We use the definitions
@@ -559,7 +559,7 @@ f(x) & = & f(\lub F) \\
 \end{IEEEeqnarray*}
 Line (\ref{lineFContinuous}) is because $f$ is continuous, and line
 (\ref{lineLubLeastElement}) is because omitting the least element of an infinite chain
-doesn't affect the lub.
+doesn't affect its lub.
 
 To see that $x$ is the least fixpoint, let $y = f(y)$ be a fixpoint of $f$. We
 have:
@@ -574,7 +574,7 @@ have:
 This is the well-known fixpoint theorem, which is sometimes attributed to
 Tarski, sometimes to Kleene, but while they both knew the result, its actual
 origin seems to be lost in time \cite{Lassez1982}. The formulation given here
-is due to Huwig \cite{Huwig1990}.
+is due to Huwig and Poign\'e \cite{Huwig1990}.
 
 
 \begin{lemma} \label{lemCppoTerminalObject}
@@ -664,7 +664,7 @@ empty diagram. Therefore, $0 \product A$ is initial as well.
 
 As concise as abstract proofs like this become, they aren't very illustrative.
 The following alternative proof of lemma \ref{lem0xAisInitial} is a bit longer,
-but more insightful. The idea is that $0\product A$ must be initial because all
+but supports better insight. The idea is that $0\product A$ must be initial because all
 arrows $0 \product A \arr B$ are identical, and that is because their curried
 counterparts are identical. For $f : A \times B \arr C$  an arrow, let
 $\overline{f} : A \arr B \Arr C$ denote its curried counterpart.
