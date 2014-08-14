@@ -612,13 +612,16 @@ Cppo has exponentials, that is
 Cppo is cartesian closed.
 \end{corollary}
 
-A historical note on \ref{lemCppoExponentials}. Readers unfamiliar with domain
+A historical note on \ref{lemCppoExponentials}: Readers unfamiliar with domain
 theory might be surprised that there exist domains $D$ which contain their own
 function space $[D \arr D]$.  This result is due to Scott \cite{Scott1990}, who
 \emph{"spent more days than [he cares] to remember trying to find one"}
 \cite{Scott1993}. Intuitively, it is possible because the
 requirement for functions in $[D \arr D]$ to be continuous restricts the
-function space sufficiently as to not increase in cardinality.
+function space sufficiently that its cardinality does not increase. This
+contradicts, of course, one of our most fundamental intuitions about sets; See
+\cite{Moschovakis1994} for a good exposition of Cantor's theorem that no set $M$
+is equinumerous to its function space $M \arr M$.
 
 So far, the situation in Cppo is quite satisfying. For most programming language
 semantics however, we also want coproducts. Unfortunately, as we will see now,
