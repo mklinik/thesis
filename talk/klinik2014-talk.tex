@@ -1,0 +1,63 @@
+\documentclass{beamer}
+
+\beamertemplatenavigationsymbolsempty
+
+\mode<presentation>
+{
+  \usetheme{default}
+}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{bussproofs}
+\usepackage[retainorgcmds]{IEEEtrantools}
+
+% needs debian package texlive-math-extra
+\usepackage{stmaryrd} % for \llbracket, \rrbracket
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{matrix}
+\usetikzlibrary{arrows}
+
+\title
+{Domains for Algebraic Data Types with Computation Steps}
+
+\author
+{Markus~Klinik}
+
+\institute[Radboud University Nijmegen]
+{
+  Radboud University Nijmegen
+}
+
+\date
+{August 2014}
+
+
+\newcommand{\arr}{\rightarrow}
+\newcommand{\Arr}{\Rightarrow}
+\newcommand{\semantics}[1]{\llbracket #1 \rrbracket}
+\newcommand{\semanticsFd}[1]{\semantics{#1}_{F\delta}}
+\newcommand{\oftype}[2]{#1\!:\!#2}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Lorem Ipsum}
+
+Foo bar baz
+
+\end{frame}
+
+
+\end{document}
