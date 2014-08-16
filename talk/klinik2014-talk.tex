@@ -28,6 +28,10 @@
 
 
 \newcommand{\product}{\!\times\!}
+\newcommand{\aand}{\ \wedge \ }
+\newcommand{\oor}{\ \vee \ }
+\newcommand{\true}{\text{tt}}
+\newcommand{\false}{\text{ff}}
 
 
 \title
@@ -76,8 +80,8 @@ A category is \emph{trivial} iff it has one object with one arrow.
 \end{definition}
 
 \begin{definition}
-A category has the \emph{fixpoint property} iff every endomorphism has a fixpoint:
-$f(Yf) = Yf$
+A category has \emph{fixpoints} iff every endomorphism has a fixpoint $Yf =
+f(Yf)$
 \end{definition}
 
 \begin{center}
@@ -133,7 +137,7 @@ Existence:
   {
      f = 0 \product A & 0 & B \\
   };
-  \path[-stealth] (m-1-1) edge node [above] {$\pi_1$} (m-1-2);
+  \path[-stealth] (m-1-1) edge node [above] {$\pi_0$} (m-1-2);
   \path[-stealth] (m-1-2) edge node [above] {$0_B$} (m-1-3);
 \end{tikzpicture}
 \end{center}
@@ -168,6 +172,103 @@ Any CCC with fixpoints and initial object is trivial.
 1\ \cong\ 0\ \cong\ 0 \product A\ \cong\ 1 \product A\ \cong\ A
 \end{equation*}
 
+\end{frame}
+
+
+
+\begin{frame}[fragile]{But Maybe Binary Sums?}
+
+\begin{theorem}
+Any CCC with fixpoints and binary sums is trivial.
+\end{theorem}
+
+\begin{lemma}
+Any CCC with fixpoints and $1+1$ is trivial.
+\end{lemma}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Boolean Algebra Objects}
+Boolean algebra: $(B,\wedge,\vee,\neg,\true,\false)$ such that
+\begin{itemize}
+\item $\true = \neg \false$
+\item $p = p \aand \true$
+\item $\true = p \oor \neg p$
+\item ...
+\end{itemize}
+
+Boolean algebra object: $(B,\ \wedge, \vee : B\product B \arr B,\ \neg : B \arr B,\ \true, \false : 1 \arr B)$ such that
+
+\begin{center}
+\begin{tikzpicture}
+\matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     B \product B & B \\
+     1 \\
+  };
+  \path[-stealth]
+    (m-2-1) edge node [left] {$\langle p, \true \rangle$} (m-1-1)
+    (m-1-1) edge node [above] {$\wedge$} (m-1-2)
+    (m-2-1) edge node [below right] {$p$} (m-1-2) ;
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Why Boolean Algebra Objects?}
+
+\begin{lemma}
+The coproduct $1+1$ is a Boolean algebra object.
+\end{lemma}
+
+\begin{itemize}
+\item $\true, \false$ are the coproduct inclusions $\kappa_0, \kappa_1 : 1 \arr 1+1$
+\item $\neg$ is $[\kappa_1, \kappa_0] : 1+1 \arr 1+1$
+\item ...
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+\matrix (m) [matrix of math nodes,row sep=4em,column sep=4em,minimum width=2em]
+  {
+     1 & 1 + 1 & 1 \\
+     {} & 1 + 1 & {} \\
+  };
+  \path[-stealth]
+    (m-1-1) edge node [below left] {$\kappa_1$} (m-2-2)
+            edge node [above] {$\kappa_0$} (m-1-2)
+    (m-1-2) edge node [above right] {$[\kappa_1,\kappa_0]$} (m-2-2)
+    (m-1-3) edge node [above] {$\kappa_1$} (m-1-2)
+            edge node [below right] {$\kappa_0$} (m-2-2)
+    ;
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Y Not}
+If negation has a fixpoint we are in trouble:\\
+Assume $Y \neg = \neg Y \neg$
+\begin{IEEEeqnarray*}{rCl}
+\true & = & Y\neg \oor \neg Y\neg \\
+      & = & Y\neg \oor \phantom{\neg} Y\neg \\
+      & = & Y\neg \\
+      & = & Y\neg \aand \phantom{\neg} Y\neg \\
+      & = & Y\neg \aand \neg Y\neg \\
+      & = & \false
+\end{IEEEeqnarray*}
+
+In a category with fixpoints and $1+1$, $\neg$ has a fixpoint!\\
+Thus $\kappa_0 = \kappa_1$
+\end{frame}
+
+
+\begin{frame}[fragile]{}
 \end{frame}
 
 
