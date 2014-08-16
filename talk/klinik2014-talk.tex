@@ -53,9 +53,41 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{Lorem Ipsum}
+\begin{frame}{Fixpoints, Sums, Products: Pick Two}
 
-Foo bar baz
+\begin{itemize}
+\item What? CCC + Fixpoints + Sums = $\lightning$
+\item Who? Huwig and Poign\'e, 1990
+\item Why? Raising awareness
+\item How? Let's see ...
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+\begin{definition}
+A category is \emph{trivial} iff it has one object with one arrow.
+\end{definition}
+
+\begin{definition}
+A category has the \emph{fixpoint property} iff every endomorphism has a fixpoint:
+$f(Yf) = Yf$
+\end{definition}
+
+\begin{center}
+\begin{tikzpicture}
+\matrix (m) [matrix of math nodes,row sep=2em,column sep=3em,minimum width=2em]
+  {
+     1 & A \\
+     {} & A \\
+  };
+  \path[-stealth] (m-1-1) edge node [above] {$Yf$} (m-1-2);
+  \path[-stealth] (m-1-1) edge node [below left] {$Yf$} (m-2-2);
+  \path[-stealth] (m-1-2) edge node [right] {$f$} (m-2-2);
+\end{tikzpicture}
+\end{center}
 
 \end{frame}
 
