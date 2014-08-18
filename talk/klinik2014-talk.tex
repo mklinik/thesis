@@ -33,6 +33,11 @@
 \newcommand{\true}{\text{tt}}
 \newcommand{\false}{\text{ff}}
 \newcommand{\id}{\text{id}}
+\newcommand{\fix}{\text{fix}}
+\newcommand{\below}{\sqsubseteq}
+\newcommand{\set}[1]{\{\,#1\,\}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\lub}{\bigsqcup}
 
 
 \title
@@ -62,16 +67,215 @@
   \titlepage
 \end{frame}
 
+
+
+\begin{frame}{The Great Divide}
+
+"Love" is a four-letter word.
+
+\end{frame}
+
+
+
+
+\begin{frame}{PCF = $\lambda$++}
+
+
+\begin{itemize}
+\item untyped $\lambda$-calculus\onslide<2->{: fixpoint combinator}
+\item typed $\lambda$-calculus\onslide<2->{: no fixpoints}
+\item PCF\onslide<2->{: fixpoint operator}
+\end{itemize}
+
+
+
+%\setlength{\tabcolsep}{9pt}
+%\renewcommand{\arraystretch}{1.3}
+%\onslide<+->
+%\begin{tabular}{c c c}
+%untyped $\lambda$-calculus & typed $\lambda$-calculus & PCF \\
+%\onslide<+->{fixpoint combinator & -- & fixpoint operator}
+%\end{tabular}
+
+\end{frame}
+
+
+\begin{frame}{Fix}
+
+
+\begin{center}
+
+\onslide<+->
+$Y\ M = M\ (Y\ M)$
+\vspace{1em}
+
+\onslide<+->
+$\fix_t : (t \arr t) \arr t$
+\vspace{1em}
+
+$\fix\ M = M\ (\fix\ M)$
+\vspace{1em}
+
+\onslide<+->
+
+$\fix\ M = M\ (\fix\ M) = M\ M\ (fix\ M) = M\ M\ M\ (fix\ M) = \ldots$
+\end{center}
+
+
+\end{frame}
+
+
+
+\begin{frame}{PCF Semantics}
+\begin{itemize}
+\item We want abstractions to denote functions.
+\item Every function must have a fixpoint.
+\item Functions are partial.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Scott's Fixpoint Semantics For Recursive Functions}
+
+\begin{definition}
+A \emph{partial order} is reflexive, transitive, antisymmetric.
+\end{definition}
+
+\begin{definition}
+A \emph{complete pointed partial order} (cppo) is a partial order where
+%\vspace{-1em}
+\begin{itemize}
+\item every non-empty chain has a least upper bound.
+\item $\bot$ exists
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+A \emph{continuous} function between cpos is monotone and preserves least upper bounds.
+\end{definition}
+
+\begin{theorem}[The Fixpoint Theorem]
+Every continuous endofunction has a unique least fixpoint.
+\end{theorem}
+
+\end{frame}
+
+
+
+\begin{frame}{The Fixpoint Theorem}
+
+\begin{itemize} \itemsep0.5em
+\onslide<+->
+\item Let $D$ be a cppo, $f : D \arr D$ continuous.
+
+\item $\bot \below f(\bot)
+   \onslide<+->{ \below f(f(\bot))}
+   \onslide<+->{\below f^3(\bot) \below \ldots}$
+
+\onslide<+->
+\item $C = \set{f^n(\bot) \mid n \in \bbN}$ is a chain, has a least upper bound.
+
+\onslide<+->
+\item $f(C) = \set{f^{n+1}(\bot) \mid n \in \bbN}$
+
+\onslide<+->
+\item $\lub C = \lub f(C) = f(\lub C)$
+
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{PCF Semantics}
+
+This lends itself well to the semantics:
+\begin{itemize}
+\item Types: complete pointed partial orders (cppos)
+\item Abstraction: continuous functions between them
+\end{itemize}
+
+\vspace{1em}
+
+\begin{tabular}{c c c}
+
+\begin{tikzpicture}
+  \path (0,0) node [inner xsep=1em] {$\bot$} [grow'=up, sibling distance=2.0em, level distance=2.5em]
+    child { node {tt} }
+    child { node {ff} }
+  ;
+\end{tikzpicture}
+
+&
+
+\begin{tikzpicture}
+  \path (0,0) node [inner xsep=1em] {$\bot$} [grow'=up, sibling distance=2.0em, level distance=2.5em]
+    child { node {$0$} }
+    child { node {$1$} }
+    child { node {$2$} }
+    child { node {$\ldots$} edge from parent }
+  ;
+\end{tikzpicture}
+
+&
+
+\begin{tikzpicture}[scale=1.0]
+  \node {$\bot$} [grow'=up, sibling distance=4.0em, level distance=1.8em]
+    child { node {$0$} }
+    child
+    {
+      node {$S\bot$}
+      child { node {$S0$} }
+      child
+      {
+        node {$SS\bot$}
+        child { node {$SS0$} }
+        child [thick, dotted]
+        {
+          node {$S^n\bot$}
+          child [thin, solid] { node {$S^n0$} }
+          child { node {$S^\omega$} }
+        }
+      }
+    }
+  ;
+\end{tikzpicture}
+
+\end{tabular}
+
+\end{frame}
+
+
+
+
+\begin{frame}{Cppo}
+
+\onslide<+->
+In fact:
+\begin{itemize}
+\item Cppo: the category of cppos with continuous functions
+\item Is a CCC: with products and exponentials
+\item Has fixpoints: all endomorphisms have a fixpoint
+\end{itemize}
+
+
+\end{frame}
+
+
+
+
+
 \begin{frame}{Fixpoints, Sums, Products: Pick Two}
 
 \begin{itemize}
 \item What? CCC + Fixpoints + Sums = $\lightning$
 \item Who? Huwig and Poign\'e, 1990
 \item Why? Raising awareness
-\item How? Let's see ...
+\item How? Let's see
 \end{itemize}
 
 \end{frame}
+
+
 
 
 \begin{frame}[fragile]{Preliminaries}
