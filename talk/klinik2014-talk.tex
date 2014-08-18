@@ -38,6 +38,7 @@
 \newcommand{\set}[1]{\{\,#1\,\}}
 \newcommand{\bbN}{\mathbb{N}}
 \newcommand{\lub}{\bigsqcup}
+\newcommand{\Cppo}{\text{Cppo}}
 
 
 \title
@@ -565,6 +566,182 @@ Thus $\kappa_0 = \kappa_1 : 1 \arr 1 + 1$
 \end{center}
 
 In every CCC with fixpoints and $1+1$, for all $A$, $A \cong 1$.
+
+\end{frame}
+
+
+
+\begin{frame}{Algebraic Data Types}
+
+The essence of data:
+\begin{itemize}
+\item Products
+\item Sums
+\item Recursion
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{Polynomial Functors}
+
+A functor is polynomial iff it is of one of the forms
+\begin{itemize}
+\item Constant: $FX = D; Ff = \id_D$
+\item Identity: $FX = X; Ff = f$
+\item Sum: $FX = HX + GX$
+\item Product: $FX = HX \product GX$
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Denotational Semantics for Function Types}
+
+Denotational Semantics depends on Operational Semantics:\\
+Which function does this program denote?
+
+\begin{center}
+
+\onslide<+->
+$\lambda x . 42$
+\vspace{2em}
+
+\onslide<+->
+$x \mapsto 42$
+
+\begin{equation*}
+x \mapsto \left\{
+  \begin{array}{lcl}
+   42    & \text{if} & x \neq \bot \\
+   \bot  & \text{if} & x = \bot
+  \end{array}
+\right.
+\end{equation*}
+
+\vspace{2em}
+strict vs. non-strict functions
+
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}{Denotational Semantics for Product Types}
+
+\onslide<+->
+\begin{center}
+$\pi_0 \langle M,N \rangle =\ ?$
+\vspace{2em}
+
+\onslide<+->
+smash product: $\langle M, \bot\rangle = \bot = \langle\bot, N\rangle$
+
+vs
+
+cartesian product: $\langle M, \bot\rangle \neq \bot \neq \langle\bot, N\rangle$
+
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{Denotational Semantics for Sum Types}
+
+\onslide<+->
+\begin{center}
+$[\text{const}\ 42, \text{const}\ 43]\ \kappa_0(M) =\ ?$
+\vspace{2em}
+
+\onslide<+->
+smash sum: $\kappa_0(\bot) = \bot = \kappa_1(\bot)$
+
+vs
+
+separated sum: $\kappa_0(\bot) \neq \bot \neq \kappa_1(\bot)$
+\vspace{1.5em}
+
+\begin{tikzpicture}[scale=1]
+\draw (0,0) -- (0.5,0) node [above] {$A$} -- (1,0) -- (0.5,-1.5) -- cycle;
+\begin{scope}[xshift=1.5cm]
+\draw (0,0) -- (0.5,0) node [above] {$B$} -- (1,0) -- (0.5,-1.5) -- cycle;
+\end{scope}
+\draw[shape=rectangle] (0.6,-1.7) -- (1.25,-2.5)
+  node [fill=white,inner sep=5pt] {$\bot_{AB}$} -- (1.9,-1.7)
+;
+
+\begin{scope}[xshift=-5cm]
+\draw (0,0) -- (0.5,0) node [above] {$A$} -- (1,0) -- (1.25,-1.5) -- cycle;
+\begin{scope}[xshift=1.5cm]
+\draw (0,0) -- (0.5,0) node [above] {$B$} -- (1,0) -- (-0.25,-1.5)
+  node [below] {$\bot_A = \bot_B$}
+  -- cycle;
+\end{scope}
+\end{scope}
+
+\end{tikzpicture}
+
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}{Summary So Far}
+
+\begin{tabular}{c|c|c}
+ & call-by-value & call-by-name \\
+\hline
+category & $\Cppo_{\bot}$ & $\Cppo$ \\
+abstraction & strict cont. function & continuous function \\
+sum type & smash sum (y) & separated sum (n) \\
+product type & smash product (n) & cartesian product (y)
+\end{tabular}
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Clean}
+
+Clean Language Report: ``Generic representations of ADTs are isomorphic to the original data types.''
+
+\texttt{Three = A | B | C}
+%\vspace{0.5em}
+
+\onslide<2->{
+\begin{center}
+\begin{tikzpicture}
+  \path (0,0) node [inner xsep=1em] {$\bot$} [grow'=up, sibling distance=2.0em, level distance=2.5em]
+    child { node {A} }
+    child { node {B} }
+    child { node {C} }
+  ;
+\end{tikzpicture}
+\end{center}
+}
+%\vspace{1em}
+
+\texttt{ThreeG = Either (Either Unit Unit) Unit}
+%\vspace{0.5em}
+
+\onslide<2->{
+\begin{center}
+\begin{tikzpicture}
+  \path (0,0) node [inner xsep=1em] {$\bot$} [grow'=up, sibling distance=2.5em, level distance=2.5em]
+    child
+    { node {L$\bot$}
+      child { node {LL} }
+      child { node {LR} }
+    }
+    child { node {RR} }
+  ;
+\end{tikzpicture}
+\end{center}
+}
 
 \end{frame}
 
