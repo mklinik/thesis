@@ -8,7 +8,7 @@
 }
 
 \usepackage[english]{babel}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{bussproofs}
 \usepackage[retainorgcmds]{IEEEtrantools}
 
@@ -743,6 +743,184 @@ Clean Language Report: ``Generic representations of ADTs are isomorphic to the o
 \end{center}
 }
 
+\end{frame}
+
+
+\begin{frame}{Why All This?}
+
+\begin{itemize}
+\item $\lambda^\arr$ is strongly normalizing
+\item Gödel's System T is $\lambda^\arr$ plus
+  \begin{itemize}
+  \item natural numbers
+  \item recursion operator
+  \item primitive recursion
+  \end{itemize}
+\item Venanzio Capretta:
+  \begin{itemize}
+  \item coinductive natural numbers
+  \item recursion operator
+  \item general recursion
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{The Coinductive Natural Numbers}
+
+Final coalgebra of the functor $1+X+X$
+
+\begin{center}
+\begin{tikzpicture}
+ [ grow'=up
+ , scale=1.2
+ , level distance=2.6em
+ , level 1/.style={sibling distance=3cm}
+ , level 2/.style={sibling distance=1cm}
+ , normal/.style={thin, solid}
+ , skipping/.style={thick, dotted}
+ , and so on/.style={thick, dotted, sibling distance=0.6cm, level distance=0.6cm}
+ ]
+  \node {$\bot$}
+    child [sibling distance=1cm] { node {$0$} }
+    child
+    {
+      node {$S\bot$}
+      child { node {$S0$} }
+      child [skipping]
+      {
+        %node {$SS\bot$}
+        %child { node {$SS0$} }
+        %child [skipping]
+        %{
+          node {$S^n\bot$}
+          child [normal] { node {$S^n0$} }
+          child [skipping] { node {$S^\omega$} }
+          child [and so on] {}
+        %}
+        %child [and so on] {}
+      }
+      child
+      {
+        node {$S\_\bot$}
+        child [missing] {}
+        child [and so on] {}
+      }
+    }
+    child
+    {
+      node {$\_ \bot$}
+      child { node {$\_0$} }
+      child
+      {
+        node {$\_S\bot$}
+        child { node {$\_S0$} }
+        child [skipping]
+        {
+          node {$\_S^n\bot$}
+          child [normal] { node {$\_S^n0$} }
+          child { node {$\_S^\omega$} }
+          child [and so on] {}
+        }
+        child [and so on] {}
+      }
+      child
+      {
+        node {$\_\_\bot$}
+        child [missing] {}
+        %child [missing] {}
+        child [skipping] { node {$\_^\omega$} }
+      }
+    }
+  ;
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+
+
+
+\begin{frame}{And The Lazy Natural Numbers?}
+
+Final coalgebra of the functor $1+X$
+
+\begin{center}
+\begin{tikzpicture}
+ [ grow'=up
+ , scale=1.2
+ , level distance=2.6em
+ , level 1/.style={sibling distance=3cm}
+ , level 2/.style={sibling distance=1cm}
+ , normal/.style={thin, solid}
+ , skipping/.style={thick, dotted}
+ , and so on/.style={thick, dotted, sibling distance=0.6cm, level distance=0.6cm}
+ ]
+  \node [color=red] {$\bot$}
+    child [sibling distance=1cm,color=red] { node [color=red] {$0$} }
+    child [color=red]
+    {
+      node [color=red] {$S\bot$}
+      child { node [color=red] {$S0$} }
+      child [skipping]
+      {
+        %node {$SS\bot$}
+        %child { node {$SS0$} }
+        %child [skipping]
+        %{
+          node [color=red] {$S^n\bot$}
+          child [normal,color=red] { node {$S^n0$} }
+          child [skipping,color=red] { node {$S^\omega$} }
+          child [and so on,color=black] {}
+        %}
+        %child [and so on] {}
+      }
+      child [color=black]
+      {
+        node {$S\_\bot$}
+        child [missing] {}
+        child [and so on] {}
+      }
+    }
+    child
+    {
+      node {$\_ \bot$}
+      child { node {$\_0$} }
+      child
+      {
+        node {$\_S\bot$}
+        child { node {$\_S0$} }
+        child [skipping]
+        {
+          node {$\_S^n\bot$}
+          child [normal] { node {$\_S^n0$} }
+          child { node {$\_S^\omega$} }
+          child [and so on] {}
+        }
+        child [and so on] {}
+      }
+      child
+      {
+        node {$\_\_\bot$}
+        child [missing] {}
+        %child [missing] {}
+        child [skipping] { node {$\_^\omega$} }
+      }
+    }
+  ;
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}{Questions}
+\begin{center}
+?
+\end{center}
 \end{frame}
 
 
