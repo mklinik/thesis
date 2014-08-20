@@ -84,7 +84,7 @@
 
 \begin{itemize}
 \item untyped $\lambda$-calculus\onslide<2->{: fixpoint combinator}
-\item typed $\lambda$-calculus\onslide<2->{: no fixpoints}
+\item simply typed $\lambda$-calculus\onslide<2->{: no fixpoints}
 \item PCF\onslide<2->{: fixpoint operator}
 \end{itemize}
 
@@ -142,20 +142,21 @@ A \emph{partial order} is reflexive, transitive, antisymmetric.
 \end{definition}
 
 \begin{definition}
-A \emph{complete pointed partial order} (cppo) is a partial order where
+A \emph{complete pointed partial order} (cppo) is a
 %\vspace{-1em}
 \begin{itemize}
-\item every non-empty chain has a least upper bound.
+\item partial order where
+\item every non-empty chain has a least upper bound
 \item $\bot$ exists
 \end{itemize}
 \end{definition}
 
 \begin{definition}
-A \emph{continuous} function between cpos is monotone and preserves least upper bounds.
+A \emph{continuous} function between cpos is monotone and preserves least upper bounds $f(\lub C) = \lub f(C)$
 \end{definition}
 
 \begin{theorem}[The Fixpoint Theorem]
-Every continuous endofunction has a unique least fixpoint.
+Every continuous $f : D \arr D$ has a unique least fixpoint.
 \end{theorem}
 
 \end{frame}
@@ -170,7 +171,7 @@ Every continuous endofunction has a unique least fixpoint.
 
 \item $\bot \below f(\bot)
    \onslide<+->{ \below f(f(\bot))}
-   \onslide<+->{\below f^3(\bot) \below \ldots}$
+   \onslide<+->{\below f(f(f(\bot))) \below \ldots}$
 
 \onslide<+->
 \item $C = \set{f^n(\bot) \mid n \in \bbN}$ is a chain, has a least upper bound.
@@ -268,7 +269,7 @@ In fact:
 \begin{frame}{Fixpoints, Sums, Products: Pick Two}
 
 \begin{itemize}
-\item What? CCC + Fixpoints + Sums = $\lightning$
+\item What? CCC + Fixpoints + Coproducts = $\lightning$
 \item Who? Huwig and Poign\'e, 1990
 \item Why? Raising awareness
 \item How? Let's see
@@ -309,7 +310,7 @@ f(Yf)$
 
 
 
-\begin{frame}[fragile]{Warming Up}
+\begin{frame}[fragile]{Warming Up (1)}
 
 \begin{lemma}
 In a category with fixpoints, $0 \cong 1$.
@@ -332,7 +333,7 @@ In a category with fixpoints, $0 \cong 1$.
 
 
 
-\begin{frame}[fragile]{Warming Up}
+\begin{frame}[fragile]{Warming Up (2)}
 
 \begin{lemma}
 In a CCC with initial object, for all $A$, $0 \cong 0 \product A$.
@@ -377,7 +378,7 @@ Uniqueness:
 \end{frame}
 
 
-\begin{frame}[fragile]{Warming Up}
+\begin{frame}[fragile]{Warming Up (3)}
 
 \begin{theorem}
 Any CCC with fixpoints and initial object is trivial.
@@ -496,7 +497,7 @@ Thus $\kappa_0 = \kappa_1 : 1 \arr 1 + 1$
 \begin{itemize}
 \item Fact: $- \product A$ preserves coproducts
 \item $(1+1)\product A$ is a coproduct of $1 \product A$ and $1 \product A$
-\item $(1+1) \product A\ \cong\ A+A$
+\item $(1+1) \product A\ \cong\ 2 \product A\ \cong\ A+A$
 \item $A+A$ is a coproduct of $A$ and $A$ with $\kappa_0 \product A$ and $\kappa_1 \product A$
 \item $\kappa_0 = \kappa_1 \implies \kappa_0 \product A = \kappa_1 \product A$
 \end{itemize}
@@ -579,6 +580,9 @@ The essence of data:
 \item Sums
 \item Recursion
 \end{itemize}
+\vspace{2em}
+
+\texttt{List = Nil | Cons Int List}
 
 \end{frame}
 
@@ -843,9 +847,39 @@ Final coalgebra of the functor $1+X+X$
 
 
 
-\begin{frame}{And The Lazy Natural Numbers?}
+\begin{frame}{The Lazy Natural Numbers}
 
 Final coalgebra of the functor $1+X$
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+  \node {$\bot$} [grow'=up, sibling distance=4.0em, level distance=1.8em]
+    child { node {$0$} }
+    child
+    {
+      node {$S\bot$}
+      child { node {$S0$} }
+      child
+      {
+        node {$SS\bot$}
+        child { node {$SS0$} }
+        child [thick, dotted]
+        {
+          node {$S^n\bot$}
+          child [thin, solid] { node {$S^n0$} }
+          child { node {$S^\omega$} }
+        }
+      }
+    }
+  ;
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}{What's Their Connection?}
 
 \begin{center}
 \begin{tikzpicture}
