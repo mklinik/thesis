@@ -12,6 +12,11 @@
 \usepackage{bussproofs}
 \usepackage[retainorgcmds]{IEEEtrantools}
 
+ % for checkmark and cross
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
 % needs debian package texlive-math-extra
 \usepackage{stmaryrd} % for \llbracket, \rrbracket
 
@@ -275,6 +280,7 @@ In fact:
 \item Cppo: the category of cppos with continuous functions
 \item Is a CCC: with products and exponentials
 \item Has fixpoints: all endomorphisms have a fixpoint
+\item But!
 \end{itemize}
 
 
@@ -719,9 +725,32 @@ separated sum: $\kappa_0(\bot) \neq \bot \neq \kappa_1(\bot)$
 \hline
 category & $\Cppo_{\bot}$ & $\Cppo$ \\
 abstraction & strict cont. function & continuous function \\
-sum type & smash sum (y) & separated sum (n) \\
-product type & smash product (n) & cartesian product (y)
+sum type & smash sum & separated sum \\
+product type & smash product & cartesian product \\
 \end{tabular}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{That's Okay Because}
+
+\begin{itemize}
+\item Separated sum not a coproduct in $\Cppo$
+\item Smash product not a product in $\Cppo_\bot$
+\end{itemize}
+\vspace{1em}
+
+\begin{center}
+\begin{tabular}{l|c|c|c|c}
+{} & CCC & fixpoints & bin. coproducts & initials \\
+\hline
+Problem & \cmark & \cmark & \cmark & \cmark \\
+\hline
+$\Cppo$ & \cmark & \cmark & \xmark & \xmark \\
+\hline
+$\Cppo_\bot$ & \xmark & \cmark & \cmark & \cmark \\
+\end{tabular}
+\end{center}
 
 \end{frame}
 
