@@ -74,7 +74,6 @@
 \end{frame}
 
 
-
 \begin{frame}{The Question}
 
 \begin{center}
@@ -91,11 +90,14 @@ $1+X+X$?
 
 
 
-\begin{frame}{The Great Divide}
+\begin{frame}{Let's talk about}
 
-\begin{center}
-"Love" is a four-letter word.
-\end{center}
+\begin{itemize}
+\item Domain theory
+\item A fundamental restriction
+\item A (somewhat) satisfactory workaround
+\item Come back to the question
+\end{itemize}
 
 \end{frame}
 
@@ -130,19 +132,22 @@ $1+X+X$?
 \begin{center}
 
 \onslide<+->
-$Y\ M = M\ (Y\ M)$
+$Y \equiv \lambda f\ .\ (\lambda x. f\ (x\ x))\ (\lambda x . f\ (x\ x))$
 \vspace{1em}
 
+$Y\ M = M\ (Y\ M)$
+\vspace{1em}
 \onslide<+->
-$\fix_t : (t \arr t) \arr t$
+
+$Y\ M = M\ (Y\ M) = M\ M\ (Y\ M) = M\ M\ M\ (Y\ M) = \ldots$
+\vspace{2em}
+
+\onslide<+->
+$\fix : (t \arr t) \arr t$
 \vspace{1em}
 
 $\fix\ M = M\ (\fix\ M)$
-\vspace{1em}
 
-\onslide<+->
-
-$\fix\ M = M\ (\fix\ M) = M\ M\ (fix\ M) = M\ M\ M\ (fix\ M) = \ldots$
 \end{center}
 
 
@@ -801,17 +806,11 @@ Clean Language Report: ``Generic representations of ADTs are isomorphic to the o
 
 \begin{itemize}
 \item $\lambda^\arr$ is strongly normalizing
-\item Gödel's System T is $\lambda^\arr$ plus
-  \begin{itemize}
-  \item natural numbers
-  \item recursion operator
-  \item primitive recursion
-  \end{itemize}
 \item Venanzio Capretta:
   \begin{itemize}
-  \item coinductive natural numbers
-  \item recursion operator
-  \item general recursion
+  \item add coinductive natural numbers
+  \item with recursion operator
+  \item to get general recursion
   \end{itemize}
 \end{itemize}
 
