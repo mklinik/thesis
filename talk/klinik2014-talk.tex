@@ -103,11 +103,15 @@ $\text{iter}\ f : t \arr \bbN^\nu$
 \end{center}
 
 \onslide<+->
-\begin{itemize}
-\item if $f\ x = \kappa_0(*)$ then $(\text{iter}\ f)\ x = 0$
-\item if $f\ x = \kappa_1(y)$ then $(\text{iter}\ f)\ x = S\ ((\text{iter}\ f)\ x)$
-\item if $f\ x = \kappa_2(y)$ then $(\text{iter}\ f)\ x = \_\ ((\text{iter}\ f)\ x)$
-\end{itemize}
+\begin{equation*}
+(\text{iter}\ f)\ x = \left\{
+  \begin{array}{lcl}
+   0     & \text{if} & f\ x = \kappa_0(*) \\
+   S\ ((\text{iter}\ f)\ y)  & \text{if} & f\ x = \kappa_1(y) \\
+   \_\ ((\text{iter}\ f)\ y)  & \text{if} & f\ x = \kappa_2(y) \\
+  \end{array}
+\right.
+\end{equation*}
 
 \end{frame}
 
